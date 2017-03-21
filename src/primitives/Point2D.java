@@ -40,7 +40,13 @@ public class Point2D implements Comparable<Point2D>{
         return this;
     }
 
+    @Override
     public int compareTo(Point2D point2D){
+        if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2)) ==
+                  Math.sqrt(Math.pow(point2D._x.getCoordinate(),2) + Math.pow(point2D._y.getCoordinate(),2))) return 0;
+        if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2)) >
+                Math.sqrt(Math.pow(point2D._x.getCoordinate(),2) + Math.pow(point2D._y.getCoordinate(),2))) return 1;
+                else return -1;
 
     };
 }
