@@ -56,8 +56,9 @@ public class Vector {
         return  a;
     }
     public void normalize(){
-        if(this.length() ==  0)
+     /**   if(this.length() ==  0)
             throw new ArithmeticException;
+      */
         this.scale((1/this.length()));
     }
     public double dotProduct(Vector vector){

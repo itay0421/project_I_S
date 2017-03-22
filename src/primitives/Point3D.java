@@ -54,11 +54,19 @@ return 2;
         return  "x = "+this.getX() + "\ny = " + this.getY() + "\nz = " +this.getZ();
     }
 
-    public void add(Vector vector){compareTo()};
-    public void subtract(Vector vector){};
+    public void add(Vector vector){
+        this.getX().setCoordinate(this.getX().getCoordinate()+ vector.getHead().getX().getCoordinate());
+        this.getY().setCoordinate(this.getY().getCoordinate() + vector.getHead().getY().getCoordinate());
+        this.getZ().setCoordinate(this.getZ().getCoordinate() +vector.getHead().getZ().getCoordinate());
+    }
+    public void subtract(Vector vector){
+        this.getX().setCoordinate(this.getX().getCoordinate() - vector.getHead().getX().getCoordinate());
+        this.getY().setCoordinate(this.getY().getCoordinate() - vector.getHead().getY().getCoordinate());
+        this.getZ().setCoordinate(this.getZ().getCoordinate() - vector.getHead().getZ().getCoordinate());
+    }
     public double distance(Point3D point){
      return    Math.sqrt(Math.pow(this.getX().getCoordinate() - point._x.getCoordinate() , 2) +
              Math.pow(this.getY().getCoordinate() - point.getY().getCoordinate(), 2)
         + Math.pow(this.getZ().getCoordinate() - point.getZ().getCoordinate() , 2 ));
-    };
+    }
 }
