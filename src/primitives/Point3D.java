@@ -51,7 +51,7 @@ return 2;
     };
     @Override
     public String toString(){
-        return  "x = "+this.getX() + "\ny = " + this.getY() + "\nz = " +this.getZ();
+        return String.format("( .%2f, .%2f, .%2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
     }
 
     public void add(Vector vector){

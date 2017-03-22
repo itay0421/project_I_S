@@ -10,16 +10,13 @@ public class Vector {
     public Point3D getHead() {
         return _head;
     }
-
     public Vector setHead(Point3D _head) {
         this._head = _head;
         return this;
     }
-
     public Vector(Point3D _head) {
         this._head = _head;
     }
-
     public Vector() {
         _head = new Point3D();
     }
@@ -27,11 +24,21 @@ public class Vector {
     public Vector(Vector vector) {
         _head = vector._head;
     }
-
     public Vector(double xHead, double yHead, double zHead) {
         super(new Coordinate(), new Coordinate(), new Coordinate());
     }
 
+    public int compareTo(Vector vector){
+       if (this.length() > vector.length())
+        return 1;
+       if(this.length() < vector.length())
+           return -1;
+       else return 0;
+    }
+    public String toString(){
+        return super();
+    }
+    
     public void add(Vector vector) {
         this._head = new Point3D(this._head.getX().getCoordinate() + vector._head.getX().getCoordinate(), this.getHead().getY().getCoordinate()
                 + vector._head.getY().getCoordinate(), this._head.getZ().getCoordinate() + vector._head.getZ().getCoordinate());
