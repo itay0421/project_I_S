@@ -56,7 +56,9 @@ public class Vector {
         return  a;
     }
     public void normalize(){
-         this.scale((1/this.length()));
+        if(this.length() ==  0)
+            throw new ArithmeticException;
+        this.scale((1/this.length()));
     }
     public double dotProduct(Vector vector){
         return  this._head.getX().getCoordinate()*vector._head.getX().getCoordinate()+
