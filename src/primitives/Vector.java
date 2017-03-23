@@ -3,72 +3,78 @@ package primitives;
 /**
  * Created by {Itay Amar and Shalom bloch} on 21 מרץ 2017.
  */
-public class Point3D extends Point2D  {
+public class Vector {
 
-    private Coordinate _z;
+    private Point3D _head;
 
-    public Coordinate getZ() {
-        return _z;
+    public Point3D getHead() {
+        return _head;
     }
-    public Point3D setZ(Coordinate _z) {
-        this._z = _z;
+    public Vector setHead(Point3D _head) {
+        this._head = _head;
         return this;
     }
 
-    public Point3D() {
-        this._z = new Coordinate();
+    public Vector(Point3D _head) {
+        this._head = _head;
     }
-    public Point3D(Coordinate _x, Coordinate _y, Coordinate _z) {
-        super(_x, _y);
-        this._z = _z;
+    public Vector() {
+        _head = new Point3D();
     }
-    public Point3D(double x, double y, double z) {
-        super(new Coordinate(x),new Coordinate(y));
-        this._z = new Coordinate(z);
+    public Vector(Vector vector) {
+        _head = vector._head;
+    }
+    public Vector(double xHead, double yHead, double zHead) {
+       this._head = new Point3D(xHead,yHead,zHead);
+    }
+    public Vector(Point3D p1, Point3D p2){}
 
+    public int compareTo(Vector vector){
+       if (this.length() > vector.length())
+        return 1;
+       if(this.length() < vector.length())
+           return -1;
+       else return 0;
     }
-    public Point3D(Point3D point3D){
-        super( point3D.getX(),point3D.getY() );
-        this._z = point3D._z;
-
-    }
-
-    /**
-     *
-     * @param point3D
-     * @return if points selfsame return 2, other option about distance from 'First of the contractions'.
-     *
-     */
-    public int compareTo(Point3D point3D){
-        if (this.getX() == point3D.getX() && this.getY() == point3D.getY() && this.getZ() == point3D.getZ())
-                    return 2;
-        if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2) + Math.pow(this._z.getCoordinate(),2)) ==
-                Math.sqrt(Math.pow(point3D._x.getCoordinate(),2) + Math.pow(point3D._y.getCoordinate(),2) + Math.pow(point3D._z.getCoordinate(),2)))
-                    return 0;
-        if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2) + Math.pow(this._z.getCoordinate(),2)) >
-                Math.sqrt(Math.pow(point3D._x.getCoordinate(),2) + Math.pow(point3D._y.getCoordinate(),2) + Math.pow(point3D._z.getCoordinate(),2)))
-            return 1;
-                 else return -1;
-    };
     @Override
     public String toString(){
-        return String.format("( .%2f, .%2f, .%2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
+        return this._head.toString();
     }
+    
+    public void add(Vector vector) {
+       this._head.add(vector);
+    };
+    public void subtract(Vector vector) {
+        this._head.subtract(vector);
 
-    public void add(Vector vector){
-        this._x.setCoordinate(this._x.getCoordinate() + vector.getHead().getX().getCoordinate());
-        this._y.setCoordinate(this._y.getCoordinate() + vector.getHead().getY().getCoordinate());
-        this._z.setCoordinate(this._z.getCoordinate() + vector.getHead().getZ().getCoordinate());
     }
-    public void subtract(Vector vector){
-        this._x.setCoordinate(this._x.getCoordinate() - vector.getHead().getX().getCoordinate());
-        this._y.setCoordinate(this._y.getCoordinate() - vector.getHead().getY().getCoordinate());
-        this._z.setCoordinate(this._z.getCoordinate() - vector.getHead().getZ().getCoordinate());
+    public void scale(double scalingFactor){
+        this._head = new Point3D(this._head.getX().getCoordinate()*scalingFactor , this._head.getY().getCoordinate()*scalingFactor ,
+                this._head.getZ().getCoordinate()*scalingFactor);
     }
-    public double distance(Point3D point){
-     return    Math.sqrt(Math.pow(this.getX().getCoordinate() - point._x.getCoordinate() , 2) +
-                             Math.pow(this.getY().getCoordinate() - point.getY().getCoordinate(), 2)
-                                + Math.pow(this.getZ().getCoordinate() - point.getZ().getCoordinate() , 2 ));
+    public Vector crossProduct(Vector vector){
+        Vector a =  new Vector(this._head._y.getCoordinate()*vector._head._y.getCoordinate() - this._head.getZ().getCoordinate()*vector._head._x.getCoordinate(),
+                -1*(this._head.getX().getCoordinate()*vector._head.getZ().getCoordinate() - this._head.getZ().getCoordinate()*vector._head.getX().getCoordinate()),
+                this._head.getX().getCoordinate()*vector._head.getY().getCoordinate() - vector._head.getX().getCoordinate()*this._head.getY().getCoordinate());
+        return a;
+    }
+    public double length(){
+        double a =  Math.sqrt(Math.pow(this._head._x.getCoordinate(),2) + Math.pow(this._head._y.getCoordinate(),2) + Math.pow(this._head.getZ().getCoordinate(),2));
+        return  a;
+    }
+    public void normalize(){
+     /**   if(this.length() ==  0)
+            throw new ArithmeticException;
+      */
+        this.scale((1/this.length()));
+    }
+    public double dotProduct(Vector vector){
+        return  this._head.getX().getCoordinate() * vector._head.getX().getCoordinate()+
+                this._head.getY().getCoordinate() * vector._head.getY().getCoordinate()+
+                this._head.getZ().getCoordinate() * vector._head.getZ().getCoordinate();
     }
 }
+
+
+
 
