@@ -40,8 +40,16 @@ public class Point2D implements Comparable<Point2D>{
         return this;
     }
 
+    /**
+     *
+     * @param point2D
+     * @return if points selfsame return 2, other option about distans from 'First of the contractions'.
+     *
+     */
     @Override
     public int compareTo(Point2D point2D){
+        if (this.getX() == point2D.getX() && this.getY() == point2D.getY())
+            return 2;
         if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2)) ==
                   Math.sqrt(Math.pow(point2D._x.getCoordinate(),2) + Math.pow(point2D._y.getCoordinate(),2))) return 0;
         if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2)) >
@@ -50,3 +58,4 @@ public class Point2D implements Comparable<Point2D>{
 
     };
 }
+
