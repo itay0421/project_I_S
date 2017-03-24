@@ -40,7 +40,7 @@ public class Point3D extends Point2D  {
      *
      */
     public int compareTo(Point3D point3D){
-        if (this.getX() == point3D.getX() && this.getY() == point3D.getY() && this.getZ() == point3D.getZ())
+        if (this._x == point3D.getX() && this.getY() == point3D.getY() && this.getZ() == point3D.getZ())
                     return 2;
         if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2) + Math.pow(this._z.getCoordinate(),2)) ==
                 Math.sqrt(Math.pow(point3D._x.getCoordinate(),2) + Math.pow(point3D._y.getCoordinate(),2) + Math.pow(point3D._z.getCoordinate(),2)))
@@ -52,7 +52,7 @@ public class Point3D extends Point2D  {
     };
     @Override
     public String toString(){
-        return String.format("( .%2f, .%2f, .%2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
+        return String.format("(%.2f,%.2f,%.2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
     }
 
     public void add(Vector vector){
