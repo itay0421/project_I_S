@@ -46,11 +46,11 @@ class Point3DTest {
     void distance() {
         point3D_1 = new Point3D(1,0,0);
         point3D_2 = new Point3D(-1,0,0);
-        String str2 =String.valueOf(point3D_1.distance(point3D_2))     ;
-        String str1 = String.format("%.2f" ,str2);
-        assertEquals("2.00",str1);
+        assertEquals(2,point3D_1.distance(point3D_2));
 
-
+        point3D_1 = new Point3D(5.3,5.9,5);
+        point3D_2 = new Point3D(-1,-3,-6);
+        assertEquals(15.488705562441298 , point3D_1.distance(point3D_2));
     }
 
 }
