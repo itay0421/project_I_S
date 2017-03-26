@@ -1,7 +1,7 @@
 package primitives;
 
 /**
- * Created by {Itay Amar and Shalom bloch} on 21 מרץ 2017.
+ * Created by {Itay Amar and Shalom bloch} on 21  2017.
  */
 public class Point3D extends Point2D  {
 

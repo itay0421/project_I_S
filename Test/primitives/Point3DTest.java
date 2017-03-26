@@ -1,5 +1,6 @@
 package primitives;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,8 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Created by {Itay Amar and Shalom bloch} on 24 מרץ 2017.
  */
 class Point3DTest {
+
+
+
     Point3D point3D_1 = new Point3D(1,2,2);
-    Point3D point3D_2 = new Point3D(1,2,3);
+    Point3D point3D_2 = new Point3D(1,2,2);
     Vector vector_1 = new Vector(1.5,4.55555,2);
     Vector vector_2 = new Vector(3,3,3);
 
@@ -52,5 +56,8 @@ class Point3DTest {
         point3D_2 = new Point3D(-1,-3,-6);
         assertEquals(15.488705562441298 , point3D_1.distance(point3D_2));
     }
+
+
+
 
 }
