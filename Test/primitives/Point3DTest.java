@@ -20,7 +20,7 @@ class Point3DTest {
 
     @Test
     int compareTo() {
-              assertEquals("2" ,point3D_1.compareTo(point3D_2) );;
+              assertEquals(2 ,point3D_1.compareTo(point3D_2) );;
 
         return 0;
     }
@@ -43,7 +43,7 @@ class Point3DTest {
     @Test
     void subtract() {
     point3D_2.subtract(vector_2);
-    assertEquals(point3D_2.toString(),"(-2.00,-1.00,0.00)"  );
+    assertEquals(point3D_2.toString(),"(-2.00,-1.00,-1.00)"  );
     }
 
     @Test

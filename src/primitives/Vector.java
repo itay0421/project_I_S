@@ -53,7 +53,7 @@ public class Vector {
                 this._head.getZ().getCoordinate()*scalingFactor);
     }
     public Vector crossProduct(Vector vector){
-        Vector a =  new Vector(this._head._y.getCoordinate()*vector._head._y.getCoordinate() - this._head.getZ().getCoordinate()*vector._head._x.getCoordinate(),
+        Vector a =  new Vector(this._head._y.getCoordinate()*vector._head.getZ().getCoordinate() - this._head.getZ().getCoordinate()*vector._head._y.getCoordinate(),
                 -1*(this._head.getX().getCoordinate()*vector._head.getZ().getCoordinate() - this._head.getZ().getCoordinate()*vector._head.getX().getCoordinate()),
                 this._head.getX().getCoordinate()*vector._head.getY().getCoordinate() - vector._head.getX().getCoordinate()*this._head.getY().getCoordinate());
         return a;
@@ -63,10 +63,10 @@ public class Vector {
         return  a;
     }
     public void normalize(){
-     /**   if(this.length() ==  0)
-            throw new ArithmeticException;
-      */
-        this.scale((1/this.length()));
+        if(this.length() ==  0)
+            throw new ArithmeticException("length is 0 ");
+
+        this.scale(1/this.length());
     }
     public double dotProduct(Vector vector){
         return  this._head.getX().getCoordinate() * vector._head.getX().getCoordinate()+

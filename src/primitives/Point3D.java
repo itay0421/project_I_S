@@ -40,7 +40,7 @@ public class Point3D extends Point2D  {
      *
      */
     public int compareTo(Point3D point3D){
-        if (this._x == point3D.getX() && this.getY() == point3D.getY() && this.getZ() == point3D.getZ())
+        if (this._x.compareTo(point3D.getX()) == 0 && this._y.compareTo(point3D._y) == 0 && this._z.compareTo(point3D._z) == 0)
                     return 2;
         if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2) + Math.pow(this._z.getCoordinate(),2)) ==
                 Math.sqrt(Math.pow(point3D._x.getCoordinate(),2) + Math.pow(point3D._y.getCoordinate(),2) + Math.pow(point3D._z.getCoordinate(),2)))
