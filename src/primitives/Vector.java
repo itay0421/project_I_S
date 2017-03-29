@@ -40,7 +40,7 @@ public class Vector {
     public String toString(){
         return this._head.toString();
     }
-    
+
     public void add(Vector vector) {
        this._head.add(vector);
     };
