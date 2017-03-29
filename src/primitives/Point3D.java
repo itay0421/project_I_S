@@ -1,9 +1,9 @@
-p5ackage primitives;
+package primitives;
 
 /**
- * Created by איתי ומוריה on 21 מרץ 2017.
+ * Created by {Itay Amar and Shalom bloch} on 21  2017.
  */
-public class Point3D extends Point2D implements Comparable<Point2D> {
+public class Point3D extends Point2D   {
 
     private Coordinate _z;
 
@@ -36,11 +36,12 @@ public class Point3D extends Point2D implements Comparable<Point2D> {
     /**
      *
      * @param point3D
-     * @return
+     * @return if points selfsame return 2, other option about distance from 'First of the contractions'.
+     *
      */
     public int compareTo(Point3D point3D){
-        if (this.getX() == point3D.getX() && this.getY() == point3D.getY() && this.getZ() == point3D.getZ())
-return 2;
+        if (this._x.compareTo(point3D.getX()) == 0 && this._y.compareTo(point3D._y) == 0 && this._z.compareTo(point3D._z) == 0)
+                    return 2;
         if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2) + Math.pow(this._z.getCoordinate(),2)) ==
                 Math.sqrt(Math.pow(point3D._x.getCoordinate(),2) + Math.pow(point3D._y.getCoordinate(),2) + Math.pow(point3D._z.getCoordinate(),2)))
                     return 0;
@@ -51,22 +52,22 @@ return 2;
     };
     @Override
     public String toString(){
-        return String.format("( .%2f, .%2f, .%2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
+        return String.format("(%.2f,%.2f,%.2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
     }
 
     public void add(Vector vector){
-        this.getX().setCoordinate(this.getX().getCoordinate() + vector.getHead().getX().getCoordinate());
-        this.getY().setCoordinate(this.getY().getCoordinate() + vector.getHead().getY().getCoordinate());
-        this.getZ().setCoordinate(this.getZ().getCoordinate() +vector.getHead().getZ().getCoordinate());
+        this._x.setCoordinate(this._x.getCoordinate() + vector.getHead().getX().getCoordinate());
+        this._y.setCoordinate(this._y.getCoordinate() + vector.getHead().getY().getCoordinate());
+        this._z.setCoordinate(this._z.getCoordinate() + vector.getHead().getZ().getCoordinate());
     }
     public void subtract(Vector vector){
-        this.getX().setCoordinate(this.getX().getCoordinate() - vector.getHead().getX().getCoordinate());
-        this.getY().setCoordinate(this.getY().getCoordinate() - vector.getHead().getY().getCoordinate());
-        this.getZ().setCoordinate(this.getZ().getCoordinate() - vector.getHead().getZ().getCoordinate());
+        this._x.setCoordinate(this._x.getCoordinate() - vector.getHead().getX().getCoordinate());
+        this._y.setCoordinate(this._y.getCoordinate() - vector.getHead().getY().getCoordinate());
+        this._z.setCoordinate(this._z.getCoordinate() - vector.getHead().getZ().getCoordinate());
     }
     public double distance(Point3D point){
      return    Math.sqrt(Math.pow(this.getX().getCoordinate() - point._x.getCoordinate() , 2) +
-             Math.pow(this.getY().getCoordinate() - point.getY().getCoordinate(), 2)
-        + Math.pow(this.getZ().getCoordinate() - point.getZ().getCoordinate() , 2 ));
+                             Math.pow(this.getY().getCoordinate() - point.getY().getCoordinate(), 2)
+                                + Math.pow(this.getZ().getCoordinate() - point.getZ().getCoordinate() , 2 ));
     }
 }

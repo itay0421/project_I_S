@@ -1,11 +1,17 @@
+
 package primitives;
+
+import java.text.DecimalFormat;
 
 /**
  * Created by  on 19 מרץ 2017.
  */
 public class Coordinate implements Comparable<Coordinate> {
 
+    DecimalFormat df = new DecimalFormat("#.##");
+
     private double _coordinate;
+
     public Coordinate(){
         _coordinate= 0.0;
     };

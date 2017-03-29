@@ -2,9 +2,8 @@ package primitives;
 
 /**
  * Created by itay amar on 19 מרץ 2017.
- * more changes 11111111
  */
-public class Point2D implements Comparable<Point2D>{
+public class Point2D implements Comparable <Point2D>   {
 
     protected Coordinate _x;
     protected Coordinate _y;
@@ -39,8 +38,16 @@ public class Point2D implements Comparable<Point2D>{
         return this;
     }
 
+    /**
+     *
+     * @param point2D
+     * @return if points selfsame return 2, other option about distance from 'First of the contractions'.
+     *
+     */
     @Override
     public int compareTo(Point2D point2D){
+        if (this._x.compareTo(point2D.getX()) == 0 && this._y.compareTo(point2D._y) == 0)
+            return 2;
         if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2)) ==
                   Math.sqrt(Math.pow(point2D._x.getCoordinate(),2) + Math.pow(point2D._y.getCoordinate(),2))) return 0;
         if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2)) >
@@ -48,4 +55,7 @@ public class Point2D implements Comparable<Point2D>{
                 else return -1;
 
     };
+
+
 }
+

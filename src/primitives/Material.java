@@ -1,7 +1,7 @@
 package primitives;
 
 /**
- * Created by איתי ומוריה on 19 מרץ 2017.
+ * Created by {Itay Amar and Shalom bloch} on 2017 03 .
  */
 public class Material {
 
@@ -11,12 +11,20 @@ public class Material {
     private double _Kt; // Refraction coefficient (1 for transparent)
     private double _n; // Refraction index
 
-    public Material(double _Kd, double _Ks, double _Kr, double _Kt, double _n) {
-        this._Kd = _Kd;
-        this._Ks = _Ks;
-        this._Kr = _Kr;
-        this._Kt = _Kt;
-        this._n = _n;
+    public Material() {
+        this._Kd = 1;
+        this._Ks = 1;
+        this._Kr = 0;
+        this._Kt = 0;
+        this._n = 1;
+    }
+
+    public Material(Material material) {
+        this._Kd = material._Kd;
+        this._Ks = material._Ks;
+        this._Kr = material._Kr;
+        this._Kt = material._Kt;
+        this._n = material._n;
     }
 
     public double get_Kd() {
@@ -64,7 +72,6 @@ public class Material {
         this._n = _n;
         return this;
     }
-
 
 
 
