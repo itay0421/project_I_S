@@ -38,7 +38,7 @@ public class Vector {
     public String toString(){
         return super();
     }
-    
+
     public void add(Vector vector) {
         this._head = new Point3D(this._head.getX().getCoordinate() + vector._head.getX().getCoordinate(), this.getHead().getY().getCoordinate()
                 + vector._head.getY().getCoordinate(), this._head.getZ().getCoordinate() + vector._head.getZ().getCoordinate());

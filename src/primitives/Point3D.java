@@ -1,4 +1,4 @@
-package primitives;
+p5ackage primitives;
 
 /**
  * Created by איתי ומוריה on 21 מרץ 2017.
@@ -55,7 +55,7 @@ return 2;
     }
 
     public void add(Vector vector){
-        this.getX().setCoordinate(this.getX().getCoordinate()+ vector.getHead().getX().getCoordinate());
+        this.getX().setCoordinate(this.getX().getCoordinate() + vector.getHead().getX().getCoordinate());
         this.getY().setCoordinate(this.getY().getCoordinate() + vector.getHead().getY().getCoordinate());
         this.getZ().setCoordinate(this.getZ().getCoordinate() +vector.getHead().getZ().getCoordinate());
     }
