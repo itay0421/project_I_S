@@ -1,12 +1,16 @@
 package geometries;
 
-import primitives.*;
+import primitives.Point3D;
+import primitives.Ray;
+import primitives.Vector;
+
+import java.util.List;
 
 
 /**
  * Created by shalom on 29/03/2017.
  */
-public class Plane {
+public class Plane extends Geometry{
     private Vector _normal;
     private Point3D _Q;
 
@@ -36,6 +40,11 @@ public class Plane {
     }
     public List<Point3D> FindIntersections(Ray ray){
 
+    }
+
+    @Override
+    public Vector getNormal(Point3D point) {
+        return null;
     }
 
 }

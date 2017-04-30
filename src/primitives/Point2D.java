@@ -8,31 +8,65 @@ public class Point2D implements Comparable <Point2D>   {
     protected Coordinate _x;
     protected Coordinate _y;
 
-
+    /**
+     *default contractor
+     */
     public Point2D() {
         this._x = new Coordinate();
         this._y = new Coordinate();
     }
+
+    /**
+     *
+     * contractor - get 2 coordinate 
+     * @param _x
+     * @param _y
+     */
     public Point2D(Coordinate _x, Coordinate _y) {
-        this._x = _x;
-        this._y = _y;
+        this._x = new Coordinate(_x);
+        this._y = new Coordinate(_y);
     }
+
+    /**
+     *  contractor - get point2D
+     * @param point2D
+     */
     public Point2D(Point2D point2D){
         this._x = point2D._x;
         this._y = point2D._y;
     };
 
-
+    /**
+     *
+     * @return  Coordinate x
+     */
     public Coordinate getX() {
         return _x;
     }
+
+    /**
+     *
+     * @param _x
+     * @return   set Coordinate x
+     */
     public Point2D setX(Coordinate _x) {
         this._x = _x;
         return this;
     }
+
+    /**
+     *
+     * @return set Coordinate y
+     */
     public Coordinate getY() {
         return _y;
     }
+
+    /**
+     *
+     * @param _y
+     * @return set set Coordinate y
+     */
     public Point2D setY(Coordinate _y) {
         this._y = _y;
         return this;

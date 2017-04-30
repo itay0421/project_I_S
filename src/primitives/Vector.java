@@ -27,7 +27,12 @@ public class Vector {
     public Vector(double xHead, double yHead, double zHead) {
        this._head = new Point3D(xHead,yHead,zHead);
     }
-    public Vector(Point3D p1, Point3D p2){}
+    public Vector(Point3D p1, Point3D p2){
+                this._head = new Point3D(p1.getX().getCoordinate() - p2.getX().getCoordinate(),
+                                            p1.getY().getCoordinate() - p2.getY().getCoordinate(),
+                                                p1.getZ().getCoordinate() - p2.getZ().getCoordinate() );
+
+    }
 
     public int compareTo(Vector vector){
        if (this.length() > vector.length())
