@@ -7,29 +7,54 @@ public class Point3D extends Point2D  {
 
     private Coordinate _z;
 
+    /**
+     *
+     * @return z
+     */
     public Coordinate getZ() {
         return _z;
     }
+
+    /**
+     * set Z
+     * @param _z
+     * @return
+     */
     public Point3D setZ(Coordinate _z) {
         this._z = _z;
         return this;
     }
 
+    /**
+     * default C'tor
+     */
     public Point3D() {
         this._z = new Coordinate();
     }
+
+    /**
+     * C'tor by coordinate
+     * @param _x
+     * @param _y
+     * @param _z
+     */
     public Point3D(Coordinate _x, Coordinate _y, Coordinate _z) {
         super(_x, _y);
-        this._z = _z;
+        this._z = new Coordinate(_z);
     }
     public Point3D(double x, double y, double z) {
         super(new Coordinate(x),new Coordinate(y));
         this._z = new Coordinate(z);
 
     }
+
+    /**
+     * C'tor
+     * @param point3D
+     */
     public Point3D(Point3D point3D){
         super( point3D.getX(),point3D.getY() );
-        this._z = point3D._z;
+        this._z = new Coordinate(point3D._z);
 
     }
 
@@ -55,16 +80,31 @@ public class Point3D extends Point2D  {
         return String.format("(%.2f,%.2f,%.2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
     }
 
+    /**
+     * add point3D to point3D
+     * @param vector
+     */
     public void add(Vector vector){
         this._x.setCoordinate(this._x.getCoordinate() + vector.getHead().getX().getCoordinate());
         this._y.setCoordinate(this._y.getCoordinate() + vector.getHead().getY().getCoordinate());
         this._z.setCoordinate(this._z.getCoordinate() + vector.getHead().getZ().getCoordinate());
     }
+
+    /**
+     * subtract point3D from point3D
+     * @param vector
+     */
     public void subtract(Vector vector){
         this._x.setCoordinate(this._x.getCoordinate() - vector.getHead().getX().getCoordinate());
         this._y.setCoordinate(this._y.getCoordinate() - vector.getHead().getY().getCoordinate());
         this._z.setCoordinate(this._z.getCoordinate() - vector.getHead().getZ().getCoordinate());
     }
+
+    /**
+     *
+     * @param point
+     * @return  distance between our point3D to point
+     */
     public double distance(Point3D point){
      return    Math.sqrt(Math.pow(this.getX().getCoordinate() - point._x.getCoordinate() , 2) +
                              Math.pow(this.getY().getCoordinate() - point.getY().getCoordinate(), 2)

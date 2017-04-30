@@ -1,11 +1,10 @@
 package primitives;
 
-import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.text.DecimalFormat;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.*;
 
 /**
  * Created by {Itay Amar and Shalom bloch} on 26 מרץ 2017.
@@ -91,5 +90,6 @@ class VectorTest {
         assertEquals(14, vector1.dotProduct(vector3));
 
     }
+
 
 }

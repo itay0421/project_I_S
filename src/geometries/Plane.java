@@ -38,8 +38,12 @@ public class Plane extends Geometry{
     public void set_Q(Point3D _Q) {
         this._Q = _Q;
     }
-    public List<Point3D> FindIntersections(Ray ray){
 
+
+
+    @Override
+    public List<Point3D> FindIntersections(Ray ray) {
+        return null;
     }
 
     @Override

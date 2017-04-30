@@ -1,9 +1,7 @@
 package primitives;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Test;
 
 /**
  * Created by {Itay Amar and Shalom bloch} on 24 מרץ 2017.
