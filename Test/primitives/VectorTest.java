@@ -4,12 +4,13 @@ import org.junit.Test;
 
 import java.text.DecimalFormat;
 
-import static org.junit.*;
+import static junit.framework.TestCase.assertEquals;
+
 
 /**
  * Created by {Itay Amar and Shalom bloch} on 26 מרץ 2017.
  */
-class VectorTest {
+public class VectorTest {
 
     DecimalFormat df = new DecimalFormat("#.##");
 
@@ -22,20 +23,16 @@ class VectorTest {
 
 
     @Test
-    void compareTo() {
+    public void compareTo() {
         assertEquals(0, vector1.compareTo(vector2));
         assertEquals(-1, vector1.compareTo(vector3));
     }
 
-    @Test
-    public String toString() {
-        assertEquals("(2.00,2.00,2.00)", vector1.toString());
 
-        return null;
-    }
 
+    
     @Test
-    void add() {
+    public void add() {
         vector1.add(vector2);
         vector2.add(vector3);
         assertEquals( "(0.00,0.00,0.00)",vector1.toString());
@@ -43,14 +40,14 @@ class VectorTest {
     }
 
     @Test
-    void subtract() {
+    public void subtract() {
     vector1.subtract(vector2);
         assertEquals( "(-4.00,-4.00,-4.00)",vector1.toString());
         assertEquals( "(-3.00,-2.00,-8.00)",vector2.toString());
     }
 
     @Test
-    void scale() {
+    public void scale() {
         vector1.scale(2);
         vector3.scale(-4.5);
         assertEquals("(4.00,4.00,4.00)",vector1.toString());
@@ -58,13 +55,13 @@ class VectorTest {
     }
 
     @Test
-    void crossProduct() {
+    public void crossProduct() {
         assertEquals("(-6.00,15.00,12.00)",vector4.crossProduct(vector5).toString());
 
     }
 
     @Test
-    void length() {
+    public void length() {
         assertEquals("3.46",df.format(vector1.length()));
         assertEquals("3.46",df.format(vector2.length()));
         assertEquals("6.08",df.format(vector3.length()));
@@ -74,7 +71,7 @@ class VectorTest {
     }
 
     @Test
-    void normalize() {
+    public void normalize() {
         vector4.normalize();
         vector6.normalize();
         assertEquals("(0.89,0.00,0.45)",vector4.toString());
@@ -85,8 +82,8 @@ class VectorTest {
     }
 
     @Test
-    void dotProduct() {
-        assertEquals(0,vector1.dotProduct(vector6));
+    public void dotProduct() {
+        assertEquals(0.0,vector1.dotProduct(vector6));
         assertEquals(14, vector1.dotProduct(vector3));
 
     }

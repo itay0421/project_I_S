@@ -3,6 +3,8 @@ package primitives;
 
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
+
 /**
  * Created by {Itay Amar and Shalom bloch} on 24 מרץ 2017.
  */

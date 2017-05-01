@@ -120,8 +120,8 @@ public class Vector {
      * normalize veftor
      */
     public void normalize(){
-        if(this.length() ==  0)
-            throw new ArithmeticException("length is 0 ");
+        if(this.length() ==  0) return;
+            //throw new ArithmeticException("length is 0 ");
 
         this.scale(1/this.length());
     }

@@ -76,11 +76,17 @@ public class Triangle extends Geometry implements FlatGeometry {
         Vector v = new Vector(_p2,_p3);
         Vector N = new Vector(u.crossProduct(v));
         N.normalize();
+        N.scale(-1);
         return  N;
 
     }
     public List<Point3D> FindIntersections(Ray ray){
         ArrayList<Point3D> list2 = new ArrayList<>();
         return list2;
+    }
+
+    @Override
+    public String toString() {
+        return "p1:"+_p1.toString()+" "+"p2:"+_p2.toString()+" "+"p3:"+_p3.toString();
     }
 }
