@@ -37,9 +37,9 @@ public class Triangle extends Geometry implements FlatGeometry {
         this._p3 = new Point3D(_p3);
     }
 
-    public Triangle(Map<String, String> attributes) {
+    //public Triangle(Map<String, String> attributes) {
 
-    }
+    //}
 
     // ***************** Getters/Setters ********************** //
     public Point3D getP1() {
