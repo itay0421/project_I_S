@@ -1,6 +1,10 @@
 package geometries;
 
-import primitives.*;
+import primitives.Point3D;
+import primitives.Ray;
+import primitives.Vector;
+
+import java.util.List;
 
 /**
  * Created by shalom on 29/03/2017.
@@ -34,9 +38,10 @@ public class Cylinder extends RadialGeometry {
     }
 
     public List<Point3D> FindIntersections(Ray ray){
-
+     return null;
     }
     public Vector getNormal(Point3D point){
+        return null;
     }
 
 }
