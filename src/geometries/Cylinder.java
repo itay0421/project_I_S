@@ -9,6 +9,7 @@ public class Cylinder extends RadialGeometry {
 
     private Point3D _axisPoint;
     private Vector _axisDirection;
+
     public Cylinder(){}
     public Cylinder(Cylinder cylinder){
         this._axisDirection = cylinder._axisDirection;
@@ -30,6 +31,12 @@ public class Cylinder extends RadialGeometry {
     }
     public void set_axisPoint(Point3D _axisPoint) {
         this._axisPoint = _axisPoint;
+    }
+
+    public List<Point3D> FindIntersections(Ray ray){
+
+    }
+    public Vector getNormal(Point3D point){
     }
 
 }
