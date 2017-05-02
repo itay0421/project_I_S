@@ -80,9 +80,46 @@ public class Triangle extends Geometry implements FlatGeometry {
         return  N;
 
     }
+
+    public Vector normal_of_triangle(Point3D p1, Point3D p2, Point3D Poo){
+        Vector VPoo = new Vector(Poo);
+        p1.subtract(VPoo);
+        p2.subtract(VPoo);
+        Vector v1 = new Vector(p1);
+        Vector v2 = new Vector (p2);
+        Vector N = v1.crossProduct(v2);
+        N.normalize();
+        N.scale(-1);
+        return N;
+        
+    }
+
+
     public List<Point3D> FindIntersections(Ray ray){
-        ArrayList<Point3D> list2 = new ArrayList<>();
-        return list2;
+
+        Vector N = new Vector(this.getNormal(_p1));
+        Plane planeTriangle = new Plane(this.getNormal(_p3),_p3);
+        ArrayList<Point3D> list1 = new ArrayList<>(planeTriangle.FindIntersections(ray));
+        if (list1.isEmpty())
+            return list1;
+
+        Point3D P0 = new Point3D (ray.get_POO());
+        Vector temp = new Vector(list1.get(0));
+        P0.subtract(temp);
+        Vector P_P0 = new Vector(P0);
+
+        double s1 = P_P0.dotProduct(normal_of_triangle(_p1,_p2,P0));
+        double s2 = P_P0.dotProduct(normal_of_triangle(_p1,_p3,P0));
+        double s3 = P_P0.dotProduct(normal_of_triangle(_p2,_p3,P0));
+
+        if ( (s1>0 & s2>0 & s3>0)||(s1<0 & s2<0 & s3<0) )
+            return list1;
+        else {
+            list1.clear();
+            return list1;
+        }
+
+        
     }
 
     @Override
