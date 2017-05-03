@@ -42,7 +42,8 @@ public class VectorTest {
     @Test
     public void subtract() {
     vector1.subtract(vector2);
-        assertEquals( "(-4.00,-4.00,-4.00)",vector1.toString());
+    vector2.subtract(vector3);
+        assertEquals( "(4.00,4.00,4.00)",vector1.toString());
         assertEquals( "(-3.00,-2.00,-8.00)",vector2.toString());
     }
 
