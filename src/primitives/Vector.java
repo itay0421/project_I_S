@@ -131,7 +131,7 @@ public class Vector {
      * @param vector
      * @return dotProduct vector
      */
-    public double dotProduct(Vector vector){
+    public double dotProduct(Vector  vector){
         return  this._head.getX().getCoordinate() * vector._head.getX().getCoordinate()+
                 this._head.getY().getCoordinate() * vector._head.getY().getCoordinate()+
                 this._head.getZ().getCoordinate() * vector._head.getZ().getCoordinate();
