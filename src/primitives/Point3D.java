@@ -61,15 +61,15 @@ public class Point3D extends Point2D  {
     /**
      *
      * @param point3D
-     * @return if points selfsame return 2, other option about distance from 'First of the contractions'.
+     * @return if points selfsame return 0, other option about distance from 'First of the contractions'.
      *
      */
     public int compareTo(Point3D point3D){
         if (this._x.compareTo(point3D.getX()) == 0 && this._y.compareTo(point3D._y) == 0 && this._z.compareTo(point3D._z) == 0)
-                    return 2;
+                    return 0;
         if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2) + Math.pow(this._z.getCoordinate(),2)) ==
                 Math.sqrt(Math.pow(point3D._x.getCoordinate(),2) + Math.pow(point3D._y.getCoordinate(),2) + Math.pow(point3D._z.getCoordinate(),2)))
-                    return 0;
+                    return -1;
         if (Math.sqrt(Math.pow(this._x.getCoordinate(),2) + Math.pow(this._y.getCoordinate(),2) + Math.pow(this._z.getCoordinate(),2)) >
                 Math.sqrt(Math.pow(point3D._x.getCoordinate(),2) + Math.pow(point3D._y.getCoordinate(),2) + Math.pow(point3D._z.getCoordinate(),2)))
             return 1;
@@ -77,7 +77,7 @@ public class Point3D extends Point2D  {
     };
     @Override
     public String toString(){
-        return String.format("(%.2f,%.2f,%.2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
+        return String.format("(%.2f, %.2f, %.2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
     }
 
     /**
