@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by shalom on 29/03/2017.
+ * Created by {Itay Amar and Shalom bloch} on 2017 05 .
  */
 public class Sphere extends RadialGeometry{
     private Point3D _center;
