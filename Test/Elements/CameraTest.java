@@ -4,6 +4,7 @@ import org.junit.Test;
 import primitives.*;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 
@@ -13,6 +14,24 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class CameraTest {
 
 
+
+
+    @Test
+    public void testRaysConstruction1(){
+        Camera camera = new Camera(new Point3D(0.0 ,0.0 ,0.0),
+                new Vector (0.0, 1.0, 0.0),
+                new Vector (0.0, 0.0, -1.0));
+
+        System.out.println("vR "+ camera.vRight());
+        Ray ray = camera.constructRayThroughPixel(
+                3, 3, 3, 3, 100,  150,  150);
+        System.out.println("p00" + ray.get_POO());
+        System.out.println(ray.get_direction());
+
+        Vector tmp = new Vector(0.58,-0.58,-0.58);
+        assertEquals(tmp,ray.get_direction());
+
+    }
     /*** Camera test ***/
     @Test
     public void testRaysConstruction(){

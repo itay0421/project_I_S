@@ -30,7 +30,7 @@ public class Camera {
         this._P0 = new Point3D(camera._P0);
         this._vTo = new Vector(camera._vTo);
         this._vUp = new Vector(camera._vUp);
-        this._vRight = new Vector(_vUp.crossProduct(_vTo));
+        this._vRight = new Vector(_vTo.crossProduct(_vUp));
         
     }
 
@@ -38,7 +38,7 @@ public class Camera {
         this._P0 = _P0;
         this._vUp = _vUp;
         this._vTo = _vTo;
-        this._vRight = new Vector(_vUp.crossProduct(_vTo));
+        this._vRight = new Vector(_vTo.crossProduct(_vUp));
     }
     //public Camera (Map<String, String> attributes(;
 
@@ -48,26 +48,29 @@ public class Camera {
     public Point3D get_P0() {
         return _P0;
     }
-
     public void set_P0(Point3D _P0) {
         this._P0 = _P0;
     }
-
     public Vector get_vUp() {
         return _vUp;
     }
-
     public void set_vUp(Vector _vUp) {
         this._vUp = _vUp;
     }
-
     public Vector get_vTo() {
         return _vTo;
     }
-
     public void set_vTo(Vector _vTo) {
         this._vTo = _vTo;
     }
+    public Vector vRight() {
+        return _vRight;
+    }
+    public void vRight(Vector _vRight) {
+        this._vRight = _vRight;
+    }
+
+
 
     // ***************** Administration ********************** //
 
@@ -91,6 +94,7 @@ public class Camera {
      */
     public Ray constructRayThroughPixel (int Nx, int Ny,double x, double y,double screenDist,
                                          double screenWidth, double screenHeight){
+
         double Rx = screenWidth/Nx;
         double Ry = screenHeight/Ny;
 
@@ -100,16 +104,17 @@ public class Camera {
         pc.add(vTo);
 
         Vector vRight = new Vector(_vRight);
-        vRight.scale((x - Nx/2.0)*Rx + Rx/2 );
+        vRight.scale((x - Nx/2.0)*Rx - Rx/2 );
         Vector vUp = new Vector(_vUp);
-        vUp.scale((y - Ny/2.0)*Ry +Ry/2);
+        vUp.scale((y - Ny/2.0)*Ry - Ry/2);
         vRight.subtract(vUp);
         pc.add(vRight);
+        Point3D p = new Point3D(pc);
 
         Vector tmp = new Vector(_P0);
-        pc.subtract(tmp);
+        p.subtract(tmp);
 
-        Vector rayVector = new Vector(pc);
+        Vector rayVector = new Vector(p);
         rayVector.normalize();
         return new Ray(new Point3D(_P0), rayVector);
 
