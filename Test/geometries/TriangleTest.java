@@ -14,7 +14,7 @@ import static junit.framework.TestCase.assertTrue;
 /**
  * Created by {Itay Amar and Shalom bloch} on 2017 05 .
  */
-class TriangleTest {
+public class TriangleTest {
 
     /*** Triangle test ***/
     @Test

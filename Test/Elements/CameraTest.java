@@ -28,8 +28,8 @@ public class CameraTest {
         System.out.println("p00" + ray.get_POO());
         System.out.println(ray.get_direction());
 
-        Vector tmp = new Vector(0.58,-0.58,-0.58);
-        assertEquals(tmp,ray.get_direction());
+        Ray expected = new Ray(camera.get_P0() ,new Vector(   0.58,-0.58,-0.58));
+        assertEquals(expected.get_direction().toString(), ray.get_direction().toString());
 
     }
     /*** Camera test ***/
