@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Created by shalom on 24/04/2017.
  */
-public class AmbientLight extends Light {
+public class AmbientLight extends Light implements Comparable<AmbientLight> {
 
     private Color _color;
     private double _Ka;
@@ -45,6 +45,40 @@ public class AmbientLight extends Light {
         this._Ka = _Ka;
     }
 
+    //*********************************************************
+
+    /**
+     * Compare two ambieant light
+     * @param o
+     * @return if equal return 0. else return 1.
+     */
+    @Override
+    public int compareTo(AmbientLight o) {
+        if ((o._Ka == _Ka)&&(o._color == _color))return 0;
+        return 1;
+    }
+
+    @Override
+    public String toString() {
+        return "AmbientLight{" +
+                "_color=" + _color +
+                ", _Ka=" + _Ka +
+                '}';
+    }
+
+    /**
+     *
+     * @return new color according to calculate intensity
+     */
+    public Color getIntensity(){
+        int r=_color.getRed();
+        int g=_color.getGreen();
+        int b=_color.getBlue();
+        r*=_Ka;
+        g*=_Ka;
+        b*=_Ka;
+        return new Color(r ,b ,g ) ;
+    }
 
     //public AmbientLight(Map<String, String> attributes){};
 }
