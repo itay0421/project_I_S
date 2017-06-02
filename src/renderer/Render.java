@@ -1,6 +1,13 @@
 package renderer;
 
+import primitives.*;
+
 import scene.Scene;
+import geometries.*;
+
+import java.awt.*;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by itay0 on 01/06/2017.
@@ -59,5 +66,51 @@ public class Render implements Comparable<Render>{
                 '}';
     }
 
+    /**
+     * build imagewriter
+     */
+    public void renderImage(){
+        for (int i = 1; i < _imageWriter.getHeight(); i++) {
+            for (int j = 1; j < _imageWriter.getWidth(); j++) {
+                Ray ray = _scene.get_camera().constructRayThroughPixel(_imageWriter.getNx(),
+                        _imageWriter.getNy(), j, i,_scene.get_screenDistance(), _imageWriter.getWidth(),
+                        _imageWriter.getHeight());
+
+                Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(ray);
+                if (intersectionPoints.isEmpty())
+                    _imageWriter.writePixel(j,i,_scene.get_backGround());
+                else {
+                    Map<Geometry, Point3D> closestPoint = ( getClosestPoint(intersectionPoints));
+                    //_imageWriter.writePixel(j,i,calcColor(closestPoint));
+                    //how use map??
+                }
+                }
+            }
+        }
+
+
+    }
+
+    public void printGrid(int interval){
+
+    }
+    private Color calcColor(Geometry geometry, Point3D point, Ray inRay){
+
+        //(Returns ambient light + emission light)
+        return null;
+    }
+    private Color addColors(Color a, Color b){
+    return null;
+    }
+    private Map.Entry<Geometry, Point3D> findClosesntIntersection(Ray ray){
+        return null;
+    }
+    private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray){
+        return null;
+
+    }
+    private Map<Geometry, Point3D> getClosestPoint(Map<Geometry,List<Point3D>> intersectionPoints){
+        return null;
+    }
 
 }
