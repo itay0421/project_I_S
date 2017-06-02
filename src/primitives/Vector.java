@@ -25,9 +25,7 @@ public class Vector {
         return this;
     }
 
-    public Vector(Point3D _head) {
-        this._head = _head;
-    }
+
 
     /**
      * default C'tor
@@ -35,8 +33,15 @@ public class Vector {
     public Vector() {
         _head = new Point3D();
     }
-    public Vector(Vector vector) {
-        _head = vector._head;
+    public Vector(Point3D head) {
+        this._head = new Point3D(head);
+    }
+    /**
+     * copy c'tor
+     * @param head
+     */
+    public Vector(Vector head) {
+        this._head = new Point3D(head._head);
     }
     public Vector(double xHead, double yHead, double zHead) {
        this._head = new Point3D(xHead,yHead,zHead);

@@ -1,16 +1,18 @@
+
 package geometries;
 
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.awt.Color;
+
 
 /**
  * Created by {Itay Amar and Shalom bloch} on 2017 03 .
  */
+
 public class Triangle extends Geometry implements FlatGeometry {
 
     private Point3D _p1;
@@ -70,13 +72,14 @@ public class Triangle extends Geometry implements FlatGeometry {
 
 
     // ***************** Operations ******************** //
+
     @Override
     public Vector getNormal(Point3D point){
-        Vector u = new Vector(_p1,_p2);
-        Vector v = new Vector(_p2,_p3);
+        Vector u = new Vector(_p2,_p1);
+        Vector v = new Vector(_p3,_p1);
         Vector N = new Vector(u.crossProduct(v));
         N.normalize();
-        N.scale(-1);
+        //N.scale(-1);
         return  N;
 
     }
@@ -91,14 +94,14 @@ public class Triangle extends Geometry implements FlatGeometry {
         N.normalize();
         N.scale(-1);
         return N;
-        
+
     }
 
 
     public List<Point3D> FindIntersections(Ray ray){
 
         Vector N = new Vector(this.getNormal(_p1));
-        Plane planeTriangle = new Plane(this.getNormal(_p3),_p3);
+        Plane planeTriangle = new Plane(N,_p1);
         ArrayList<Point3D> list1 = new ArrayList<>(planeTriangle.FindIntersections(ray));
         if (list1.isEmpty())
             return list1;
@@ -108,18 +111,19 @@ public class Triangle extends Geometry implements FlatGeometry {
         P0.subtract(temp);
         Vector P_P0 = new Vector(P0);
 
-        double s1 = P_P0.dotProduct(normal_of_triangle(_p1,_p2,P0));
-        double s2 = P_P0.dotProduct(normal_of_triangle(_p1,_p3,P0));
-        double s3 = P_P0.dotProduct(normal_of_triangle(_p2,_p3,P0));
 
-        if ( (s1>0 & s2>0 & s3>0)||(s1<0 & s2<0 & s3<0) )
+        double s1 = P_P0.dotProduct(new Vector(normal_of_triangle(new Point3D(_p1), new Point3D(_p2), new Point3D(ray.get_POO()))));
+        double s2 = P_P0.dotProduct(new Vector(normal_of_triangle(new Point3D(_p2), new Point3D(_p3), new Point3D(ray.get_POO()))));
+        double s3 = P_P0.dotProduct(new Vector(normal_of_triangle(new Point3D(_p3), new Point3D(_p1), new Point3D(ray.get_POO()))));
+
+        if ( (s1>0 && s2>0 && s3>0)||(s1<0 && s2<0 && s3<0) )
             return list1;
         else {
             list1.clear();
             return list1;
         }
 
-        
+
     }
 
     @Override
@@ -127,3 +131,4 @@ public class Triangle extends Geometry implements FlatGeometry {
         return "p1:"+_p1.toString()+" "+"p2:"+_p2.toString()+" "+"p3:"+_p3.toString();
     }
 }
+
