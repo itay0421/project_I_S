@@ -29,6 +29,7 @@ public class Point3D extends Point2D  {
      * default C'tor
      */
     public Point3D() {
+
         this._z = new Coordinate();
     }
 
@@ -53,7 +54,7 @@ public class Point3D extends Point2D  {
      * @param point3D
      */
     public Point3D(Point3D point3D){
-        super( point3D.getX(),point3D.getY() );
+        super(point3D);
         this._z = new Coordinate(point3D._z);
 
     }

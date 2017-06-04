@@ -32,8 +32,8 @@ public class Point2D implements Comparable <Point2D>   {
      * @param point2D
      */
     public Point2D(Point2D point2D){
-        this._x = point2D._x;
-        this._y = point2D._y;
+        this._x = new Coordinate(point2D.getX());
+        this._y = new Coordinate(point2D.getY());
     };
 
     /**

@@ -43,6 +43,8 @@ public class SphereTest {
                 for (Point3D iPoint : rayIntersectionPoints2)
                     intersectionPointsSphere2.add(iPoint);
             }
+            System.out.println(intersectionPointsSphere.size());
+            System.out.println(intersectionPointsSphere2.size());
             assertTrue(intersectionPointsSphere.size() == 2);
             assertTrue(intersectionPointsSphere2.size() == 9);
             System.out.println("Intersection Points:");

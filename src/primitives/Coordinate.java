@@ -23,17 +23,19 @@ public class Coordinate implements Comparable<Coordinate> {
      * C'tor
      * @param coordinate
      */
-    public Coordinate(double coordinate){
+    public Coordinate(double coordinate) {
         this._coordinate = coordinate;
-    };
+    }
 
     /**
      * C'tor
-     * @param coordinate
+     * @param
      */
-    public Coordinate(Coordinate coordinate){
-        this._coordinate = coordinate._coordinate;
-    };
+
+
+    public Coordinate(Coordinate copy) {
+        this._coordinate = copy.getCoordinate();
+    }
 
 
     /**
