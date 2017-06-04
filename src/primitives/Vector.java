@@ -25,8 +25,6 @@ public class Vector {
         return this;
     }
 
-
-
     /**
      * default C'tor
      */

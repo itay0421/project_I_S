@@ -6,13 +6,14 @@ import scene.Scene;
 import geometries.*;
 
 import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * Created by itay0 on 01/06/2017.
  */
-public class Render implements Comparable<Render>{
+public class Render implements Comparable<Render> {
 
     private Scene _scene;
     private ImageWriter _imageWriter;
@@ -49,12 +50,11 @@ public class Render implements Comparable<Render>{
     }
 
 
-
     // ***************** Operations ******************** //
     @Override
     public int compareTo(Render o) {
         if ((o._imageWriter.equals(_imageWriter)) && o._scene.compareTo(_scene) == 0)
-        return 0;
+            return 0;
         else return 1;
     }
 
@@ -69,48 +69,83 @@ public class Render implements Comparable<Render>{
     /**
      * build imagewriter
      */
-    public void renderImage(){
+    public void renderImage() {
         for (int i = 1; i < _imageWriter.getHeight(); i++) {
             for (int j = 1; j < _imageWriter.getWidth(); j++) {
                 Ray ray = _scene.get_camera().constructRayThroughPixel(_imageWriter.getNx(),
-                        _imageWriter.getNy(), j, i,_scene.get_screenDistance(), _imageWriter.getWidth(),
+                        _imageWriter.getNy(), j, i, _scene.get_screenDistance(), _imageWriter.getWidth(),
                         _imageWriter.getHeight());
 
                 Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(ray);
                 if (intersectionPoints.isEmpty())
-                    _imageWriter.writePixel(j,i,_scene.get_backGround());
+                    _imageWriter.writePixel(j, i, _scene.get_backGround());
                 else {
-                    Map<Geometry, Point3D> closestPoint = ( getClosestPoint(intersectionPoints));
-                    //_imageWriter.writePixel(j,i,calcColor(closestPoint));
+                 Point3D closestPoint = (Point3D)(getClosestPoint(intersectionPoints));
+                    _imageWriter.writePixel(j,i,calcColor(closestPoint));
                     //how use map??
                 }
-                }
             }
-
-
-
+        }
     }
 
-    public void printGrid(int interval){
-
+    public void printGrid(int interval) {
     }
-    private Color calcColor(Geometry geometry, Point3D point, Ray inRay){
 
+    private Color calcColor(Geometry geometry, Point3D point, Ray inRay) {
         //(Returns ambient light + emission light)
         return null;
     }
-    private Color addColors(Color a, Color b){
-    return null;
-    }
-    private Map.Entry<Geometry, Point3D> findClosesntIntersection(Ray ray){
-        return null;
-    }
-    private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray){
-        return null;
 
+    private Color calcColor(Point3D point){
+        return  _scene.get_ambientLight().getIntensity();
     }
-    private Map<Geometry, Point3D> getClosestPoint(Map<Geometry,List<Point3D>> intersectionPoints){
+
+    private Color addColors(Color a, Color b) {
         return null;
     }
+
+    private Map.Entry<Geometry, Point3D> findClosesntIntersection(Ray ray) {
+        return null;
+    }
+
+    /**
+     *
+     * @param ray
+     * @return map list of intersction between the scene ans ray
+     */
+    private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray) {
+Iterator<Geometry> geometries = _scene.getGeometriesIterator();
+        Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<>();
+Geometry geometry = null;
+while(geometries.hasNext())
+     geometry = geometries.next();
+            List<Point3D> geometryinstersections =
+geometry.FindIntersections(ray);
+        if (!intersectionPoints.isEmpty()) {
+            intersectionPoints.put(geometry, geometryinstersections);
+        }
+        return (Map<Geometry, List<Point3D>>) intersectionPoints;
+}
+
+    private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
+        return null;
+    }
+
+    /**
+     * find the closest point between the insterctionPoint to the viwe point
+     */
+    private Point3D getClosestPoint(List<Point3D> insterctionPoints) {
+        double dist = Double.MAX_VALUE;
+        Point3D p0 = _scene.get_camera().get_P0();
+        Point3D mindistPoint = null;
+
+        for (Point3D point: insterctionPoints) {
+            if (p0.distance(point) < dist)
+                mindistPoint = new Point3D(point);
+            dist = p0.distance(point);
+        }
+        return mindistPoint;
+    }
+
 
 }

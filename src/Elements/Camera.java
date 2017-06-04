@@ -104,9 +104,9 @@ public class Camera {
         pc.add(vTo);
 
         Vector vRight = new Vector(_vRight);
-        vRight.scale((x - Nx/2.0)*Rx + Rx/2 );
+        vRight.scale((x - Nx/2.0)*Rx - Rx/2 );// we have to check option that the right code is  (x - Nx/2.0)*Rx - Rx/2 )
         Vector vUp = new Vector(_vUp);
-        vUp.scale((y - Ny/2.0)*Ry + Ry/2);
+        vUp.scale((y - Ny/2.0)*Ry - Ry/2); // we have to check option that the right code is (y - Ny/2.0)*Ry - Ry/2)
         vRight.subtract(vUp);
         pc.add(vRight);
         Point3D p = new Point3D(pc);
@@ -119,4 +119,7 @@ public class Camera {
         return new Ray(new Point3D(pc), rayVector);
 
     }
+
+
+
 }

@@ -45,7 +45,7 @@ public class SphereTest {
             }
             System.out.println(intersectionPointsSphere.size());
             System.out.println(intersectionPointsSphere2.size());
-            assertTrue(intersectionPointsSphere.size() == 2);
+            assertTrue(intersectionPointsSphere.size() == 2 );
             assertTrue(intersectionPointsSphere2.size() == 9);
             System.out.println("Intersection Points:");
             for (Point3D iPoint : intersectionPointsSphere) {

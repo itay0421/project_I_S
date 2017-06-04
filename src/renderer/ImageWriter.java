@@ -11,13 +11,9 @@ public class ImageWriter {
 
     private int _imageWidth;
     private int _imageHeight;
-
     private int _Ny, _Nx;
-
     final String PROJECT_PATH = System.getProperty("user.dir");
-
     private BufferedImage _image;
-
     private String _imageName;
 
     // ***************** Constructors ********************** //

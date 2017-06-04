@@ -1,5 +1,7 @@
 package primitives;
 
+import static java.sql.DriverManager.println;
+
 /**
  * Created by {Itay Amar and Shalom bloch} on 21  2017.
  */
@@ -78,6 +80,12 @@ public class Point3D extends Point2D  {
     };
     @Override
     public String toString(){
+        if (_x.getCoordinate() < 0.01 && _x.getCoordinate() > -0.01)
+        {_x.setCoordinate(0);}
+        if (_y.getCoordinate() < 0.01 && _y.getCoordinate() > -0.01)
+        {_y.setCoordinate(0);}
+        if (_z.getCoordinate() < 0.01 && _z.getCoordinate() > -0.01)
+        {_z.setCoordinate(0);}
         return String.format("(%.2f, %.2f, %.2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
     }
 

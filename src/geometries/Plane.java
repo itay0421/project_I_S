@@ -37,8 +37,11 @@ public class Plane extends Geometry implements FlatGeometry{
     /**
      *
      * @return  vector _normal
+     * @param point3D
+     * @param d
+     * @param point3D1
      */
-    public Vector get_normal() {
+    public Vector get_normal(Point3D point3D, Point3D d, Point3D point3D1) {
         return _normal;
     }
     public void set_normal(Vector _normal) {
@@ -64,17 +67,14 @@ public class Plane extends Geometry implements FlatGeometry{
         Vector direction = new Vector(ray.get_direction());
         v.subtract(new Vector(_Q));
         double x = _normal.dotProduct(direction);
-        double t = -(_normal.dotProduct(v) / x);
+        double t =-(_normal.dotProduct(v) / x);
             if (t >= 0) {
                 direction.scale(t);
                 Point3D p = new Point3D(ray.get_POO());
                 p.add(direction);
                 list.add(p);
             }
-
         return list;
-        
-        
     }
 
     /**
