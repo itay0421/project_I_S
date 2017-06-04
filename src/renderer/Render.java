@@ -1,7 +1,9 @@
 package renderer;
 
+import Elements.Lightsource;
 import primitives.*;
 
+import primitives.Vector;
 import scene.Scene;
 import geometries.*;
 
@@ -80,24 +82,22 @@ public class Render implements Comparable<Render> {
                 if (intersectionPoints.isEmpty())
                     _imageWriter.writePixel(j, i, _scene.get_backGround());
                 else {
-                 Point3D closestPoint = (Point3D)(getClosestPoint(intersectionPoints));
-                    _imageWriter.writePixel(j,i,calcColor(closestPoint));
+                    Point3D closestPoint = (Point3D) (getClosestPoint(intersectionPoints));
+                    _imageWriter.writePixel(j, i, calcColor(closestPoint));
                     //how use map??
                 }
             }
         }
     }
 
-    public void printGrid(int interval) {
-    }
 
     private Color calcColor(Geometry geometry, Point3D point, Ray inRay) {
         //(Returns ambient light + emission light)
         return null;
     }
 
-    private Color calcColor(Point3D point){
-        return  _scene.get_ambientLight().getIntensity();
+    private Color calcColor(Point3D point) {
+        return _scene.get_ambientLight().getIntensity();
     }
 
     private Color addColors(Color a, Color b) {
@@ -109,26 +109,21 @@ public class Render implements Comparable<Render> {
     }
 
     /**
-     *
      * @param ray
      * @return map list of intersction between the scene ans ray
      */
     private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray) {
-Iterator<Geometry> geometries = _scene.getGeometriesIterator();
+        Iterator<Geometry> geometries = _scene.getGeometriesIterator();
         Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<>();
-Geometry geometry = null;
-while(geometries.hasNext())
-     geometry = geometries.next();
-            List<Point3D> geometryinstersections =
-geometry.FindIntersections(ray);
+        Geometry geometry = null;
+        while (geometries.hasNext())
+            geometry = geometries.next();
+        List<Point3D> geometryinstersections =
+                geometry.FindIntersections(ray);
         if (!intersectionPoints.isEmpty()) {
             intersectionPoints.put(geometry, geometryinstersections);
         }
-        return (Map<Geometry, List<Point3D>>) intersectionPoints;
-}
-
-    private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
-        return null;
+        return  intersectionPoints;
     }
 
     /**
@@ -139,7 +134,7 @@ geometry.FindIntersections(ray);
         Point3D p0 = _scene.get_camera().get_P0();
         Point3D mindistPoint = null;
 
-        for (Point3D point: insterctionPoints) {
+        for (Point3D point : insterctionPoints) {
             if (p0.distance(point) < dist)
                 mindistPoint = new Point3D(point);
             dist = p0.distance(point);
@@ -147,5 +142,66 @@ geometry.FindIntersections(ray);
         return mindistPoint;
     }
 
+    public void printGrid(int interval) {
+        for (int i = 0; i < _imageWriter.getHeight(); i += interval)
+            for (int j = 0; j < _imageWriter.getHeight(); j++)
+                _imageWriter.writePixel(i, j, Color.WHITE);
+        for (int i = 0; i < _imageWriter.getWidth(); i += interval)
+            for (int j = 0; j < _imageWriter.getWidth(); j++)
+                _imageWriter.writePixel(j, i, Color.WHITE);
+    }
+
+/**
+    private Color calcColor(Geometry geometry, Point3D point) {
+        Color ambientLight = _scene.get_ambientLight().getIntensity(point);
+        Color emissionLight = geometry.get_emmission();
+        Iterator<Lightsource> lights = _scene.getLightsIterator();
+        while (lights.hasNext()) {
+            if (!occluded(light, point, geometry)){
+                Color diffuseLight = calcDiffusiveComp(geometry.material.Kd,
+                  geometry.getNormal(point),
+                        light.getL(point),
+                         lightIntensity);
+                  Color specularLight = calcSpecularComp(geometry.material.Ks,
+                        new Vector(point, _scene. 
+                                getCamera().getP0()),
+                        geometry.getNormal(point),
+                        light.getL(point),
+                        geometry.getShininess(),
+                        lightIntensity); }
+        }
+        return new Color(ambientLight + emissionLight + diffuseLight + specularLight)
+    }
+*/
+    private boolean occluded(Lightsource light, Point3D point, Geometry geometry) {
+        Vector lightDirection = light.getL(point);
+    lightDirection.scale(-1);
+    Point3D geometryPoint = new Point3D(point);
+    Vector epsVector = new Vector(geometry.getNormal(point));
+    epsVector.scale(2);    geometryPoint.add(epsVector);
+    Ray lightRay = new Ray(geometryPoint, lightDirection);
+    Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(lightRay);
+    // Flat geometry cannot self intersect  if (geometry instanceof FlatGeometry){
+    // intersectionPoints.remove(geometry); }
+    // return !intersectionPoints.isEmpty();
+        return  false;
+     }
+
+    private Map<Geometry, Point3D>	getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints)
+    {
+        double distance = Double.MAX_VALUE;
+        Point3D P0 = _scene.get_camera().get_P0();
+        Map<Geometry, Point3D> minDistancePoint =
+                new HashMap<Geometry, Point3D>();
+        for (Map.Entry<Geometry, List<Point3D>> entry: intersectionPoints.entrySet())
+            for (Point3D point: entry.getValue())
+            {
+                if (P0.distance(point) < distance)
+                    minDistancePoint.clear();
+                minDistancePoint.put(entry.getKey(), new Point3D(point));
+                distance = P0.distance(point);
+            }
+        return minDistancePoint;
+    }
 
 }
