@@ -41,7 +41,6 @@ public abstract class Geometry {
 
     public void set_emmission(Color _emmission) {
         this._emmission = _emmission;
-
     }
 
     public void setKs(double ks){

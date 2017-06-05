@@ -142,7 +142,7 @@ public class Render implements Comparable<Render> {
     private Color calcColor(Geometry geometry, Point3D point, Ray inRay)
     {
         Color color = new Color(0);
-        color = addColors(geometry.get_emmission(), _scene.get_ambientLight().getIntensity(point));
+        color = geometry.get_emmission();
         return color;
 
     }
