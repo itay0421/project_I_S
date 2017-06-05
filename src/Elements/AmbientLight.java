@@ -1,5 +1,7 @@
 package Elements;
 
+import primitives.Point3D;
+
 import java.awt.*;
 
 /**
@@ -80,5 +82,10 @@ public class AmbientLight extends Light implements Comparable<AmbientLight> {
         return new Color(r ,b ,g ) ;
     }
 
+    //@Override
+    public Color getIntensity(Point3D point)
+    {
+        return (new Color((int)(_Ka*_color.getRed()),(int)( _Ka*_color.getGreen()),(int)( _Ka*_color.getBlue())));
+    }
     //public AmbientLight(Map<String, String> attributes){};
 }

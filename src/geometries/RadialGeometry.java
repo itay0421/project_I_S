@@ -12,7 +12,7 @@ public abstract class RadialGeometry extends Geometry {
     }
 
     public RadialGeometry() {
-        this._radius = 0;
+
     }
 
     public double getRadius() {

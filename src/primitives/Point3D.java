@@ -22,9 +22,8 @@ public class Point3D extends Point2D  {
      * @param _z
      * @return
      */
-    public Point3D setZ(Coordinate _z) {
+    public void setZ(Coordinate _z) {
         this._z = _z;
-        return this;
     }
 
     /**

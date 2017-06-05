@@ -19,6 +19,8 @@ public class Triangle extends Geometry implements FlatGeometry {
     private Point3D _p2;
     private Point3D _p3;
 
+
+
     // ***************** Constructors ********************** //
 
     public Triangle(){
@@ -31,6 +33,9 @@ public class Triangle extends Geometry implements FlatGeometry {
         this._p1 = new Point3D (triangle._p1);
         this._p2 = new Point3D (triangle._p2);
         this._p3 = new Point3D (triangle._p3);
+
+        this.set_emmission(new Color(triangle.get_emmission().getRGB()));
+
     }
 
     public Triangle(Point3D _p1, Point3D _p2, Point3D _p3) {

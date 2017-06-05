@@ -32,45 +32,40 @@ public class Material {
         return _Kd;
     }
 
-    public Material set_Kd(double _Kd) {
+    public void set_Kd(double _Kd) {
         this._Kd = _Kd;
-        return this;
     }
 
     public double get_Ks() {
         return _Ks;
     }
 
-    public Material set_Ks(double _Ks) {
+    public void set_Ks(double _Ks) {
         this._Ks = _Ks;
-        return this;
     }
 
     public double get_Kr() {
         return _Kr;
     }
 
-    public Material set_Kr(double _Kr) {
+    public void set_Kr(double _Kr) {
         this._Kr = _Kr;
-        return this;
     }
 
     public double get_Kt() {
         return _Kt;
     }
 
-    public Material set_Kt(double _Kt) {
+    public void set_Kt(double _Kt) {
         this._Kt = _Kt;
-        return this;
     }
 
     public double get_n() {
         return _n;
     }
 
-    public Material set_n(double _n) {
+    public void set_n(double _n) {
         this._n = _n;
-        return this;
     }
 
 

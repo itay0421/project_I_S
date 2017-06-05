@@ -22,27 +22,26 @@ public abstract class Geometry {
         return _material;
     }
 
-    public Geometry set_material(Material _material) {
+    public void set_material(Material _material) {
         this._material = _material;
-        return this;
     }
 
     public double get_nShininess() {
         return _nShininess;
     }
 
-    public Geometry set_nShininess(double _nShininess) {
+    public void set_nShininess(double _nShininess) {
         this._nShininess = _nShininess;
-        return this;
+
     }
 
     public Color get_emmission() {
         return _emmission;
     }
 
-    public Geometry set_emmission(Color _emmission) {
+    public void set_emmission(Color _emmission) {
         this._emmission = _emmission;
-        return this;
+
     }
 
     public void setKs(double ks){

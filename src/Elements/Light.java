@@ -5,14 +5,21 @@ import java.awt.*;
 /**
  * Created by shalom on 24/04/2017.
  */
-public class Light {
-    protected Color _color;
+public abstract class Light {
+
+    protected Color color;
+
     // ***************** Constructors ********************** //
-    public Light(){_color = new Color(0,0,0);};
-    public Light(Color color) {
-        this._color = new Color(color.getRGB());
+    public Light() {
+
     }
+
+    public Light(Color color) {
+        this.color = new Color(color.getRGB());
+    }
+
+    // ***************** Getters/Setters ********************** //
     public Color getIntensity() {
-        return new Color(_color.getRGB());
+        return new Color(color.getRGB());
     }
 }
