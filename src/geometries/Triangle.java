@@ -84,7 +84,7 @@ public class Triangle extends Geometry implements FlatGeometry {
         Vector v = new Vector(_p3,_p1);
         Vector N = new Vector(u.crossProduct(v));
         N.normalize();
-        //N.scale(-1);
+        N.scale(-1);
         return  N;
 
     }

@@ -28,7 +28,7 @@ public class TriangleTest {
 
         System.out.println(N);
 
-        Vector exp = new Vector(-0.71,0.71,0);
+        Vector exp = new Vector(0.71,-0.71,0);
         assertEquals(N.toString(),exp.toString());
 
 
@@ -80,50 +80,9 @@ public class TriangleTest {
             System.out.println(iPoint);
     }
 
-    //***********
+
     @Test
     public void testFindIntersections() {
-        System.out.println("FindIntersections");
-        int count=0;
-        Camera c=new Camera();
-        Coordinate c1=new Coordinate(-1);
-        Coordinate c2=new Coordinate(-1);
-        Coordinate c3=new Coordinate(-2);
-
-        Coordinate c4=new Coordinate(1);
-        Coordinate c5=new Coordinate(-1);
-        Coordinate c6=new Coordinate(-2);
-
-        Coordinate c7=new Coordinate(0);
-        Coordinate c8=new Coordinate(10);
-        Coordinate c9=new Coordinate(-2);
-
-        Triangle instance2=new Triangle(new Point3D(c1,c2,c3),new Point3D(c4,c5,c6),new Point3D(c7,c8,c9));
-        //Sphere instance = new Sphere(new Point3D(new Coordinate(),new Coordinate(),new Coordinate()),5.0);
-        ArrayList<Ray> rayList=new ArrayList<Ray>();
-        ArrayList<ArrayList<Point3D>> list=new ArrayList<ArrayList<Point3D>>();
-        for (int i = 1; i < 4; i++) {
-            for (int j = 1; j < 4; j++) {
-                rayList.add(c.constructRayThroughPixel(3, 3, i, j, 1, 10, 10));
-            }
-        }
-        for (Ray ray : rayList) {
-            ArrayList<Point3D> listOfPoints = new ArrayList<Point3D>(instance2.FindIntersections(ray));
-            list.add(listOfPoints);
-        }
-
-        for (ArrayList<Point3D> arrayList : list) {
-            count+=arrayList.size();
-        }
-        int result=count;
-        int expResult = 2;
-
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-    @Test
-    public void testFindIntersections2() {
         System.out.println("FindIntersections");
         int count=0;
         Camera c=new Camera();
