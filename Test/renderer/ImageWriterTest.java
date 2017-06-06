@@ -12,7 +12,7 @@ import org.junit.Test;
 import renderer.ImageWriter;
 
 public class ImageWriterTest {
-
+//
     @Test
     public void writeImageTest(){
 
