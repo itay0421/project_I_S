@@ -11,6 +11,11 @@ public class Material {
     private double _Kt; // Refraction coefficient (1 for transparent)
     private double _n; // Refraction index
 
+// ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     * default constructor
+     **************************************************/
     public Material() {
         this._Kd = 1;
         this._Ks = 1;
@@ -18,7 +23,12 @@ public class Material {
         this._Kt = 0;
         this._n = 1;
     }
-
+    /*************************************************
+     * FUNCTION
+     * copy constructor
+     * PARAMETERS
+     * Material material
+     **************************************************/
     public Material(Material material) {
         this._Kd = material._Kd;
         this._Ks = material._Ks;
@@ -26,6 +36,7 @@ public class Material {
         this._Kt = material._Kt;
         this._n = material._n;
     }
+// ***************** Getters/Setters ********************** //
 
     public double get_Kd() {
 

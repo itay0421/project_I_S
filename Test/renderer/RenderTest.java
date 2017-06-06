@@ -48,7 +48,7 @@ public class RenderTest {
      //   scene.lights.add(new DirectionalLight());
 
         //add Geometries to the Scene
-        scene.addGeometry(sphere);
+        //scene.addGeometry(sphere);
        //scene.addGeometry(plane);
         scene.addGeometry(triangle1);
         scene.addGeometry(triangle2);

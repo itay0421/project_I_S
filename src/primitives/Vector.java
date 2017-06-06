@@ -7,6 +7,37 @@ public class Vector {
 
     private Point3D _head;
 
+// ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     * default constructor
+     **************************************************/
+    public Vector() {
+        _head = new Point3D();
+    }
+    public Vector(Point3D head) {
+        this._head = new Point3D(head);
+    }
+    /*************************************************
+     * FUNCTION
+     * copy constructor
+     * PARAMETERS
+     * Vector head
+     **************************************************/
+    public Vector(Vector head) {
+        this._head = new Point3D(head._head);
+    }
+    public Vector(double xHead, double yHead, double zHead) {
+       this._head = new Point3D(xHead,yHead,zHead);
+    }
+    public Vector(Point3D p1, Point3D p2){
+                this._head = new Point3D(p1.getX().getCoordinate() - p2.getX().getCoordinate(),
+                                            p1.getY().getCoordinate() - p2.getY().getCoordinate(),
+                                                p1.getZ().getCoordinate() - p2.getZ().getCoordinate() );
+                this.normalize();
+    }
+// ***************** Getters/Setters ********************** //
+
     /**
      *
      * @return  _head
@@ -24,33 +55,6 @@ public class Vector {
         this._head = _head;
         return this;
     }
-
-    /**
-     * default C'tor
-     */
-    public Vector() {
-        _head = new Point3D();
-    }
-    public Vector(Point3D head) {
-        this._head = new Point3D(head);
-    }
-    /**
-     * copy c'tor
-     * @param head
-     */
-    public Vector(Vector head) {
-        this._head = new Point3D(head._head);
-    }
-    public Vector(double xHead, double yHead, double zHead) {
-       this._head = new Point3D(xHead,yHead,zHead);
-    }
-    public Vector(Point3D p1, Point3D p2){
-                this._head = new Point3D(p1.getX().getCoordinate() - p2.getX().getCoordinate(),
-                                            p1.getY().getCoordinate() - p2.getY().getCoordinate(),
-                                                p1.getZ().getCoordinate() - p2.getZ().getCoordinate() );
-                this.normalize();
-    }
-
     /**
      *
      * @param vector
