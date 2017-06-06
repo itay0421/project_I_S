@@ -19,16 +19,22 @@ public class Point3D extends Point2D  {
         this._z = new Coordinate();
     }
 
-    /**
-     * C'tor by coordinate
-     * @param _x
-     * @param _y
-     * @param _z
-     */
+    /*************************************************
+     * FUNCTION
+     * constructor from given parameter
+     * PARAMETERS
+     * Coordinate _x, Coordinate _y, Coordinate _z
+     **************************************************/
     public Point3D(Coordinate _x, Coordinate _y, Coordinate _z) {
         super(_x, _y);
         this._z = new Coordinate(_z);
     }
+    /*************************************************
+     * FUNCTION
+     * constructor from given parameter
+     * PARAMETERS
+     * double x, double y, double z
+     **************************************************/
     public Point3D(double x, double y, double z) {
         super(new Coordinate(x),new Coordinate(y));
         this._z = new Coordinate(z);
@@ -47,28 +53,38 @@ public class Point3D extends Point2D  {
 
     }
 // ***************** Getters/Setters ********************** //
-    /**
-     *
-     * @return z
-     */
+    /*************************************************
+     * FUNCTION
+     * 		get _z value
+     **************************************************/
     public Coordinate getZ() {
         return _z;
     }
 
-    /**
-     * set Z
-     * @param _z
-     * @return
-     */
+    /*************************************************
+     * FUNCTION
+     * 		set _z value
+     **************************************************/
     public void setZ(Coordinate _z) {
         this._z = _z;
     }
-    /**
+    // ***************** Operations ******************** //
+
+
+    /*************************************************
+     * FUNCTION
+     * 		CompareTo
+     * PARAMETERS
+     *		Point3D point3D
+     * RETURN VALUE
+     *		if points selfsame return 0, other option is about distance
+     *		from 'First of the contractions'.
      *
-     * @param point3D
-     * @return if points selfsame return 0, other option about distance from 'First of the contractions'.
-     *
-     */
+     * MEANING
+     * 		This function compare between two Coordinates
+     * 		and return '0' if they equals and '1' if they
+     * 		don't
+     **************************************************/
     public int compareTo(Point3D point3D){
         if (this._x.compareTo(point3D.getX()) == 0 && this._y.compareTo(point3D._y) == 0 && this._z.compareTo(point3D._z) == 0)
                     return 0;
@@ -80,37 +96,60 @@ public class Point3D extends Point2D  {
             return 1;
                  else return -1;
     };
+    /*************************************************
+     * FUNCTION
+     * 		toString
+
+     * RETURN VALUE
+     *		string -  format"(%.2f, %.2f, %.2f)"
+     **************************************************/
     @Override
     public String toString(){
 
         return String.format("(%.2f, %.2f, %.2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
     }
 
-    /**
-     * add point3D to point3D
-     * @param vector
-     */
+    /*************************************************
+     * FUNCTION
+     * 		add
+     * PARAMETERS
+     *		Vector vector
+     * RETURN VALUE
+     *		none
+     * MEANING
+     * 		 add a vector to our vector
+     **************************************************/
     public void add(Vector vector){
         this._x.setCoordinate(this._x.getCoordinate() + vector.getHead().getX().getCoordinate());
         this._y.setCoordinate(this._y.getCoordinate() + vector.getHead().getY().getCoordinate());
         this._z.setCoordinate(this._z.getCoordinate() + vector.getHead().getZ().getCoordinate());
     }
 
-    /**
-     * subtract point3D from point3D
-     * @param vector
-     */
+
+    /*************************************************
+     * FUNCTION
+     * 		subtract
+     * PARAMETERS
+     *		Vector vector
+     * RETURN VALUE
+     *		none
+     * MEANING
+     * 		 subtract point3D from point3D
+     **************************************************/
     public void subtract(Vector vector){
         this._x.setCoordinate(this._x.getCoordinate() - vector.getHead().getX().getCoordinate());
         this._y.setCoordinate(this._y.getCoordinate() - vector.getHead().getY().getCoordinate());
         this._z.setCoordinate(this._z.getCoordinate() - vector.getHead().getZ().getCoordinate());
     }
 
-    /**
-     *
-     * @param point
-     * @return  distance between our point3D to point
-     */
+    /*************************************************
+     * FUNCTION
+     * 		distance
+     * PARAMETERS
+     *		Point3D point
+     * RETURN VALUE
+     *		 double - distance between our point3D to point
+     **************************************************/
     public double distance(Point3D point){
      return    Math.sqrt(Math.pow(this.getX().getCoordinate() - point._x.getCoordinate() , 2) +
                              Math.pow(this.getY().getCoordinate() - point.getY().getCoordinate(), 2)
