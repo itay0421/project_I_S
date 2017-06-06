@@ -82,6 +82,7 @@ public class Point3D extends Point2D  {
     };
     @Override
     public String toString(){
+
         return String.format("(%.2f, %.2f, %.2f)" , _x.getCoordinate(), _y.getCoordinate() , _z.getCoordinate() );
     }
 

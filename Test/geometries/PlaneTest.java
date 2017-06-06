@@ -10,9 +10,14 @@ import primitives.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 /**
  * Created by {Itay Amar and Shalom bloch} on 2017 05 .
  */
+
 public class PlaneTest extends TestCase {
 
     @Test
@@ -61,4 +66,9 @@ public class PlaneTest extends TestCase {
         assertEquals(expResult, result);
 
     }
+    //*************************
+
 }
+
+
+
