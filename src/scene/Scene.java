@@ -27,7 +27,7 @@ public class Scene implements Comparable<Scene>{
 
     public Scene() {
         this._sceneName = null;
-        this._backGround = new Color(255,255,255);
+        this._backGround = new Color(0,0,0);
         this._ambientLight = new AmbientLight();
         this._camera = new Camera();
         this._screenDistance = 100;
