@@ -22,13 +22,13 @@ public class Triangle extends Geometry implements FlatGeometry {
 
 
     // ***************** Constructors ********************** //
-
+// default ctor
     public Triangle(){
         Point3D _p1 = new Point3D();
         Point3D _p2 = new Point3D();
         Point3D _p3 = new Point3D();
-
     }
+    // copy ctor
     public Triangle(Triangle triangle){
         this._p1 = new Point3D (triangle._p1);
         this._p2 = new Point3D (triangle._p2);
@@ -37,16 +37,12 @@ public class Triangle extends Geometry implements FlatGeometry {
         this.set_emmission(new Color(triangle.get_emmission().getRGB()));
 
     }
-
+// new triangle from 3 point create connect vector
     public Triangle(Point3D _p1, Point3D _p2, Point3D _p3) {
         this._p1 = new Point3D(_p1);
         this._p2 = new Point3D(_p2);
         this._p3 = new Point3D(_p3);
     }
-
-    //public Triangle(Map<String, String> attributes) {
-
-    //}
 
     // ***************** Getters/Setters ********************** //
     public Point3D getP1() {
@@ -56,28 +52,29 @@ public class Triangle extends Geometry implements FlatGeometry {
         this._p1 = _p1;
         return this;
     }
-
     public Point3D getP2() {
         return _p2;
     }
-
     public Triangle setP2(Point3D _p2) {
         this._p2 = _p2;
         return this;
     }
-
     public Point3D getP3() {
         return _p3;
     }
-
     public Triangle setP3(Point3D _p3) {
         this._p3 = _p3;
         return this;
     }
 
-
     // ***************** Operations ******************** //
 
+    /**
+     *the function purpose is to return the normal vector to triangle
+     * @param point  3D that we went the normal between the point to the triangle
+     * @return the normal vector
+     * used in function to find intersction points
+     */
     @Override
     public Vector getNormal(Point3D point){
         Vector u = new Vector(_p2,_p1);
@@ -89,6 +86,13 @@ public class Triangle extends Geometry implements FlatGeometry {
 
     }
 
+    /**
+     * create vectors like a new triangle and return is normal vector
+     * @param p1 point3d
+     * @param p2 point3d
+     * @param Poo point3d
+     * @return normal of new triangle,
+     */
     public Vector normal_of_triangle(Point3D p1, Point3D p2, Point3D Poo){
         Vector VPoo = new Vector(Poo);
         p1.subtract(VPoo);
@@ -102,7 +106,15 @@ public class Triangle extends Geometry implements FlatGeometry {
 
     }
 
-
+    /**
+     *
+     *implement of abstract function from geometry abstract class
+     * @param ray
+     * @return list of intersction point of the triangle and the parameter ray
+     * size of the list bigger then 0.
+     * used to build a scene of geometry
+     * use vector function subtract, add, dotprodact. to calculate the intersection points
+     */
     public List<Point3D> FindIntersections(Ray ray){
 
         Vector N = new Vector(this.getNormal(_p1));

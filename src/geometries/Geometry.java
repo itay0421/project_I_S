@@ -11,29 +11,13 @@ import java.util.List;
  * all the geometry shapes are implements those function
  */
 public abstract class Geometry {
-
+// any shep have to use in the next parameters to discover they color and lightness
     private Material _material = new Material();
     private double _nShininess = 1;
     private Color _emmission = new Color(0, 0, 0); //  default color - black
 
-    /**
-     * every shep  have to implement function the inditify all the intresction points with
-     * the geometry
-     * @param ray
-     * @return list of intersction points
-     * implemnt by evre geometry,  and use in every scene
-     */
-    public abstract List<Point3D> FindIntersections (Ray ray);
 
-    /**
-     * every shep  have to implement function the find  the normal vector with a point in the scene
-     * @param point
-     * @return normal Vector
-     * can be use in build scene.
-     */
-    public abstract Vector getNormal(Point3D point);
-
-    // geterss and seterss
+    // ***************** Getters/Setters ********************** //
     public Material get_material() {
         return _material;
     }
@@ -65,5 +49,23 @@ public abstract class Geometry {
     public void setKt(double kt){
         _material.set_Kt(kt);
     }
+
+    // ***************** Operations ******************** //
+    /**
+     * every shep  have to implement function the inditify all the intresction points with
+     * the geometry
+     * @param ray
+     * @return list of intersction points
+     * implemnt by evre geometry,  and use in every scene
+     */
+    public abstract List<Point3D> FindIntersections (Ray ray);
+
+    /**
+     * every shep  have to implement function the find  the normal vector with a point in the scene
+     * @param point
+     * @return normal Vector
+     * can be use in build scene.
+     */
+    public abstract Vector getNormal(Point3D point);
 
 }

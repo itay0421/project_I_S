@@ -15,8 +15,10 @@ public class Cylinder extends RadialGeometry {
     private Vector _axisDirection; // the dirction of the Cylinder
 
 
-    //ctor
+    // ***************** Constructors ********************** //
+    //default ctor
     public Cylinder(){}
+    // copy ctor
     public Cylinder(Cylinder cylinder){
         this._axisDirection = cylinder._axisDirection;
         this._axisPoint = cylinder._axisPoint;
@@ -25,7 +27,7 @@ public class Cylinder extends RadialGeometry {
         this._axisPoint = axisPoint;
         this._axisDirection = axisDirection;
     }
-    //  geters and seters
+    // ***************** Getters/Setters ********************** //
     public Vector get_axisDirection() {
         return _axisDirection;
     }
@@ -39,7 +41,7 @@ public class Cylinder extends RadialGeometry {
         this._axisPoint = _axisPoint;
     }
 
-
+    // ***************** Operations ******************** //
     /***
     the function FindIntersections are attempted to find all the intersctions
      between ray that racive as parameter to our Cylinder.
@@ -52,10 +54,9 @@ public class Cylinder extends RadialGeometry {
     public List<Point3D> FindIntersections(Ray ray){
      return null;
     }
-
     /**
      *the function purposeis to return the normal vector to cylinder
-     * @param  Point3D 3d that we went the normal between the point to the cylinder
+     * @param  p point3d that we went the normal between the point to the cylinder
      * @return the normal vector
      */
     @Override

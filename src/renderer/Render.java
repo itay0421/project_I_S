@@ -27,32 +27,24 @@ public class Render implements Comparable<Render> {
         this._scene = new Scene(_scene);
         this._imageWriter = new ImageWriter(_imageWriter);
     }
-
     public Render(Render r) {
         this._scene = new Scene(r._scene);
         this._imageWriter = new ImageWriter(r._imageWriter);
     }
 
-
     // ***************** Getters/Setters ********************** //
-
     public Scene get_scene() {
         return _scene;
     }
-
     public void set_scene(Scene _scene) {
         this._scene = _scene;
     }
-
     public ImageWriter get_imageWriter() {
         return _imageWriter;
     }
-
     public void set_imageWriter(ImageWriter _imageWriter) {
         this._imageWriter = _imageWriter;
     }
-
-
     // ***************** Operations ******************** //
     @Override
     public int compareTo(Render o) {
@@ -68,12 +60,6 @@ public class Render implements Comparable<Render> {
                 ", _imageWriter=" + _imageWriter.toString() +
                 '}';
     }
-
-
-
-
-
-
 
     public void renderImage() throws Exception
     {
@@ -92,8 +78,6 @@ public class Render implements Comparable<Render> {
         }
         }
     }
-
-
 
     /*************************************************
      * FUNCTION
@@ -146,12 +130,6 @@ public class Render implements Comparable<Render> {
         return color;
 
     }
-
-
-
-
-
-
 
     /*************************************************
      * FUNCTION
@@ -236,7 +214,6 @@ public class Render implements Comparable<Render> {
         Map.Entry<Geometry, Point3D> result = newMapIt.next();
         return result;
     }
-
 
     /*************************************************
      * FUNCTION
