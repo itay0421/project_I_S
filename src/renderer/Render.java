@@ -19,15 +19,25 @@ import java.util.List;
 public class Render implements Comparable<Render> {
 
     private Scene _scene;
-    private ImageWriter _imageWriter;
+    private ImageWriter _imageWriter; // for output
 
 // ***************** Constructors ********************** //
-
+    /*************************************************
+     * FUNCTION
+     *      constructor from given parameter
+     * PARAMETERS
+     *      Scene _scene, ImageWriter _imageWriter
+     **************************************************/
     public Render(Scene _scene, ImageWriter _imageWriter) {
         this._scene = new Scene(_scene);
         this._imageWriter = new ImageWriter(_imageWriter);
     }
-
+    /*************************************************
+     * FUNCTION
+     *      copy constructor
+     * PARAMETERS
+     *      Vector head
+     **************************************************/
     public Render(Render r) {
         this._scene = new Scene(r._scene);
         this._imageWriter = new ImageWriter(r._imageWriter);
@@ -39,7 +49,6 @@ public class Render implements Comparable<Render> {
     public Scene get_scene() {
         return _scene;
     }
-
     public void set_scene(Scene _scene) {
         this._scene = _scene;
     }
@@ -47,20 +56,38 @@ public class Render implements Comparable<Render> {
     public ImageWriter get_imageWriter() {
         return _imageWriter;
     }
-
     public void set_imageWriter(ImageWriter _imageWriter) {
         this._imageWriter = _imageWriter;
     }
 
 
     // ***************** Operations ******************** //
+    /*************************************************
+     * FUNCTION
+     * 		CompareTo
+     * PARAMETERS
+     *		Render o
+     * RETURN VALUE
+     *		int - '0' if equal, else '1'
+     * MEANING
+     * 		This function compare between two Renders
+     * 		and return '0' if they equals and '1' if they
+     * 		don't
+     **************************************************/
     @Override
     public int compareTo(Render o) {
         if ((o._imageWriter.equals(_imageWriter)) && o._scene.compareTo(_scene) == 0)
             return 0;
         else return 1;
     }
+    /*************************************************
+     * FUNCTION
+     * 		toString
 
+     * RETURN VALUE
+     *		"Render{" + "_scene=" + _scene.toString() + ", _imageWriter=" +
+     *		_imageWriter.toString() + '}'
+     **************************************************/
     @Override
     public String toString() {
         return "Render{" +
@@ -69,12 +96,16 @@ public class Render implements Comparable<Render> {
                 '}';
     }
 
-
-
-
-
-
-
+    /*************************************************
+     * FUNCTION
+     * 		renderImage
+     * MEANING
+     *	    This function actualy render our image.
+     *		It gets list of the closest point we see on the screen
+     *		and calculate the right color for each point
+     *SEE ALSO
+     *		findClosesntIntersection and calcColor.
+     **************************************************/
     public void renderImage() throws Exception
     {
         for(int i = 0; i < _imageWriter.getWidth(); i++)
@@ -101,7 +132,7 @@ public class Render implements Comparable<Render> {
      * PARAMETERS
      *		int interval - the number of squares we want to split the screen
      * RETURN VALUE
-     * 		none
+     * 		print grid on image.
      * MEANING
      *	    This function divides the screen to squares
      *		for its width and height by the given number(internal)
@@ -118,7 +149,16 @@ public class Render implements Comparable<Render> {
             }
         }
     }
+    /*************************************************
+     * FUNCTION
+     * 		writeToImage
 
+     * MEANING
+     *	    This function help write To image acoordingto
+     *	    our
+     *	    render
+     *
+     **************************************************/
     public void writeToImage()
     {
         _imageWriter.writeToimage();
@@ -135,7 +175,6 @@ public class Render implements Comparable<Render> {
      * 		Color
      * MEANING
      *	    This function calculate the color in the given point
-     *		by using Phong Model with all lights in the scene
      *SEE ALSO
      *		addColors
      **************************************************/
@@ -147,12 +186,6 @@ public class Render implements Comparable<Render> {
 
     }
 
-
-
-
-
-
-
     /*************************************************
      * FUNCTION
      * 		getClosestPoint
@@ -163,6 +196,8 @@ public class Render implements Comparable<Render> {
      * RETURN VALUE
      * 		Entry<Geometry, Point3D>
      * MEANING
+     *      Finds out from a list of the closest  points is
+     *      that the distance from the PO projection point is minimal
      *	    This function return the closest geometry to screen
      *		and its list of intersection points in an Entry of the map
      **************************************************/
@@ -184,30 +219,7 @@ public class Render implements Comparable<Render> {
             }
         }
         return minDistancePoint;
-		/*Geometry geometry = null;
-		Entry<Geometry, List<Point3D>> entry;// = new Entry<Geometry, Point3D>();
-		Iterator<Entry<Geometry, List<Point3D>>> mapIt = intersectionPoints.entrySet().iterator();
-		while(mapIt.hasNext())
-        {
-			entry = mapIt.next();
-			while(!entry.getValue().isEmpty())
-			{
-				Point3D point = entry.getValue().remove(0);
-				if(P0.distance(point) < distance)
-				{
-					minDistancePoint = new Point3D(point);
-					geometry = entry.getKey();
-					distance = P0.distance(point);
-				}
-			}
-		}
 
-		Map<Geometry, Point3D> result = new HashMap<Geometry, Point3D>();
-		result.put(geometry, minDistancePoint);
-		Iterator<Entry<Geometry, Point3D>> newMapIt = result.entrySet().iterator();
-		Entry<Geometry, Point3D> result1 = newMapIt.next();
-		return result1;
-		*/
     }
 
     /*************************************************
@@ -246,11 +258,10 @@ public class Render implements Comparable<Render> {
      * RETURN VALUE
      * 		Map<Geometry, List<Point3D>>
      * MEANING
+     *      The function receives a ray  and needs to find its point
+     *      of intersection with all the geometries in the scene.
      *	    This function return a map with all geometries
-     *		that the given ray intersect. and it return
-     *		the list of intersection point for each geometry either
-     *SEE ALSO
-     *		_scene.getGeometriesIterator()
+     *		that the given ray intersect.
      **************************************************/
     private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray) throws Exception
     {
@@ -274,7 +285,8 @@ public class Render implements Comparable<Render> {
      * RETURN VALUE
      *		Color
      * MEANING
-     * 		This function add between two Colors and returns its sum.
+     * 		This function add between two Colors and returns new
+     * 	    calculate color	.
      **************************************************/
     private Color addColors(Color a, Color b)
     {

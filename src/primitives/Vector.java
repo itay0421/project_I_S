@@ -150,11 +150,6 @@ public class Vector {
                 this._head.getZ().getCoordinate()*scalingFactor);
     }
 
-    /**
-     *
-     * @param vector
-     * @return  Vector crossProduct
-     */
     /*************************************************
      * FUNCTION
      * 		crossProduct
@@ -175,10 +170,7 @@ public class Vector {
         return a;
     }
 
-    /**
-     *
-     * @return length of vector
-     */
+
     /*************************************************
      * FUNCTION
      * 		length
@@ -207,11 +199,7 @@ public class Vector {
         this.scale(1/this.length());
     }
 
-    /**
-     *
-     * @param vector
-     * @return dotProduct vector
-     */
+
     /*************************************************
      * FUNCTION
      * 		dotProduct

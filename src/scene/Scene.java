@@ -16,15 +16,21 @@ import java.util.List;
 public class Scene implements Comparable<Scene>{
 
     protected String _sceneName;
-    protected Color _backGround;
+    protected Color _backGround;//Background color.
     protected AmbientLight _ambientLight;
     protected Camera _camera;
     protected double _screenDistance;
-    public List<Geometry> _geometries;
+    public List<Geometry> _geometries;//List of bodies Geometry that describe the scene
 
     // ***************** Constructors ********************** //
 
-
+    /*************************************************
+     * FUNCTION
+     *      default constructor
+     * * MEANING
+     *       default _backGround color is black.
+     *       default _screenDistance is 100.
+     **************************************************/
     public Scene() {
         this._sceneName = null;
         this._backGround = new Color(0,0,0);
@@ -33,7 +39,13 @@ public class Scene implements Comparable<Scene>{
         this._screenDistance = 100;
         _geometries = new ArrayList<Geometry>();
     }
-
+    /*************************************************
+     * FUNCTION
+     *      constructor from given parameter
+     * PARAMETERS
+     *      String _sceneName, Color _backGround, AmbientLight _ambientLight,
+     *      Camera _camera, double _screenDistance, List<Geometry> _geometries
+     **************************************************/
     public Scene(String _sceneName, Color _backGround, AmbientLight _ambientLight,
                         Camera _camera, double _screenDistance, List<Geometry> _geometries) {
         this._sceneName = _sceneName;
@@ -43,7 +55,12 @@ public class Scene implements Comparable<Scene>{
         this._screenDistance = _screenDistance;
         this._geometries = new ArrayList<Geometry>();
     }
-
+    /*************************************************
+     * FUNCTION
+     *      copy constructor
+     * PARAMETERS
+     *      Vector head
+     **************************************************/
     public Scene(Scene s){
         this._sceneName = s._sceneName;
         this._backGround = s._backGround;
@@ -58,7 +75,6 @@ public class Scene implements Comparable<Scene>{
     public String get_sceneName() {
         return _sceneName;
     }
-
     public void set_sceneName(String _sceneName) {
         this._sceneName = _sceneName;
     }
@@ -66,7 +82,6 @@ public class Scene implements Comparable<Scene>{
     public Color get_backGround() {
         return _backGround;
     }
-
     public void set_backGround(Color _backGround) {
         this._backGround = _backGround;
     }
@@ -74,7 +89,6 @@ public class Scene implements Comparable<Scene>{
     public AmbientLight get_ambientLight() {
         return _ambientLight;
     }
-
     public void set_ambientLight(AmbientLight _ambientLight) {
         this._ambientLight = _ambientLight;
     }
@@ -82,7 +96,6 @@ public class Scene implements Comparable<Scene>{
     public Camera get_camera() {
         return _camera;
     }
-
     public void set_camera(Camera _camera) {
         this._camera = _camera;
     }
@@ -90,7 +103,6 @@ public class Scene implements Comparable<Scene>{
     public double get_screenDistance() {
         return _screenDistance;
     }
-
     public void set_screenDistance(double _screenDistance) {
         this._screenDistance = _screenDistance;
     }
@@ -98,19 +110,26 @@ public class Scene implements Comparable<Scene>{
     public List<Geometry> get_geometries() {
         return _geometries;
     }
-
     public void set_geometries(List<Geometry> _geometries) {
         this._geometries = _geometries;
     }
 
-    //******************************************************
+    // ***************** Operations ******************** //
 
 
-    /**
-     * Compare two scene
-     * @param o
-     * @return if equal return 0. else return 1.
-     */
+
+    /*************************************************
+     * FUNCTION
+     * 		CompareTo
+     * PARAMETERS
+     *		Scene o
+     * RETURN VALUE
+     *		int - '0' if equal, else '1'
+     * MEANING
+     * 		This function compare between two Scene
+     * 		and return '0' if they equals and '1' if they
+     * 		don't
+     **************************************************/
     @Override
     public int compareTo(Scene o) {
         if(( o._ambientLight.compareTo(_ambientLight)==0) && (o._backGround == _backGround)
@@ -119,7 +138,14 @@ public class Scene implements Comparable<Scene>{
             return 0;
         return 1;
     }
+    /*************************************************
+     * FUNCTION
+     * 		toString
 
+     * RETURN VALUE
+     *		"Scene{"sceneName" , backGround=" , ambientLight=" ,
+     *		camera=", screenDistance=" , geometries=" }'
+     **************************************************/
     @Override
     public String toString() {
         return "Scene{" +
@@ -131,11 +157,22 @@ public class Scene implements Comparable<Scene>{
                 ", geometries=" + _geometries.toString() +
                 '}';
     }
-
+    /*************************************************
+     * FUNCTION
+     * 		addGeometry
+     * MEANING
+     *	    This function add  geometry to list
+     **************************************************/
     public void addGeometry(Geometry g){
         _geometries.add(g);
     }
 
+    /*************************************************
+     * FUNCTION
+     * 		Iterator
+     * MEANING
+     *	    A function that returns an iterator to go through the list
+     **************************************************/
     public Iterator<Geometry> getGeometriesIterator(){
         return _geometries.iterator();
     }
