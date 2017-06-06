@@ -1,25 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Elements;
 
-/**
- * Created by itay0 on 05/06/2017.
- */
-
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
-
-import java.awt.*;
-
-
-import primitives.Point3D;
-import primitives.Vector;
-
-import java.awt.*;
+import java.awt.Color;
 
 /**
- * Created by itay0 on 05/06/2017.
+ *
  */
 public interface LightSource {
-    public abstract Color getIntensity(Point3D point);
-    public abstract Vector getL(Point3D point); // light to point vector
-
+  public abstract Color getIntensity(Point3D point); 
+  public abstract Vector getL(Point3D point); // light to point vector   
+    
 }
