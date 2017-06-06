@@ -40,9 +40,30 @@ public class ImageWriterTest {
                     imageWriter.writePixel(j, i, rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)); // Random
             }
         }
-
         imageWriter.writeToimage();
 
     }
+    @Test
+    public void writeImageTest2(){
 
+       final double tmp  = 500/3;
+        ImageWriter imageWriter = new ImageWriter("frunce flag test", 500, 500, 1, 1);
+        Random rand = new Random();
+        for (int i = 0; i < imageWriter.getHeight(); i++){
+            for (int j = 0; j < imageWriter.getWidth(); j++)
+            {
+
+                if(i >= 0 && i < 3*tmp && j >= 0 && j < tmp)
+                    imageWriter.writePixel(j, i, 0, 0, 255); // Blue
+                else
+                if(i >= 0 && i < 3*tmp && j >= tmp && j < 2*tmp)
+                    imageWriter.writePixel(j, i, 255, 255, 255); // White
+                else
+                if(i >= 0 && i < 3*tmp && j >=2*tmp  && j < 3*tmp)
+                    imageWriter.writePixel(j, i, 255, 0, 0);  // Red
+            }
+        }
+        imageWriter.writeToimage();
+
+    }
 }

@@ -444,7 +444,7 @@ public class TriangleTest {
 
 
 
-/*    @Test
+    @Test
     public void testIntersectionPoints(){
         final int WIDTH = 3;
         final int HEIGHT = 3;
@@ -478,6 +478,6 @@ public class TriangleTest {
         System.out.println("---");
         for (Point3D iPoint: intersectionPointsPlane2)
             System.out.println(iPoint);
-    } */
+    }
 
 }
