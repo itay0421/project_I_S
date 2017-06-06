@@ -24,7 +24,7 @@ public class RenderTest {
 
 	/*create a Sphere and 4 Triangles*/
 
-    //    Sphere sphere = new Sphere(50, new Point3D(0, 0, -49));
+        Sphere sphere = new Sphere(50, new Point3D(0, 0, -50));
         Triangle triangle1 = new Triangle(new Point3D(250, 200, -49), new Point3D(250, 150, -49), new Point3D(-250, 200, -49));
         Triangle triangle2 = new Triangle(new Point3D(250, 150, -49), new Point3D(-250, 200, -49), new Point3D(-250, 150, -49));
         Triangle triangle3 = new Triangle(new Point3D(250, -150, -49), new Point3D(250, -200, -49), new Point3D(-250, -200, -49));
@@ -37,18 +37,18 @@ public class RenderTest {
         Triangle triangle6 = new Triangle(new Point3D(0, -100, -49), new Point3D(150, 50, -49), new Point3D(-150, 50, -49));
         triangle5.set_emmission(new Color(0,0,255));
         triangle6.set_emmission(new Color(0,0,255));
-     //   sphere.set_emmission(new Color(255, 255, 255));
 	/*create the Scene*/
 
         Scene scene = new Scene(); //template Scene
         scene.set_screenDistance(48.5);
+        scene.set_backGround(new Color(255,255,255));
 
       //  scene.light.add(new PointLight());
       //  scene.lights.add(new SpotLight());
      //   scene.lights.add(new DirectionalLight());
 
         //add Geometries to the Scene
-    //    scene.addGeometry(sphere);
+        //scene.addGeometry(sphere);
        //scene.addGeometry(plane);
         scene.addGeometry(triangle1);
         scene.addGeometry(triangle2);
@@ -57,7 +57,7 @@ public class RenderTest {
         scene.addGeometry(triangle5);
         scene.addGeometry(triangle6);
 	/*create an ImageWriter*/
-       ImageWriter imageWriter = new ImageWriter("test1_basicRender", 500, 500, 500, 500);
+       ImageWriter imageWriter = new ImageWriter("test1_israelFlag", 500, 500, 500, 500);
 	/*create a Renderer*/
        Render renderer = new Render(scene, imageWriter);
        // render Image
@@ -69,11 +69,11 @@ public class RenderTest {
        renderer.writeToImage();
     }
 
- /**   @Test
+    @Test
     public void test2() throws Exception
     {
 	/*create a Sphere and 4 Triangles*/
- /**       Sphere sphere = new Sphere(50, new Point3D(0, 0, -50));
+        Sphere sphere = new Sphere(50, new Point3D(0, 0, -50));
         Triangle triangle1 = new Triangle(new Point3D(100, 0, -49), new Point3D(0, 100, -49), new Point3D(100, 100, -49));
         Triangle triangle2 = new Triangle(new Point3D(100, 0, -49), new Point3D(0, -100, -49), new Point3D(100, -100, -49));
         Triangle triangle3 = new Triangle(new Point3D(-100, 0, -49), new Point3D(0, 100, -49), new Point3D(-100, 100, -49));
@@ -84,7 +84,7 @@ public class RenderTest {
         triangle4.set_emmission(new Color(255,255,0));
 
 	/*create the Scene*/
-  /**     Scene scene = new Scene();
+       Scene scene = new Scene();
         scene.set_screenDistance(48.9);
 
         //add Geometries to the Scene
@@ -94,9 +94,9 @@ public class RenderTest {
         scene.addGeometry(triangle3);
         scene.addGeometry(triangle4);
 	/*create an ImageWriter*/
-  /**      ImageWriter imageWriter = new ImageWriter("test2_basicColorRender", 500, 500, 500, 500);
+        ImageWriter imageWriter = new ImageWriter("test2_basicColorRender", 500, 500, 500, 500);
 	/*create a Renderer*/
- /**       Render renderer = new Render(scene, imageWriter);
+        Render renderer = new Render(scene, imageWriter);
         //render Image
         renderer.renderImage();
         //print Grid
@@ -104,6 +104,6 @@ public class RenderTest {
         //print Image
         renderer.writeToImage();
     }
-*/
+
 
 }

@@ -9,26 +9,11 @@ public class Point3D extends Point2D  {
 
     private Coordinate _z;
 
-    /**
-     *
-     * @return z
-     */
-    public Coordinate getZ() {
-        return _z;
-    }
-
-    /**
-     * set Z
-     * @param _z
-     * @return
-     */
-    public void setZ(Coordinate _z) {
-        this._z = _z;
-    }
-
-    /**
-     * default C'tor
-     */
+// ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     * default constructor
+     **************************************************/
     public Point3D() {
 
         this._z = new Coordinate();
@@ -50,16 +35,34 @@ public class Point3D extends Point2D  {
 
     }
 
-    /**
-     * C'tor
-     * @param point3D
-     */
+    /*************************************************
+     * FUNCTION
+     * copy constructor
+     * PARAMETERS
+     * Point3D point3D
+     **************************************************/
     public Point3D(Point3D point3D){
         super(point3D);
         this._z = new Coordinate(point3D._z);
 
     }
+// ***************** Getters/Setters ********************** //
+    /**
+     *
+     * @return z
+     */
+    public Coordinate getZ() {
+        return _z;
+    }
 
+    /**
+     * set Z
+     * @param _z
+     * @return
+     */
+    public void setZ(Coordinate _z) {
+        this._z = _z;
+    }
     /**
      *
      * @param point3D

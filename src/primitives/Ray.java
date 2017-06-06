@@ -7,6 +7,32 @@ public class Ray {
     private Point3D _POO;
     private Vector _direction;
 
+
+// ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     * default constructor
+     **************************************************/
+    public Ray() {
+        this._POO=new Point3D();
+        this._direction=new Vector();
+    }
+    public Ray(Point3D _POO, Vector _direction) {
+        this._POO = new Point3D(_POO);
+        this._direction = new Vector(_direction);
+    }
+    /*************************************************
+     * FUNCTION
+     * copy constructor
+     * PARAMETERS
+     * Ray ray
+     **************************************************/
+    public Ray(Ray ray){
+        this._direction = new Vector (ray._direction);
+        this._POO = new Point3D( ray.get_POO());
+    }
+
+// ***************** Getters/Setters ********************** //
     /**
      *
      * @return P00
@@ -34,21 +60,7 @@ public class Ray {
     /**
      * set direction
      */
-    public void set_direction() {}
-
-    /**
-     * C'tor
-     */
-    public Ray() {
-        this._POO=new Point3D();
-        this._direction=new Vector();
-    }
-    public Ray(Point3D _POO, Vector _direction) {
-        this._POO = _POO;
-        this._direction = _direction;
-    }
-    public Ray(Ray ray){
-        this._direction = ray._direction;
-        this._POO = ray.get_POO();
+    public void set_direction(Vector d) {
+        this._direction = new Vector(d);
     }
 }

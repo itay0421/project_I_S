@@ -12,17 +12,15 @@ public class Coordinate implements Comparable<Coordinate> {
 
     private double _coordinate;
 
-    /**
-     * default C'tor
-     */
+// ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     * default constructor
+     **************************************************/
     public Coordinate(){
         _coordinate= 0.0;
     };
 
-    /**
-     * C'tor
-     * @param coordinate
-     */
     public Coordinate(double coordinate) {
         this._coordinate = coordinate;
     }
@@ -32,12 +30,17 @@ public class Coordinate implements Comparable<Coordinate> {
      * @param
      */
 
-
+    /*************************************************
+     * FUNCTION
+     * copy constructor
+     * PARAMETERS
+     * Coordinate copy
+     **************************************************/
     public Coordinate(Coordinate copy) {
         this._coordinate = copy.getCoordinate();
     }
 
-
+// ***************** Getters/Setters ********************** //
     /**
      *
      * @return _coordinate

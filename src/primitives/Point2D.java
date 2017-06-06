@@ -7,10 +7,11 @@ public class Point2D implements Comparable <Point2D>   {
 
     protected Coordinate _x;
     protected Coordinate _y;
-
-    /**
-     *default contractor
-     */
+// ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     * default constructor
+     **************************************************/
     public Point2D() {
         this._x = new Coordinate();
         this._y = new Coordinate();
@@ -27,15 +28,18 @@ public class Point2D implements Comparable <Point2D>   {
         this._y = new Coordinate(_y);
     }
 
-    /**
-     *  contractor - get point2D
-     * @param point2D
-     */
+    /*************************************************
+     * FUNCTION
+     * copy constructor
+     * PARAMETERS
+     * Point2D point2D
+     **************************************************/
     public Point2D(Point2D point2D){
         this._x = new Coordinate(point2D.getX());
         this._y = new Coordinate(point2D.getY());
     };
 
+// ***************** Getters/Setters ********************** //
     /**
      *
      * @return  Coordinate x
@@ -49,9 +53,8 @@ public class Point2D implements Comparable <Point2D>   {
      * @param _x
      * @return   set Coordinate x
      */
-    public Point2D setX(Coordinate _x) {
+    public void setX(Coordinate _x) {
         this._x = _x;
-        return this;
     }
 
     /**
