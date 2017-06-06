@@ -15,7 +15,7 @@ public class Plane extends Geometry implements FlatGeometry{
     private Vector _normal;
     private Point3D _Q;
 
-
+//ctor
     public Plane(Vector _normal, Point3D _Q) {
         this._normal = new Vector(_normal);
         this._Q = new Point3D(_Q);
@@ -34,13 +34,7 @@ public class Plane extends Geometry implements FlatGeometry{
     this._Q = new Point3D(plane._Q);
     }
 
-    /**
-     *
-     * @return  vector _normal
-     * @param point3D
-     * @param d
-     * @param point3D1
-     */
+//seterss and geterss
     public Vector get_normal(Point3D point3D, Point3D d, Point3D point3D1) {
         return _normal;
     }
@@ -56,9 +50,15 @@ public class Plane extends Geometry implements FlatGeometry{
 
 
     /**
-     *
+     * the purpose the function to indentification all the intersction point with the plane
      * @param ray
      * @return  list of point3D, intersections ray with Plane
+     * used to build scene
+     * use the vector functions:
+     * dotProduct
+     * add
+     * subtract
+     * scale
      */
     @Override
     public List<Point3D> FindIntersections(Ray ray) {

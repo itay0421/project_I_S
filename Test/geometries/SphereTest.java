@@ -16,15 +16,14 @@ import static junit.framework.TestCase.assertTrue;
  */
 public class SphereTest {
 
-    /**** Sphere test ****/
     @Test
-    public void testIntersectionPoints() {
+    public void testIntersectionPoints(){
         final int WIDTH = 3;
         final int HEIGHT = 3;
-        Ray[][] rays = new Ray[HEIGHT][WIDTH];
-        Camera camera = new Camera(new Point3D(0.0, 0.0, 0.0),
-                new Vector(0.0, 1.0, 0.0),
-                new Vector(0.0, 0.0, -1.0));
+        Ray[][] rays = new Ray [HEIGHT][WIDTH];
+        Camera camera = new Camera(new Point3D(0.0 ,0.0 ,0.0),
+                new Vector (0.0, 1.0, 0.0),
+                new Vector (0.0, 0.0, -1.0));
         Sphere sphere = new Sphere(1, new Point3D(0.0, 0.0, -3.0));
         Sphere sphere2 = new Sphere(10, new Point3D(0.0, 0.0, -3.0));
 // Only the center ray intersect the sphere in two locations
@@ -43,9 +42,7 @@ public class SphereTest {
                 for (Point3D iPoint : rayIntersectionPoints2)
                     intersectionPointsSphere2.add(iPoint);
             }
-            System.out.println(intersectionPointsSphere.size());
-            System.out.println(intersectionPointsSphere2.size());
-            assertTrue(intersectionPointsSphere.size() == 2 );
+            assertTrue(intersectionPointsSphere.size() == 2);
             assertTrue(intersectionPointsSphere2.size() == 9);
             System.out.println("Intersection Points:");
             for (Point3D iPoint : intersectionPointsSphere) {
@@ -54,6 +51,5 @@ public class SphereTest {
                 System.out.println(iPoint);
             }
         }
-
-    }
+}
 }

@@ -6,15 +6,14 @@ package geometries;
 public abstract class RadialGeometry extends Geometry {
 
     protected double _radius;
-
+    //ctor
     public RadialGeometry(double _radius) {
         this._radius = _radius;
     }
-
     public RadialGeometry() {
-
     }
 
+    // set and get
     public double getRadius() {
         return _radius;
     }

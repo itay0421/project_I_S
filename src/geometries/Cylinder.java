@@ -11,9 +11,11 @@ import java.util.List;
  */
 public class Cylinder extends RadialGeometry {
 
-    private Point3D _axisPoint;
-    private Vector _axisDirection;
+    private Point3D _axisPoint; // the center of the Cylinder
+    private Vector _axisDirection; // the dirction of the Cylinder
 
+
+    //ctor
     public Cylinder(){}
     public Cylinder(Cylinder cylinder){
         this._axisDirection = cylinder._axisDirection;
@@ -23,7 +25,7 @@ public class Cylinder extends RadialGeometry {
         this._axisPoint = axisPoint;
         this._axisDirection = axisDirection;
     }
-
+    //  geters and seters
     public Vector get_axisDirection() {
         return _axisDirection;
     }
@@ -37,11 +39,39 @@ public class Cylinder extends RadialGeometry {
         this._axisPoint = _axisPoint;
     }
 
+
+    /***
+    the function FindIntersections are attempted to find all the intersctions
+     between ray that racive as parameter to our Cylinder.
+     the function racive a rsy as parametr.
+     the function returns List of all the intersction points between the ray to the cylinder
+    the meaning of this function its to indintifey all the intresction point with this geometrie
+    the size of the list will be 0<=list
+     not in use in this project level
+     ***/
     public List<Point3D> FindIntersections(Ray ray){
      return null;
     }
-    public Vector getNormal(Point3D point){
-        return null;
-    }
 
+    /**
+     *the function purposeis to return the normal vector to cylinder
+     * @param  Point3D 3d that we went the normal between the point to the cylinder
+     * @return the normal vector
+     */
+    @Override
+    public Vector getNormal(Point3D p) {
+        double a=p.getX().getCoordinate();
+        double b=p.getY().getCoordinate();
+        double c=p.getZ().getCoordinate();
+        double x=_axisDirection.getHead().getX().getCoordinate();
+        double y=_axisDirection.getHead().getY().getCoordinate();
+        double z=_axisDirection.getHead().getZ().getCoordinate();
+        double t=(a*x+b*y+c*z)/(x*x+y*y+z*z);
+        Vector temp=new Vector(_axisDirection);
+        temp.scale(t);
+        Vector normal=new Vector(p);
+        normal.subtract(temp);
+        normal.normalize();
+        return normal;
+    }
 }

@@ -24,7 +24,7 @@ public class RenderTest {
 
 	/*create a Sphere and 4 Triangles*/
 
-        Sphere sphere = new Sphere(50, new Point3D(0, 0, -50));
+    //    Sphere sphere = new Sphere(50, new Point3D(0, 0, -49));
         Triangle triangle1 = new Triangle(new Point3D(250, 200, -49), new Point3D(250, 150, -49), new Point3D(-250, 200, -49));
         Triangle triangle2 = new Triangle(new Point3D(250, 150, -49), new Point3D(-250, 200, -49), new Point3D(-250, 150, -49));
         Triangle triangle3 = new Triangle(new Point3D(250, -150, -49), new Point3D(250, -200, -49), new Point3D(-250, -200, -49));
@@ -37,6 +37,7 @@ public class RenderTest {
         Triangle triangle6 = new Triangle(new Point3D(0, -100, -49), new Point3D(150, 50, -49), new Point3D(-150, 50, -49));
         triangle5.set_emmission(new Color(0,0,255));
         triangle6.set_emmission(new Color(0,0,255));
+     //   sphere.set_emmission(new Color(255, 255, 255));
 	/*create the Scene*/
 
         Scene scene = new Scene(); //template Scene
@@ -47,7 +48,7 @@ public class RenderTest {
      //   scene.lights.add(new DirectionalLight());
 
         //add Geometries to the Scene
-        scene.addGeometry(sphere);
+    //    scene.addGeometry(sphere);
        //scene.addGeometry(plane);
         scene.addGeometry(triangle1);
         scene.addGeometry(triangle2);
