@@ -9,10 +9,13 @@ import java.awt.*;
  */
 public class AmbientLight extends Light implements Comparable<AmbientLight> {
 
+    // color parameter of the object
     private Color _color;
+    // _Ka is parameter to calculate the lightness of the object
     private double _Ka;
 
     // ***************** Constructors ********************** //
+    // defualt ctor - color white
     public AmbientLight() {
         this._color = new Color(255,255,255);
         this._Ka = 1.0;
@@ -25,6 +28,7 @@ public class AmbientLight extends Light implements Comparable<AmbientLight> {
         this._color = new Color(r,b,g);
         this._Ka = 0.1;
     };
+    // copy ctor
     public AmbientLight(AmbientLight ambientLight){
         this._color = new Color(ambientLight._color.getRGB());
         this._Ka = ambientLight._Ka;
@@ -34,24 +38,20 @@ public class AmbientLight extends Light implements Comparable<AmbientLight> {
     public Color get_color() {
         return _color;
     }
-
     public void set_color(Color _color) {
         this._color = _color;
     }
-
     public double get_Ka() {
         return _Ka;
     }
-
     public void set_Ka(double _Ka) {
         this._Ka = _Ka;
     }
-
     //*********************************************************
 
     /**
      * Compare two ambieant light
-     * @param o
+     * @param o color
      * @return if equal return 0. else return 1.
      */
     @Override
@@ -60,6 +60,11 @@ public class AmbientLight extends Light implements Comparable<AmbientLight> {
         return 1;
     }
 
+    /**
+     * the function print out the data of the object
+     * @return print format
+     * use to print out the AmbientLight class
+     */
     @Override
     public String toString() {
         return "AmbientLight{" +
@@ -69,7 +74,8 @@ public class AmbientLight extends Light implements Comparable<AmbientLight> {
     }
 
     /**
-     *
+     * the function add importent parameter of intensity to calculate the right color
+     * the function multiply the color with _Ka parameter that hold the distance of the light
      * @return new color according to calculate intensity
      */
     public Color getIntensity(){
@@ -82,6 +88,12 @@ public class AmbientLight extends Light implements Comparable<AmbientLight> {
         return new Color(r ,b ,g ) ;
     }
 
+    /**
+     * the function add importent parameter of intensity to calculate the right color
+     * the function multiply the color with _Ka parameter that hold the distance of the light
+     * @param point to calculate it color
+     * @return new color according to calculate intensity, of the parameter point
+     */
     //@Override
     public Color getIntensity(Point3D point)
     {

@@ -4,6 +4,8 @@ import java.awt.*;
 
 /**
  * Created by shalom on 24/04/2017.
+ * abstract class to make sure all of the sons geometries class will implement important function
+ * this class make sure that every class that extend her will have a color parameter to the object
  */
 public abstract class Light {
 

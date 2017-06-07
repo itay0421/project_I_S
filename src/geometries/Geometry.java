@@ -36,7 +36,7 @@ public abstract class Geometry {
     public void set_emmission(Color _emmission) {
         this._emmission = _emmission;
     }
-// seterss of matirial
+//************ Setters of material************** //
     public void setKs(double ks){
         _material.set_Ks( ks);
     }
@@ -52,7 +52,7 @@ public abstract class Geometry {
 
     // ***************** Operations ******************** //
     /**
-     * every shep  have to implement function the inditify all the intresction points with
+     * every shep  have to implement function the inditify all the Intersections points with
      * the geometry
      * @param ray
      * @return list of intersction points

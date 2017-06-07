@@ -15,7 +15,7 @@ import java.util.Map;
  */
 
 public class Sphere extends RadialGeometry {
-
+// the center of the sphere
     private Point3D center;
 // ***************** Getters/Setters ********************** //
     public Point3D getCenter() {
@@ -42,8 +42,10 @@ public class Sphere extends RadialGeometry {
 
     // ***************** Operations ******************** //
 
-    // print format use in every function
-    // used by who went to print Sphere
+    /**
+     * abstract function of print format from geometry abstract class
+     * @return print format
+     */
     @Override
     public String toString() {
         return "radious: "+_radius+" center: "+center;
@@ -54,6 +56,7 @@ public class Sphere extends RadialGeometry {
      * @param p  POint3D that we went the normal between the point to the sphere
      * @return the normal vector
      * used in function to find intersction points
+     * this function use simple vector function , normalize, subtract, copy ctor.
      */
     @Override
     public Vector getNormal(Point3D p) {
@@ -70,8 +73,8 @@ public class Sphere extends RadialGeometry {
      * @param ray
      * @return list of intersction point of the shere and the parameter ray
      * size of the list bigger then 0.
-     * used to build a scene of geometry
-     * use vector function subtract, add, dotprodact. to calculate the intersection points
+     * used to find the place of geometry in scene
+     * use vector function subtract, add, dotprodact, to calculate the intersection points
      */
     @Override
     public List<Point3D> FindIntersections(Ray ray) {

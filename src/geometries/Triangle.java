@@ -14,7 +14,9 @@ import java.awt.Color;
  */
 
 public class Triangle extends Geometry implements FlatGeometry {
-
+    // triangle build from 3 point that conecting with 3 vectors
+    // with 3 points we can build any triangle.
+    // those variables are 3D points that we have to build triangle
     private Point3D _p1;
     private Point3D _p2;
     private Point3D _p3;
@@ -69,12 +71,14 @@ public class Triangle extends Geometry implements FlatGeometry {
 
     // ***************** Operations ******************** //
 
-    /**
+    /**************************************************
      *the function purpose is to return the normal vector to triangle
      * @param point  3D that we went the normal between the point to the triangle
      * @return the normal vector
      * used in function to find intersction points
-     */
+     * FUNCTION
+     * 		getNormal
+     **************************************************/
     @Override
     public Vector getNormal(Point3D point){
         Vector u = new Vector(_p2,_p1);
@@ -87,11 +91,13 @@ public class Triangle extends Geometry implements FlatGeometry {
     }
 
     /**
-     * create vectors like a new triangle and return is normal vector
+     * create vectors like vectors for a new triangle and return is normal vector(of the "triangle")
      * @param p1 point3d
      * @param p2 point3d
      * @param Poo point3d
      * @return normal of new triangle,
+     * this function used in "findintresction" function
+     * the function use basic functions of vector include  scale, subtract, dotprodact
      */
     public Vector normal_of_triangle(Point3D p1, Point3D p2, Point3D Poo){
         Vector VPoo = new Vector(Poo);
@@ -112,7 +118,7 @@ public class Triangle extends Geometry implements FlatGeometry {
      * @param ray
      * @return list of intersction point of the triangle and the parameter ray
      * size of the list bigger then 0.
-     * used to build a scene of geometry
+     * used to build a scene with geometry, find the geometry place on the scene.
      * use vector function subtract, add, dotprodact. to calculate the intersection points
      */
     public List<Point3D> FindIntersections(Ray ray){
@@ -143,6 +149,10 @@ public class Triangle extends Geometry implements FlatGeometry {
 
     }
 
+    /**
+     * abstract function of print format from geometry abstract class
+     * @return print format
+     */
     @Override
     public String toString() {
         return "p1:"+_p1.toString()+" "+"p2:"+_p2.toString()+" "+"p3:"+_p3.toString();
