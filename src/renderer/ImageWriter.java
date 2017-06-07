@@ -9,15 +9,21 @@ import javax.imageio.ImageIO;
 
 public class ImageWriter {
 
-    private int _imageWidth;
-    private int _imageHeight;
-    private int _Ny, _Nx;
-    final String PROJECT_PATH = System.getProperty("user.dir");
+    private int _imageWidth;//Image width (defined in pixels)
+    private int _imageHeight;//Image height (defined in pixels)
+    private int _Ny, _Nx; //Number of squares per row / column/
+    final String PROJECT_PATH = System.getProperty("user.dir");//path where the file will be saved with the image
     private BufferedImage _image;
+    //The name of the image that is actually the name of the file where the image will be saved
     private String _imageName;
 
     // ***************** Constructors ********************** //
-
+    /*************************************************
+     * FUNCTION
+     *      constructor from given parameter
+     * PARAMETERS
+     *      String imageName, int width, int height, int Ny, int Nx
+     **************************************************/
     public ImageWriter(String imageName, int width, int height, int Ny, int Nx){
 
         _Nx = Nx;
@@ -31,7 +37,12 @@ public class ImageWriter {
         _image = new BufferedImage(
                 _imageWidth, _imageHeight, BufferedImage.TYPE_INT_RGB);;
     }
-
+    /*************************************************
+     * FUNCTION
+     *      copy constructor
+     * PARAMETERS
+     *      Vector head
+     **************************************************/
     public ImageWriter (ImageWriter imageWriter){
         _Nx = imageWriter._Nx;
         _Ny = imageWriter._Ny;
@@ -58,6 +69,20 @@ public class ImageWriter {
 
     // ***************** Operations ******************** //
 
+    /*************************************************
+     * FUNCTION
+     * 		writeToimage
+     * PARAMETERS
+     *		Map<Geometry, List<Point3D>> intersectionPoints -
+     *				a map with all geometries in the scene and
+     *				their list of intersection points
+     * RETURN VALUE
+     * 		file with image
+     * MEANING
+     *	    Write the image that was built by writePixel to a file whose
+     *	    name is defined by the field
+            ImageName _ saved in the folder defined by the projectPath_ field
+     **************************************************/
     public void writeToimage(){
 
         File ouFile = new File(PROJECT_PATH + "/" + _imageName + ".jpg");
@@ -68,21 +93,48 @@ public class ImageWriter {
             e.printStackTrace();
         }
     }
+    /*************************************************
+     * FUNCTION
+     * 		writePixel
+     * PARAMETERS
+     *		int xIndex, int yIndex,
+     *	    color -	int r, int g, int b
 
+     * MEANING
+     *	    This function write Pixel by color
+     **************************************************/
     public void writePixel(int xIndex, int yIndex, int r, int g, int b){
 
         int rgb = new Color(r, g, b).getRGB();
         _image.setRGB(xIndex, yIndex, rgb);
 
     }
+    /*************************************************
+     * FUNCTION
+     * 		writePixel
+     * PARAMETERS
+     *		int xIndex, int yIndex,
+     *	    color -	int[] rgbArray
 
+     * MEANING
+     *	    This function write Pixel by color
+     **************************************************/
     public void writePixel(int xIndex, int yIndex, int[] rgbArray){
 
         int rgb = new Color(rgbArray[0], rgbArray[1], rgbArray[2]).getRGB();
         _image.setRGB(xIndex, yIndex, rgb);
 
     }
+    /*************************************************
+     * FUNCTION
+     * 		writePixel
+     * PARAMETERS
+     *		int xIndex, int yIndex,
+     *	    color -	color
 
+     * MEANING
+     *	    This function write Pixel by color
+     **************************************************/
     public void writePixel(int xIndex, int yIndex, Color color){
 
         _image.setRGB(xIndex, yIndex, color.getRGB());
