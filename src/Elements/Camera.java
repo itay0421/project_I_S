@@ -14,7 +14,11 @@ public class Camera {
     private Vector _vTo;
     private Vector _vRight;
     // ***************** Constructors ********************** //
-
+// ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     *      default constructor
+     **************************************************/
     public Camera() {
         this._P0 = new Point3D();
         this._vUp = new Vector(new Point3D(new Coordinate(),new Coordinate(1),new Coordinate()));
@@ -22,10 +26,12 @@ public class Camera {
         this._vRight = new Vector(new Point3D(new Coordinate(1),new Coordinate(),new Coordinate()));
     }
 
-    /**
-     * Copy C'tor
-     * @param camera
-     */
+    /*************************************************
+     * FUNCTION
+     *      copy constructor
+     * PARAMETERS
+     *      Camera camera
+     **************************************************/
     public Camera(Camera camera) {
         this._P0 = new Point3D(camera._P0);
         this._vTo = new Vector(camera._vTo);
@@ -33,7 +39,12 @@ public class Camera {
         this._vRight = new Vector(_vTo.crossProduct(_vUp));
         
     }
-
+    /*************************************************
+     * FUNCTION
+     *      constructor from given parameter
+     * PARAMETERS
+     *      Point3D _P0, Vector _vUp, Vector _vTo
+     **************************************************/
     public Camera(Point3D _P0, Vector _vUp, Vector _vTo) {
         this._P0 = new Point3D(_P0);
         this._vUp = new Vector(_vUp);
@@ -44,7 +55,7 @@ public class Camera {
 
             // ***************** Getters/Setters ********************** //
 
-
+// ***************** Getters/Setters ********************** //
     public Point3D get_P0() {
         return _P0;
     }
@@ -73,7 +84,11 @@ public class Camera {
 
 
     // ***************** Administration ********************** //
-
+    /*************************************************
+     * FUNCTION
+     * 		toString
+     * 	abstract function of print format
+     **************************************************/
     @Override
     public String toString() {
         return  "P0 : " + _P0 + " up Vector: " + _vUp + " right vector: " + _vRight + " fowards vector: " + _vTo;
@@ -81,8 +96,10 @@ public class Camera {
     }
 
     // ***************** Operations ******************** //
-    /**
-     *
+    /*************************************************
+     * FUNCTION
+     * 		constructRayThroughPixel
+     * PARAMETERS
      * @param Nx- number of pixels from right to left
      * @param Ny-number of pixels from up to down
      * @param x- the index of pixel in the line
@@ -90,8 +107,16 @@ public class Camera {
      * @param screenDist- the distance between the camera and the screen view
      * @param screenWidth
      * @param screenHeight
-     * @return point p of hit on screen
-     */
+     * RETURN VALUE
+     *		new ray
+     * MEANING
+     * 		the function construct Ray Through Pixel we use in this function
+     * 	as start to find a intersctions points with geometry, its make new ray who pass in the middle of the pixel
+     * 	* SEE ALSO
+     *     FindIntersections,
+     *     scale
+     *     subtract
+     **************************************************/
     public Ray constructRayThroughPixel (int Nx, int Ny,double x, double y,double screenDist,
                                          double screenWidth, double screenHeight){
 

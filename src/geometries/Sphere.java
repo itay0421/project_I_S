@@ -25,13 +25,30 @@ public class Sphere extends RadialGeometry {
         this.center = new Point3D(center);
     }
     // ***************** Constructors ********************** //
+    // ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     *      default constructor
+     **************************************************/
     public Sphere() {
         this.center=new Point3D();
     }
+    /*************************************************
+     * FUNCTION
+     *      constructor from given parameter
+     * PARAMETERS
+     *      double radius , Point3D center
+     **************************************************/
     public Sphere( double radius , Point3D center) {
         super(radius);
         this.center = new Point3D(center);
     }
+    /*************************************************
+     * FUNCTION
+     *      copy constructor
+     * PARAMETERS
+     *      Sphere copy
+     **************************************************/
     public Sphere(Sphere copy) {
         this._radius=copy._radius;
         this.center = new Point3D(copy.getCenter());
@@ -42,22 +59,29 @@ public class Sphere extends RadialGeometry {
 
     // ***************** Operations ******************** //
 
-    /**
-     * abstract function of print format from geometry abstract class
-     * @return print format
-     */
+    /*************************************************
+     * FUNCTION
+     * 		toString
+     * 	abstract function of print format
+     **************************************************/
     @Override
     public String toString() {
         return "radious: "+_radius+" center: "+center;
     }
 
-    /**
-     *the function purpose is to return the normal vector to sphere
-     * @param p  POint3D that we went the normal between the point to the sphere
-     * @return the normal vector
-     * used in function to find intersction points
-     * this function use simple vector function , normalize, subtract, copy ctor.
-     */
+    /*************************************************
+     * FUNCTION
+     * 		getNormal
+     * PARAMETERS
+     * @param p- Point3D
+     * RETURN VALUE
+     *		Normal Vector
+     * MEANING
+     *the function purposes to return the normal vector to sphere
+     * SEE ALSO
+     * normalize
+     * subtract
+     **************************************************/
     @Override
     public Vector getNormal(Point3D p) {
         Point3D po=new Point3D(p);
@@ -67,15 +91,24 @@ public class Sphere extends RadialGeometry {
         v.normalize();
         return new Vector(v);
     }
-    /**
-     *
-     *implement of abstract function from geometry abstract class
-     * @param ray
-     * @return list of intersction point of the shere and the parameter ray
-     * size of the list bigger then 0.
+    /*************************************************
+     * FUNCTION
+     * 		FindIntersections
+     * PARAMETERS
+     * @param ray- ray that pass in the middle of the pixel
+     * RETURN VALUE
+     *		List<Point3D> of all the Intersections points
+     * MEANING
+     * the purpose the function to indentification all the Intersections point with the sphere
      * used to find the place of geometry in scene
-     * use vector function subtract, add, dotprodact, to calculate the intersection points
-     */
+     *the size of the list will be 0<=list
+     * SEE ALSO
+     * getSceneRayIntersections
+     * findClosesntIntersection
+     * dotProduct
+     * add
+     * scale
+     **************************************************/
     @Override
     public List<Point3D> FindIntersections(Ray ray) {
         ArrayList<Point3D> list =new ArrayList<Point3D>();

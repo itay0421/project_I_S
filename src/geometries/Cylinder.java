@@ -16,13 +16,28 @@ public class Cylinder extends RadialGeometry {
 
 
     // ***************** Constructors ********************** //
-    //default ctor
+// ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     *      default constructor
+     **************************************************/
     public Cylinder(){}
-    // copy ctor
+    /*************************************************
+     * FUNCTION
+     *      copy constructor
+     * PARAMETERS
+     *      Cylinder cylinder
+     **************************************************/
     public Cylinder(Cylinder cylinder){
         this._axisDirection = cylinder._axisDirection;
         this._axisPoint = cylinder._axisPoint;
     }
+    /*************************************************
+     * FUNCTION
+     *      constructor from given parameter
+     * PARAMETERS
+     *      double radius, Point3D axisPoint, Vector axisDirection
+     **************************************************/
     public Cylinder(double radius, Point3D axisPoint, Vector axisDirection){
         this._axisPoint = axisPoint;
         this._axisDirection = axisDirection;
@@ -42,23 +57,30 @@ public class Cylinder extends RadialGeometry {
     }
 
     // ***************** Operations ******************** //
-    /***
-    the function FindIntersections are attempted to find all the intersctions
-     between ray that racive as parameter to our Cylinder.
-     the function racive a rsy as parametr.
-     the function returns List of all the intersction points between the ray to the cylinder
-    the meaning of this function its to indintifey all the intresction point with this geometrie
-    the size of the list will be 0<=list
-     not in use in this project level
-     ***/
+    /*************************************************
+     * FUNCTION
+     * 		FindIntersections
+     * PARAMETERS
+     * @param ray- ray that pass in the middle of the pixel
+     * RETURN VALUE
+     *		List<Point3D> of all the Intersections points
+     * MEANING
+     *the meaning of this function its to indintifey all the Intersections point with this geometry
+     *the size of the list will be 0<=list
+     **************************************************/
     public List<Point3D> FindIntersections(Ray ray){
      return null;
     }
-    /**
-     *the function purposeis to return the normal vector to cylinder
-     * @param  p point3d that we went the normal between the point to the cylinder
-     * @return the normal vector
-     */
+    /*************************************************
+     * FUNCTION
+     * 		getNormal
+     * PARAMETERS
+     * @param p- Point3D
+     * RETURN VALUE
+     *		Normal Vector
+     * MEANING
+     *the function purposes to return the normal vector to cylinder
+     **************************************************/
     @Override
     public Vector getNormal(Point3D p) {
         double a=p.getX().getCoordinate();

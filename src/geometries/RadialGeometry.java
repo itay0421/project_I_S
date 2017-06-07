@@ -12,8 +12,11 @@ public abstract class RadialGeometry extends Geometry {
     public RadialGeometry(double _radius) {
         this._radius = _radius;
     }
-    //default ctor
-    public RadialGeometry() {
+// ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     *      default constructor
+     **************************************************/    public RadialGeometry() {
     }
 
     // ***************** Getters/Setters ********************** //

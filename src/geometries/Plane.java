@@ -20,15 +20,22 @@ public class Plane extends Geometry implements FlatGeometry{
         this._normal = new Vector(_normal);
         this._Q = new Point3D(_Q);
     }
+    // ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     *      default constructor
+     **************************************************/
     public Plane() {
         _Q = new Point3D();
         _normal = new Vector();
     }
 
-    /**
-     * copy C'tor
-     * @param plane
-     */
+    /*************************************************
+     * FUNCTION
+     *      copy constructor
+     * PARAMETERS
+     *      Plane plane
+     **************************************************/
     public Plane (Plane plane){
     this._normal = new Vector(plane._normal);
     this._Q = new Point3D(plane._Q);
@@ -49,18 +56,23 @@ public class Plane extends Geometry implements FlatGeometry{
     }
 
     // ***************** Operations ******************** //
-
-    /**
-     * the purpose the function to indentification all the intersction point with the plane
-     * @param ray
-     * @return  list of point3D, intersections ray with Plane
-     * used to build scene
-     * use the vector functions:
+    /*************************************************
+     * FUNCTION
+     * 		FindIntersections
+     * PARAMETERS
+     * @param ray- ray that pass in the middle of the pixel
+     * RETURN VALUE
+     *		List<Point3D> of all the Intersections points
+     * MEANING
+     ** the purpose the function to indentification all the Intersections point with the plane
+     *the size of the list will be 0<=list
+     * SEE ALSO
+     * getSceneRayIntersections
+     * findClosesntIntersection
      * dotProduct
      * add
-     * subtract
      * scale
-     */
+     **************************************************/
     @Override
     public List<Point3D> FindIntersections(Ray ray) {
         ArrayList list = new ArrayList();
@@ -77,12 +89,18 @@ public class Plane extends Geometry implements FlatGeometry{
             }
         return list;
     }
-
-    /**
-     *
-     * @param point
-     * @return vector normal to Plane,at point3D point
-     */
+    /*************************************************
+     * FUNCTION
+     * 		getNormal
+     * PARAMETERS
+     * @param point- Point3D
+     * RETURN VALUE
+     *		Normal Vector
+     * MEANING
+     *the function purposes to return the normal vector to Plane
+     * SEE ALSO
+     * normalize
+     **************************************************/
     @Override
     public Vector getNormal(Point3D point) {
         Vector normal = new Vector(_normal);

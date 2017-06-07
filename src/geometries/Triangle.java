@@ -24,13 +24,22 @@ public class Triangle extends Geometry implements FlatGeometry {
 
 
     // ***************** Constructors ********************** //
-// default ctor
+// ***************** Constructors ********************** //
+    /*************************************************
+     * FUNCTION
+     *      default constructor
+     **************************************************/
     public Triangle(){
         Point3D _p1 = new Point3D();
         Point3D _p2 = new Point3D();
         Point3D _p3 = new Point3D();
     }
-    // copy ctor
+    /*************************************************
+     * FUNCTION
+     *      copy constructor
+     * PARAMETERS
+     *      Triangle triangle
+     **************************************************/
     public Triangle(Triangle triangle){
         this._p1 = new Point3D (triangle._p1);
         this._p2 = new Point3D (triangle._p2);
@@ -39,7 +48,12 @@ public class Triangle extends Geometry implements FlatGeometry {
         this.set_emmission(new Color(triangle.get_emmission().getRGB()));
 
     }
-// new triangle from 3 point create connect vector
+    /*************************************************
+     * FUNCTION
+     *      constructor from given parameter
+     * PARAMETERS
+     *      Point3D _p1, Point3D _p2, Point3D _p3
+     **************************************************/
     public Triangle(Point3D _p1, Point3D _p2, Point3D _p3) {
         this._p1 = new Point3D(_p1);
         this._p2 = new Point3D(_p2);
@@ -70,14 +84,18 @@ public class Triangle extends Geometry implements FlatGeometry {
     }
 
     // ***************** Operations ******************** //
-
-    /**************************************************
-     *the function purpose is to return the normal vector to triangle
-     * @param point  3D that we went the normal between the point to the triangle
-     * @return the normal vector
-     * used in function to find intersction points
+    /*************************************************
      * FUNCTION
      * 		getNormal
+     * PARAMETERS
+     * @param p- Point3D
+     * RETURN VALUE
+     *		Normal Vector
+     * MEANING
+     *the function purposes to return the normal vector to sphere
+     * SEE ALSO
+     * normalize
+     * scale
      **************************************************/
     @Override
     public Vector getNormal(Point3D point){
@@ -112,15 +130,22 @@ public class Triangle extends Geometry implements FlatGeometry {
 
     }
 
-    /**
-     *
-     *implement of abstract function from geometry abstract class
-     * @param ray
-     * @return list of intersction point of the triangle and the parameter ray
-     * size of the list bigger then 0.
-     * used to build a scene with geometry, find the geometry place on the scene.
-     * use vector function subtract, add, dotprodact. to calculate the intersection points
-     */
+    /*************************************************
+     * FUNCTION
+     * 		FindIntersections
+     * PARAMETERS
+     * @param ray- ray that pass in the middle of the pixel
+     * RETURN VALUE
+     *		List<Point3D> of all the Intersections points
+     * MEANING
+     * the purpose the function to indentification all the Intersections point with the sphere
+     * used to find the place of geometry in scene
+     *the size of the list will be 0<=list
+     * SEE ALSO
+     * this function base on the plane FindIntersections
+     * getSceneRayIntersections
+     * findClosesntIntersection
+     **************************************************/
     public List<Point3D> FindIntersections(Ray ray){
 
         Vector N = new Vector(this.getNormal(_p1));
@@ -149,10 +174,11 @@ public class Triangle extends Geometry implements FlatGeometry {
 
     }
 
-    /**
-     * abstract function of print format from geometry abstract class
-     * @return print format
-     */
+    /*************************************************
+     * FUNCTION
+     * 		toString
+     * 	abstract function of print format
+     **************************************************/
     @Override
     public String toString() {
         return "p1:"+_p1.toString()+" "+"p2:"+_p2.toString()+" "+"p3:"+_p3.toString();
