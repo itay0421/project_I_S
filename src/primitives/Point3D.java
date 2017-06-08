@@ -2,12 +2,10 @@ package primitives;
 
 import static java.sql.DriverManager.println;
 
-/**
- * Created by {Itay Amar and Shalom bloch} on 21  2017.
- */
+
 public class Point3D extends Point2D  {
 
-    private Coordinate _z;
+    protected Coordinate _z;
 
 // ***************** Constructors ********************** //
     /*************************************************

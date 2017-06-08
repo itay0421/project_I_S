@@ -119,14 +119,14 @@ public class Sphere extends RadialGeometry {
         if(d>_radius)return list;
         double th=Math.sqrt(_radius*_radius-d*d);
         double t1=tm-th;
-        double t2=tm+th;//המצלמה עלולה להמצא בנקודה אחרת ולכן בודקים את החיתוך עם כל נקודות השפה
+        double t2=tm+th;
         Vector V=new Vector(ray.get_direction());
         if(t1>=0){
             Point3D p1=new Point3D(ray.get_POO());
             V.scale(t1);
             p1.add(V);
             list.add(p1);}
-        if(t2>=0){//למרות שאין טעם לבדוק את הנקודה הקודמת אם הנוכחיצ לא מתאימה כך הקוד יותר קריא
+        if(t2>=0){
             Point3D p2=new Point3D(ray.get_POO());
             V=new Vector(ray.get_direction());
             V.scale(t2);

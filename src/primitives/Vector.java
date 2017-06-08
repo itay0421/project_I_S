@@ -1,11 +1,9 @@
 package primitives;
 
-/**
- * Created by {Itay Amar and Shalom bloch} on 21 מרץ 2017.
- */
+
 public class Vector {
 
-    private Point3D _head;
+    protected Point3D _head;
 
 // ***************** Constructors ********************** //
     /*************************************************

@@ -11,8 +11,8 @@ import java.util.List;
  */
 public class Cylinder extends RadialGeometry {
 
-    private Point3D _axisPoint; // the center of the Cylinder
-    private Vector _axisDirection; // the dirction of the Cylinder
+    protected Point3D _axisPoint; // the center of the Cylinder
+    protected Vector _axisDirection; // the dirction of the Cylinder
 
 
     // ***************** Constructors ********************** //

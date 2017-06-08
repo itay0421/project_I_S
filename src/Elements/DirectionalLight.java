@@ -9,13 +9,16 @@ import java.awt.*;
  * Created by itay0 on 05/06/2017.
  */
 public class DirectionalLight extends Light implements LightSource{
+
     private Vector direction;
+
     // ***************** Constructors ********************** //
     public DirectionalLight(Color color, Vector direction)
     {
         this.color=new Color(color.getRGB());
         this.direction=new Vector(direction);
     }
+
 // ***************** Getters/Setters ********************** //
 
     public Vector getDirection() {

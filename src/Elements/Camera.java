@@ -52,8 +52,7 @@ public class Camera {
         this._vRight = new Vector(_vTo.crossProduct(_vUp));
     }
     //public Camera (Map<String, String> attributes(;
-
-            // ***************** Getters/Setters ********************** //
+    // ***************** Getters/Setters ********************** //
 
 // ***************** Getters/Setters ********************** //
     public Point3D get_P0() {

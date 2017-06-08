@@ -5,11 +5,11 @@ package primitives;
  */
 public class Material {
 
-    private double _Kd; // Diffusion attenuation coefficient
-    private double _Ks; // Specular attenuation coefficient
-    private double _Kr; // Reflection coefficient (1 for mirror)
-    private double _Kt; // Refraction coefficient (1 for transparent)
-    private double _n; // Refraction index
+    protected double _Kd; // Diffusion attenuation coefficient
+    protected double _Ks; // Specular attenuation coefficient
+    protected double _Kr; // Reflection coefficient (1 for mirror)
+    protected double _Kt; // Refraction coefficient (1 for transparent)
+    protected double _n; // Refraction index
 
 // ***************** Constructors ********************** //
     /*************************************************

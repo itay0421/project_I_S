@@ -5,7 +5,6 @@ import primitives.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.awt.Color;
 
 
@@ -13,7 +12,7 @@ import java.awt.Color;
  * Created by {Itay Amar and Shalom bloch} on 2017 03 .
  */
 
-public class Triangle extends Geometry implements FlatGeometry {
+public class Triangle extends Geometry {
     // triangle build from 3 point that conecting with 3 vectors
     // with 3 points we can build any triangle.
     // those variables are 3D points that we have to build triangle
@@ -24,7 +23,7 @@ public class Triangle extends Geometry implements FlatGeometry {
 
 
     // ***************** Constructors ********************** //
-// ***************** Constructors ********************** //
+
     /*************************************************
      * FUNCTION
      *      default constructor

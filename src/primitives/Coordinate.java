@@ -10,7 +10,7 @@ public class Coordinate implements Comparable<Coordinate> {
 
     DecimalFormat df = new DecimalFormat("#.##");
 
-    private double _coordinate;
+    protected double _coordinate;
 
 // ***************** Constructors ********************** //
     /*************************************************

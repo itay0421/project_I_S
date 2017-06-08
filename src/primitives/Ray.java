@@ -4,8 +4,8 @@ package primitives;
  * Created by shalom on 22/03/2017.
  */
 public class Ray {
-    private Point3D _POO;
-    private Vector _direction;
+    protected Point3D _POO;
+    protected Vector _direction;
 
 
 // ***************** Constructors ********************** //

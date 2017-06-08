@@ -2,9 +2,8 @@ package renderer;
 
 import Elements.AmbientLight;
 import Elements.Camera;
-import geometries.Geometry;
-import geometries.Sphere;
-import geometries.Triangle;
+import geometries.*;
+import geometries.Rectangle;
 import org.junit.Test;
 import primitives.Point3D;
 import primitives.Vector;
@@ -81,10 +80,11 @@ public class RenderTest {
         triangle1.set_emmission(new Color(255,0,0));
         triangle2.set_emmission(new Color(0,0,255));
         triangle3.set_emmission(new Color(0,255,0));
-        triangle4.set_emmission(new Color(255,255,0));
+        triangle4.set_emmission(new Color(250,250,0));
 
 	/*create the Scene*/
        Scene scene = new Scene();
+
         scene.set_screenDistance(48.9);
 
         //add Geometries to the Scene
@@ -95,6 +95,43 @@ public class RenderTest {
         scene.addGeometry(triangle4);
 	/*create an ImageWriter*/
         ImageWriter imageWriter = new ImageWriter("test2_basicColorRender", 500, 500, 500, 500);
+	/*create a Renderer*/
+        Render renderer = new Render(scene, imageWriter);
+        //render Image
+        renderer.renderImage();
+        //print Grid
+        renderer.printGrid(50);
+        //print Image
+        renderer.writeToImage();
+    }
+    @Test
+    public void test3() throws Exception
+    {
+
+        Rectangle rectangle1 = new Rectangle(new Point3D(250, 250, -49), new Point3D(375, 375, -49));
+        //Rectangle rectangle2 = new Rectangle(new Point3D(375, 375, -49), new Point3D(250, 250, -49));
+        //Rectangle rectangle3 = new Rectangle(new Point3D(250, 250, -49), new Point3D(125, 125, -49));
+        //Rectangle rectangle4 = new Rectangle(new Point3D(0, 0, -49), new Point3D(0, 0, -49));
+
+
+        rectangle1.set_emmission(new Color(255,0,0));
+       // rectangle2.set_emmission(new Color(0,0,255));
+        //rectangle3.set_emmission(new Color(0,255,0));
+        //rectangle4.set_emmission(new Color(250,250,0));
+
+	/*create the Scene*/
+        Scene scene = new Scene();
+
+        scene.set_screenDistance(48.9);
+
+        //add Geometries to the Scene
+
+        scene.addGeometry(rectangle1);
+        //scene.addGeometry(rectangle2);
+        //scene.addGeometry(rectangle3);
+        //scene.addGeometry(rectangle4);
+	/*create an ImageWriter*/
+        ImageWriter imageWriter = new ImageWriter("test2_rectangel", 500, 500, 500, 500);
 	/*create a Renderer*/
         Render renderer = new Render(scene, imageWriter);
         //render Image

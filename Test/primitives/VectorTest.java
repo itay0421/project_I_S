@@ -7,9 +7,7 @@ import java.text.DecimalFormat;
 import static junit.framework.TestCase.assertEquals;
 
 
-/**
- * Created by {Itay Amar and Shalom bloch} on 26 מרץ 2017.
- */
+
 public class VectorTest {
 
     DecimalFormat df = new DecimalFormat("#.##");

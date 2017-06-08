@@ -1,8 +1,5 @@
 package primitives;
 
-/**
- * Created by itay amar on 19 מרץ 2017.
- */
 public class Point2D implements Comparable <Point2D>   {
 
     protected Coordinate _x;

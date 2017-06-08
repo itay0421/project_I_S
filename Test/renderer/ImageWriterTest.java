@@ -57,7 +57,7 @@ public class ImageWriterTest {
                     imageWriter.writePixel(j, i, 0, 0, 255); // Blue
                 else
                 if(i >= 0 && i < 3*tmp && j >= tmp && j < 2*tmp)
-                    imageWriter.writePixel(j, i, 255, 255, 255); // White
+                    imageWriter.writePixel(j, i, 255, 255, 0); // White
                 else
                 if(i >= 0 && i < 3*tmp && j >=2*tmp  && j < 3*tmp)
                     imageWriter.writePixel(j, i, 255, 0, 0);  // Red
