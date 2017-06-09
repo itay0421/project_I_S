@@ -292,7 +292,7 @@ public class Render implements Comparable<Render> {
     {
         int rc,gc,bc;
         rc = a.getRed() + b.getRed();
-        gc =  a.getGreen() + b.getGreen();
+        gc = a.getGreen() + b.getGreen();
         bc = a.getBlue() + b.getBlue();
         if (rc > 255)
             rc = 255;

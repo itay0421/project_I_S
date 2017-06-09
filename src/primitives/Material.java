@@ -9,7 +9,7 @@ public class Material {
     protected double _Ks; // Specular attenuation coefficient
     protected double _Kr; // Reflection coefficient (1 for mirror)
     protected double _Kt; // Refraction coefficient (1 for transparent)
-    protected double _n; // Refraction index
+    protected double _n; // Refraction index,shinnes
 
 // ***************** Constructors ********************** //
     /*************************************************
