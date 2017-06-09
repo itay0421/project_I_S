@@ -2,6 +2,7 @@ package renderer;
 
 import Elements.Camera;
 
+import Elements.LightSource;
 import primitives.*;
 
 import primitives.Vector;
@@ -180,8 +181,28 @@ public class Render implements Comparable<Render> {
      **************************************************/
     private Color calcColor(Geometry geometry, Point3D point, Ray inRay)
     {
-        Color color = new Color(0);
-        color = addColors(geometry.get_emmission(), _scene.get_ambientLight().getIntensity());
+        Color color = new Color(0xFFFFFF);
+        Color diffuseLight = new Color(0xFFFFFF);
+        Color specularLight = new Color(0xFFFFFF);
+
+        Iterator<LightSource>lights = _scene.getLightsIterator();
+        while (lights.hasNext()){
+            LightSource light = lights.next();
+            diffuseLight = calcDiffusiveComp(geometry.get_material().get_Kd(),
+                                                   geometry.getNormal(point),
+                                                   light.getL(point),
+                                                   light.getIntensity(point));
+            specularLight = calcSpecularComp(geometry.get_material().get_Ks(),
+                                                    new Vector(point, _scene.get_camera().get_P0()),
+                                                    geometry.getNormal(point),
+                                                    light.getL(point),
+                                                    geometry.get_nShininess(),
+                                                    light.getIntensity(point));
+        }
+
+
+        color = addColors(geometry.get_emmission(), _scene.get_ambientLight().getIntensity(),
+                            diffuseLight, specularLight);
         return color;
 
     }
@@ -288,12 +309,12 @@ public class Render implements Comparable<Render> {
      * 		This function add between two Colors and returns new
      * 	    calculate color	.
      **************************************************/
-    private Color addColors(Color a, Color b)
+    private Color addColors(Color a, Color b, Color c, Color d)
     {
         int rc,gc,bc;
-        rc = a.getRed() + b.getRed();
-        gc = a.getGreen() + b.getGreen();
-        bc = a.getBlue() + b.getBlue();
+        rc = a.getRed() + b.getRed() + c.getRed() + d.getRed();
+        gc = a.getGreen() + b.getGreen() + c.getGreen() + c.getGreen();
+        bc = a.getBlue() + b.getBlue() + c.getBlue() + d.getBlue();
         if (rc > 255)
             rc = 255;
         if(gc > 255)

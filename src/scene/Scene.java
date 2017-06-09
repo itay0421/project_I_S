@@ -1,7 +1,7 @@
 package scene;
 
 import Elements.AmbientLight;
-import Elements.Camera;
+import Elements.*;
 import geometries.Geometry;
 
 import java.awt.*;
@@ -21,6 +21,7 @@ public class Scene implements Comparable<Scene>{
     protected Camera _camera;
     protected double _screenDistance;
     public List<Geometry> _geometries;//List of bodies Geometry that describe the scene
+    public List<LightSource> _lights;
 
     // ***************** Constructors ********************** //
 
@@ -38,6 +39,7 @@ public class Scene implements Comparable<Scene>{
         this._camera = new Camera();
         this._screenDistance = 100;
         _geometries = new ArrayList<Geometry>();
+        _lights = new ArrayList<LightSource>();
     }
     /*************************************************
      * FUNCTION
@@ -54,6 +56,7 @@ public class Scene implements Comparable<Scene>{
         this._camera = new Camera(_camera);
         this._screenDistance = _screenDistance;
         this._geometries = new ArrayList<Geometry>();
+        _lights = new ArrayList<LightSource>();
     }
     /*************************************************
      * FUNCTION
@@ -68,6 +71,8 @@ public class Scene implements Comparable<Scene>{
         this._camera = new Camera(s._camera);
         this._screenDistance = s._screenDistance;
         this._geometries = new ArrayList<Geometry>(s._geometries);
+        this._lights = new ArrayList<LightSource>(s._lights);
+
 
     }
     // ***************** Getters/Setters **********************
@@ -112,6 +117,14 @@ public class Scene implements Comparable<Scene>{
     }
     public void set_geometries(List<Geometry> _geometries) {
         this._geometries = _geometries;
+    }
+
+    public List<LightSource> get_lights() {
+        return _lights;
+    }
+
+    public void set_lights(List<LightSource> _lights) {
+        this._lights = _lights;
     }
 
     // ***************** Operations ******************** //
@@ -175,5 +188,14 @@ public class Scene implements Comparable<Scene>{
      **************************************************/
     public Iterator<Geometry> getGeometriesIterator(){
         return _geometries.iterator();
+    }
+    /*************************************************
+     * FUNCTION
+     * 		Iterator
+     * MEANING
+     *	    A function that returns an iterator to go through the list
+     **************************************************/
+    public Iterator<LightSource> getLightsIterator(){
+        return _lights.iterator();
     }
 }
