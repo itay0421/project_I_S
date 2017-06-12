@@ -1,7 +1,6 @@
 package renderer;
 
-import Elements.AmbientLight;
-import Elements.Camera;
+import Elements.*;
 import geometries.*;
 import geometries.Rectangle;
 import org.junit.Test;
@@ -142,5 +141,23 @@ public class RenderTest {
         renderer.writeToImage();
     }
 
+    @Test
+    public void test4() throws Exception
+    {
 
+        Sphere sphere1 = new Sphere(9900, new Point3D(0, 0, -10000));
+        sphere1.set_emmission(new Color(255, 23, 85));
+        SpotLight pointLight = new SpotLight(new Color(255,200,299),new Point3D(0,1,0),new Vector(0,0,-1),1.0,1.0,1.90);
+        DirectionalLight directionalLight = new DirectionalLight(new Color(10, 100, 15),new Vector(0,0,-1));
+        Scene scene = new Scene();
+        scene.set_screenDistance(32);
+        scene._lights.add(pointLight);
+
+        scene.addGeometry(sphere1);
+
+        ImageWriter imageWriter = new ImageWriter("test3_spotLight", 500, 500, 500, 500);
+        Render renderer = new Render(scene, imageWriter);
+        renderer.renderImage();
+        renderer.writeToImage();
+    }
 }

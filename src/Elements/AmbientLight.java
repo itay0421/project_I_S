@@ -15,7 +15,7 @@ public class AmbientLight extends Light implements Comparable<AmbientLight> {
     private double _Ka;
 
     // ***************** Constructors ********************** //
-    // defualt ctor - color white
+    // defulte ctor - color white
     public AmbientLight() {
         this._color = new Color(255,255,255);
         this._Ka = 0.1;

@@ -181,9 +181,9 @@ public class Render implements Comparable<Render> {
      **************************************************/
     private Color calcColor(Geometry geometry, Point3D point, Ray inRay)
     {
-        Color color = new Color(0xFFFFFF);
-        Color diffuseLight = new Color(0xFFFFFF);
-        Color specularLight = new Color(0xFFFFFF);
+        Color color = new Color(0);
+        Color diffuseLight = new Color(0);
+        Color specularLight = new Color(0);
 
         Iterator<LightSource>lights = _scene.getLightsIterator();
         while (lights.hasNext()){
@@ -207,6 +207,14 @@ public class Render implements Comparable<Render> {
 
     }
 
+    /**private Color calcColor(Geometry geometry, Point3D point, Ray inRay)
+    {
+        Color color = new Color(0);
+        color = addColors(geometry.get_emmission(),_scene.get_ambientLight().getIntensity(point),new Color(0),new Color(0));
+        return color;
+
+    }
+*/
     /*************************************************
      * FUNCTION
      * 		getClosestPoint
@@ -315,14 +323,58 @@ public class Render implements Comparable<Render> {
         rc = a.getRed() + b.getRed() + c.getRed() + d.getRed();
         gc = a.getGreen() + b.getGreen() + c.getGreen() + c.getGreen();
         bc = a.getBlue() + b.getBlue() + c.getBlue() + d.getBlue();
-        if (rc > 255)
-            rc = 255;
-        if(gc > 255)
-            gc = 255;
-        if(bc > 255)
-            bc = 255;
-        Color color = new Color(rc, gc, bc);
+
+        Color color = new Color(checkLimitColor(rc, gc, bc).getRGB());
 
         return color;
+    }
+
+    private Color calcDiffusiveComp(double kd, Vector normal, Vector lightToPoint, Color lightIntensity) {
+        normal.normalize();
+        lightToPoint.normalize();
+        double diffuseFactor = kd * normal.dotProduct(lightToPoint);
+        diffuseFactor = Math.abs(diffuseFactor);
+        int r = (int) (lightIntensity.getRed() * diffuseFactor);
+        int g = (int) (lightIntensity.getGreen() * diffuseFactor);
+        int b = (int) (lightIntensity.getBlue() * diffuseFactor);
+
+        Color color = new Color(checkLimitColor(r, g, b).getRGB());
+        return color;
+    }
+    private Color calcSpecularComp(double ks, Vector cameraToPoint, Vector normalOfPoint, Vector lightToPoint, double nShininess, Color intensity) {
+        lightToPoint.normalize();
+        normalOfPoint.normalize();
+        cameraToPoint.normalize();
+        double scale = 2 * normalOfPoint.dotProduct(lightToPoint);
+        Vector temp = new Vector(normalOfPoint);
+        temp.scale(scale);
+        Vector R = new Vector(lightToPoint);
+        R.subtract(temp);
+        double factor = Math.pow(cameraToPoint.dotProduct(R), nShininess);
+        int r = (int) (factor * intensity.getRed()*ks);
+        int g = (int) (factor * intensity.getGreen()*ks);
+        int b = (int) (factor * intensity.getBlue()*ks);
+
+        Color color = new Color(checkLimitColor(r, g, b).getRGB());
+        return color;
+    }
+
+    /**
+     * check color's Values after calculate
+     * @param r
+     * @param g
+     * @param b
+     * @return
+     */
+    private Color checkLimitColor(int r, int g, int b){
+        if (r >= 255) {r = 255; }
+        if (r < 0) {r = 0; }
+
+        if (g >= 255) {g = 255; }
+        if (g < 0) {g = 0; }
+
+        if (b >= 255) {b = 255; }
+        if (b < 0) {b = 0; }
+        return new Color(r, g, b);
     }
 }
