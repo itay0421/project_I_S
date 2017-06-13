@@ -179,6 +179,7 @@ public class Scene implements Comparable<Scene>{
     public void addGeometry(Geometry g){
         _geometries.add(g);
     }
+    public void addLight(LightSource l){ _lights.add(l);}
 
     /*************************************************
      * FUNCTION

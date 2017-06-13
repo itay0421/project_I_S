@@ -23,7 +23,7 @@ public class Camera {
         this._P0 = new Point3D();
         this._vUp = new Vector(new Point3D(new Coordinate(),new Coordinate(1),new Coordinate()));
         this._vTo = new Vector(new Point3D(new Coordinate(),new Coordinate(),new Coordinate(-1)));
-        this._vRight = new Vector(new Point3D(new Coordinate(1),new Coordinate(),new Coordinate()));
+        this._vRight = new Vector(_vTo.crossProduct(_vUp));
     }
 
     /*************************************************

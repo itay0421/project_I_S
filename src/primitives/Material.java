@@ -23,6 +23,13 @@ public class Material {
         this._Kt = 0;
         this._n = 1;
     }
+    public Material(double kd, double ks, double kr ,double kt, double n){
+        this._Kd = kd;
+        this._Ks = ks;
+        this._Kr = kr;
+        this._Kt = kt;
+        this._n = n;
+    }
     /*************************************************
      * FUNCTION
      * copy constructor
