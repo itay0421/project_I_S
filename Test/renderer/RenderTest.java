@@ -210,7 +210,7 @@ public class RenderTest {
                 new Triangle(new Point3D(85, 84, -50),new Point3D(159, 99, -50),new Point3D(120, 138, -50)),
                 new Triangle(new Point3D(23, 34, -50),new Point3D(37, 94, -50),new Point3D(-124, 125, -50)),
                 new Triangle(new Point3D(37, 94, -50),new Point3D(21, 179, -50),new Point3D(-124, 125, -50)),
-                new Triangle(new Point3D(21, 179, -50),new Point3D(-124, 125, -50),new Point3D(-86, 188, -50)),
+               new Triangle(new Point3D(21, 179, -50),new Point3D(-124, 125, -50),new Point3D(-86, 188, -50)),
                 new Triangle(new Point3D(21, 179, -50),new Point3D(-86, 188, -50),new Point3D(-26, 267, -50))
         };
 

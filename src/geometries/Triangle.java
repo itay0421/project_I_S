@@ -87,7 +87,7 @@ public class Triangle extends Geometry {
      * FUNCTION
      * 		getNormal
      * PARAMETERS
-     * @param p- Point3D
+     * @param - Point3D
      * RETURN VALUE
      *		Normal Vector
      * MEANING
@@ -96,6 +96,7 @@ public class Triangle extends Geometry {
      * normalize
      * scale
      **************************************************/
+
     @Override
     public Vector getNormal(Point3D point){
         Vector u = new Vector(_p2,_p1);
