@@ -198,4 +198,44 @@ public class RenderTest {
         renderer.renderImage();
         renderer.writeToImage();
     }
+    @Test
+    public void HorseTest() throws Exception {
+
+        Scene scene = new Scene();
+        scene.set_screenDistance(50);
+
+        Geometry [] shapes = {
+                new Triangle(new Point3D(52, 20, -50),new Point3D(86, 85, -50),new Point3D(37, 94, -50)),
+                new Triangle(new Point3D(12, -24, -50),new Point3D(52, 19, -50),new Point3D(37, 94, -50)),
+                new Triangle(new Point3D(85, 84, -50),new Point3D(159, 99, -50),new Point3D(120, 138, -50)),
+                new Triangle(new Point3D(23, 34, -50),new Point3D(37, 94, -50),new Point3D(-124, 125, -50)),
+                new Triangle(new Point3D(37, 94, -50),new Point3D(21, 179, -50),new Point3D(-124, 125, -50)),
+                new Triangle(new Point3D(21, 179, -50),new Point3D(-124, 125, -50),new Point3D(-86, 188, -50)),
+                new Triangle(new Point3D(21, 179, -50),new Point3D(-86, 188, -50),new Point3D(-26, 267, -50))
+        };
+
+        Color [] colors = {
+                new Color(32,178,170),
+                new Color(60,179,119),
+                new Color(87,107,47),
+                new Color(87,107,47),
+                new Color(34,140,34),
+                new Color(0,255,0),
+                new Color(255,255,0)
+        };
+
+        // x = 650 - x (picture)
+        // y = y (picture) - 650
+        for (int i = 0; i < shapes.length; i++)
+        {
+            shapes[i].set_emmission(colors[i]);
+            scene.addGeometry(shapes[i]);
+        }
+
+        ImageWriter imageWriter = new ImageWriter("Horse test", 1300, 1300, 1300, 1300);
+        Render renderer = new Render(scene, imageWriter);
+        renderer.renderImage();
+        renderer.writeToImage();
+
+    }
 }
