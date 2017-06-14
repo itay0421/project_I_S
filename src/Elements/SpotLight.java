@@ -5,6 +5,8 @@ import primitives.Vector;
 
 import java.awt.*;
 
+import static java.lang.Math.min;
+
 /**
  * Created by itay0 on 05/06/2017.
  */
@@ -37,10 +39,11 @@ public class SpotLight extends PointLight {
         double distance = point.distance(_position);
         double dotP = D.dotProduct(_direction);
         dotP = Math.abs(dotP);
-        int r = (int) ((color.getRed() * dotP) / (_Kc * _Kl * distance * _Kq * distance * distance));
-        int g = (int) ((color.getGreen() * dotP) / (_Kc * _Kl * distance * _Kq * distance * distance));
-        int b = (int) ((color.getBlue() * dotP) / (_Kc * _Kl * distance * _Kq * distance * distance));
-        return new Color((r << 16) | (g << 8) | b);
+        double f = _Kc + _Kl * distance + _Kq * distance * distance;
+        int r = min(255,(int) ((color.getRed() * dotP) / f));
+        int g = min(255,(int) ((color.getGreen() * dotP) / f));
+        int b = min(255,(int) ((color.getBlue() * dotP) / f));
+        return new Color(r,g,b);
     }
 
 }

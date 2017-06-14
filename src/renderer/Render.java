@@ -181,29 +181,45 @@ public class Render implements Comparable<Render> {
      **************************************************/
     private Color calcColor(Geometry geometry, Point3D point, Ray inRay)
     {
-        Color color = new Color(0);
-        Color diffuseLight = new Color(0);
-        Color specularLight = new Color(0);
+        int finalR,finalG,finalB;
+        int difuseR = 0,
+            difuseG = 0,
+            difuseB = 0,
+            specularR = 0,
+            specularG = 0,
+            specularB = 0;
 
         Iterator<LightSource>lights = _scene.getLightsIterator();
         while (lights.hasNext()){
             LightSource light = lights.next();
-            diffuseLight = calcDiffusiveComp(geometry.get_material().get_Kd(),
+
+            Color diffuse_t = new Color( calcDiffusiveComp(geometry.get_material().get_Kd(),
                                                    geometry.getNormal(point),
                                                    light.getL(point),
-                                                   light.getIntensity(point));
-            specularLight = calcSpecularComp(geometry.get_material().get_Ks(),
-                                                    new Vector(point, _scene.get_camera().get_P0()),
+                                                   light.getIntensity(point)).getRGB());
+            difuseR += diffuse_t.getRed();
+            difuseB += diffuse_t.getBlue();
+            difuseG += diffuse_t.getGreen();
+
+            Color specular_t = new Color (calcSpecularComp(geometry.get_material().get_Ks(),
+                                                   new Vector(point, _scene.get_camera().get_P0()),
                                                     geometry.getNormal(point),
                                                     light.getL(point),
                                                     geometry.get_nShininess(),
-                                                    light.getIntensity(point));
+                                                    light.getIntensity(point)).getRGB());
+            specularR += specular_t.getRed();
+            specularB += specular_t.getBlue();
+            specularG += specular_t.getGreen();
+
         }
 
 
-        color = addColors(geometry.get_emmission(), _scene.get_ambientLight().getIntensity(),
-                            diffuseLight, specularLight);
-        return color;
+
+        finalR =Math.min(255, _scene.get_ambientLight().getIntensity().getRed() + geometry.get_emmission().getRed() + difuseR + specularR );
+        finalG =Math.min(255, _scene.get_ambientLight().getIntensity().getGreen() + geometry.get_emmission().getGreen() + difuseG + specularG );
+        finalB =Math.min(255, _scene.get_ambientLight().getIntensity().getBlue() + geometry.get_emmission().getBlue() + difuseB + specularB );
+        Color IO = new Color(finalR, finalG, finalB);
+        return IO;
 
     }
 
@@ -329,34 +345,51 @@ public class Render implements Comparable<Render> {
         return color;
     }
 
+    /**
+     *
+     * @param kd diffuse factor
+     * @param normal of the geometry at that point - N
+     * @param lightToPoint the vector from the light to the point - L
+     * @param lightIntensity the intensity of the light
+     * @return  the diffuse color at the point
+     */
     private Color calcDiffusiveComp(double kd, Vector normal, Vector lightToPoint, Color lightIntensity) {
         normal.normalize();
         lightToPoint.normalize();
-        double diffuseFactor = kd * normal.dotProduct(lightToPoint);
-        diffuseFactor = Math.abs(diffuseFactor);
-        int r = (int) (lightIntensity.getRed() * diffuseFactor);
-        int g = (int) (lightIntensity.getGreen() * diffuseFactor);
-        int b = (int) (lightIntensity.getBlue() * diffuseFactor);
-
-        Color color = new Color(checkLimitColor(r, g, b).getRGB());
-        return color;
+        double difuseFactor = kd * normal.dotProduct(lightToPoint);
+        difuseFactor = Math.abs(difuseFactor);
+        int r = Math.min(255,(int) (lightIntensity.getRed() * difuseFactor));
+        int g = Math.min(255,(int) (lightIntensity.getGreen() * difuseFactor));
+        int b = Math.min(255,(int) (lightIntensity.getBlue() * difuseFactor));
+        return new Color(r, g, b);
     }
-    private Color calcSpecularComp(double ks, Vector cameraToPoint, Vector normalOfPoint, Vector lightToPoint, double nShininess, Color intensity) {
+
+    /**
+     *
+     *@param ks specular factor
+      * @param cameraToPoint vector from camera to point - V
+     * @param normalOfPoint normal of geometry at point - N
+     * @param lightToPoint vector from light to point - D
+     * @param nShininess the amount of shininess
+     * @param intensity the intensity of the light
+     * @return the specular color at point
+     */
+    private Color calcSpecularComp(double ks, Vector cameraToPoint,
+                                   Vector normalOfPoint, Vector lightToPoint, double nShininess, Color intensity) {
         lightToPoint.normalize();
         normalOfPoint.normalize();
         cameraToPoint.normalize();
-        double scale = 2 * normalOfPoint.dotProduct(lightToPoint);
+        double scale = 2 * normalOfPoint.dotProduct(lightToPoint);//2*(D*N)
         Vector temp = new Vector(normalOfPoint);
         temp.scale(scale);
-        Vector R = new Vector(lightToPoint);
+        Vector R = new Vector(lightToPoint);//R=D-...
         R.subtract(temp);
         double factor = Math.pow(cameraToPoint.dotProduct(R), nShininess);
-        int r = (int) (factor * intensity.getRed()*ks);
-        int g = (int) (factor * intensity.getGreen()*ks);
-        int b = (int) (factor * intensity.getBlue()*ks);
-
-        Color color = new Color(checkLimitColor(r, g, b).getRGB());
-        return color;
+        factor = Math.abs(factor);
+        int r =Math.min(255, (int) (factor * intensity.getRed() * ks));
+        int g =Math.min(255, (int) (factor * intensity.getGreen() * ks));
+        int b =Math.min(255, (int) (factor * intensity.getBlue() * ks));
+        return new Color(r, g, b);
     }
 
     /**

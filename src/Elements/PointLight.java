@@ -50,14 +50,15 @@ public class PointLight extends Light implements LightSource {
     // ***************** Getters/Setters ********************** //
     @Override
     public Color getIntensity(Point3D point) {
-        double distance = point.distance(_position);
-        int r = (int) (color.getRed() / (_Kc * _Kl * distance * _Kq * distance * distance));
-        int g = (int) (color.getGreen() / (_Kc * _Kl * distance * _Kq * distance * distance));
-        int b = (int) (color.getBlue() / (_Kc * _Kl * distance * _Kq * distance * distance));
+        double d = point.distance(_position);
+        double temp = _Kc+_Kl*d+_Kq*d*d;
+        int r = (int) (color.getRed() /temp);
+        int g = (int) (color.getGreen() / temp);
+        int b = (int) (color.getBlue() / temp);
         if(r>255)r=255;
         if(g>255)g =255;
         if(b>255)b=255;
-        return new Color((r << 16) | (g << 8) | b);
+        return new Color(r,g,b);
     }
 
     @Override
