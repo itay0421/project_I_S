@@ -168,7 +168,7 @@ public class RenderTest {
     public void HorseTest() throws Exception {
 
         Scene scene = new Scene();
-        scene.set_screenDistance(50);
+        scene.set_screenDistance(49);
 
         Geometry [] shapes = {
                 new Triangle(new Point3D(52, 20, -50),new Point3D(86, 85, -50),new Point3D(37, 94, -50)),
@@ -198,7 +198,7 @@ public class RenderTest {
             scene.addGeometry(shapes[i]);
         }
 
-        ImageWriter imageWriter = new ImageWriter("Horse test", 1300, 1300, 1300, 1300);
+        ImageWriter imageWriter = new ImageWriter("Horse test", 500, 500, 500, 500);
         Render renderer = new Render(scene, imageWriter);
         renderer.renderImage();
         renderer.writeToImage();
