@@ -410,4 +410,7 @@ public class Render implements Comparable<Render> {
         if (b < 0) {b = 0; }
         return new Color(r, g, b);
     }
+    public Point3D f(Point3D point3D){
+        return new Point3D(650 - point3D.getX().getCoordinate(),point3D.getY().getCoordinate()- 650,point3D.getZ().getCoordinate());
+    }
 }
