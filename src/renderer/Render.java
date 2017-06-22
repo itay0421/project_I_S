@@ -501,22 +501,47 @@ public class Render implements Comparable<Render> {
     }
     /**
      *
-     * @param normal - N
+     * @param  - N
      * @param point position of ray
      * @param inRay original ray - D
      * @return a new reflection ray from point - R
      */
     private Ray constructReflectedRay(Vector normal, Point3D point, Ray inRay) {
-        normal.normalize();
+        Vector R = inRay.get_direction();
+
+        double scale = 2 * R.dotProduct(normal);
+        Vector N = new Vector(normal);
+        N.normalize();
+        N.scale(scale);
+        R.subtract(N);
+
+        Vector epsVec = new Vector(normal);
+        if(normal.dotProduct(R) < 0){
+            epsVec.scale(-2);
+        }
+        else {
+            epsVec.scale(2);
+        }
+
+        Point3D pointIn = new Point3D(point);
+        pointIn.add(epsVec);
+
+        return new Ray(pointIn, R);
+
+
+/**
+        N.normalize();
         Point3D geometryPoint = new Point3D(point);
-        double scale = 2 * inRay.get_direction().dotProduct(normal);
-        Vector temp = new Vector(normal);
+        Vector D = new Vector(inRay.get_direction());
+        D.normalize();
+        double scale =  2 * D.dotProduct(N);
+        Vector temp = new Vector(N);
         temp.scale(scale);
-        Vector R = new Vector(inRay.get_direction());
+        Vector R = new Vector(D);
         R.subtract(temp);
         R.normalize();
         return new Ray(geometryPoint, R);
-
+*/
     }
 
 }
