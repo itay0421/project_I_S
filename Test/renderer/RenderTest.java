@@ -3,23 +3,20 @@ package renderer;
 import Elements.*;
 import geometries.*;
 import geometries.Rectangle;
-import org.junit.Assert;
 import org.junit.Test;
 import primitives.Material;
-import primitives.*;
+import primitives.Point3D;
 import primitives.Vector;
 import scene.Scene;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Created by itay0 on 05/06/2017.
+ * Created by itay0 and yitzhak sud on 05/06/2017.
  */
 public class RenderTest {
 
-
-
-
+//
     @Test
     public void test1() throws Exception
     {
@@ -167,20 +164,21 @@ public class RenderTest {
     }
 
 
+
     @Test
     public void HorseTest() throws Exception {
 
         Scene scene = new Scene();
-        scene.set_screenDistance(49);
+        scene.set_screenDistance(48.5);
 
         Geometry [] shapes = {
-                new Triangle(new Point3D(52, 20, -50),new Point3D(86, 85, -50),new Point3D(37, 94, -50)),
-                new Triangle(new Point3D(12, -24, -50),new Point3D(52, 19, -50),new Point3D(37, 94, -50)),
-                new Triangle(new Point3D(85, 84, -50),new Point3D(159, 99, -50),new Point3D(120, 138, -50)),
-                new Triangle(new Point3D(23, 34, -50),new Point3D(37, 94, -50),new Point3D(-124, 125, -50)),
-                new Triangle(new Point3D(37, 94, -50),new Point3D(21, 179, -50),new Point3D(-124, 125, -50)),
-               new Triangle(new Point3D(21, 179, -50),new Point3D(-124, 125, -50),new Point3D(-86, 188, -50)),
-                new Triangle(new Point3D(21, 179, -50),new Point3D(-86, 188, -50),new Point3D(-26, 267, -50))
+                new Triangle(new Point3D(52, 20, -49),new Point3D(86, 85, -49),new Point3D(37, 94, -49)),
+                new Triangle(new Point3D(12, -24, -49),new Point3D(52, 19, -49),new Point3D(37, 94, -49)),
+                new Triangle(new Point3D(85, 84, -49),new Point3D(159, 99, -49),new Point3D(120, 138, -49)),
+                new Triangle(new Point3D(23, 34, -49),new Point3D(37, 94, -49),new Point3D(-124, 125, -49)),
+                new Triangle(new Point3D(37, 94, -49),new Point3D(21, 179, -49),new Point3D(-124, 125, -49)),
+                new Triangle(new Point3D(21, 179, -49),new Point3D(-124, 125, -49),new Point3D(-86, 188, -49)),
+                new Triangle(new Point3D(21, 179, -49),new Point3D(-86, 188, -49),new Point3D(-26, 267, -49))
         };
 
         Color [] colors = {
@@ -201,12 +199,257 @@ public class RenderTest {
             scene.addGeometry(shapes[i]);
         }
 
-        ImageWriter imageWriter = new ImageWriter("Horse test", 500, 500, 500, 500);
+        ImageWriter imageWriter = new ImageWriter("Horse test", 250, 250, 250, 250);
+        Render renderer = new Render(scene, imageWriter);
+        renderer.renderImage();
+        renderer.writeToImage();
+
+    }
+    @Test
+    public void butterfly() throws Exception {
+
+        Scene scene = new Scene();
+        scene.set_backGround(new Color(255,255,255));
+        scene.set_screenDistance(48.5);
+
+        Geometry [] shapes = {
+
+                new Triangle(new Point3D(0, 0, -49),new Point3D(-14, -14, -49),new Point3D(-23, -3, -49)),
+                new Triangle(new Point3D(0, 0, -49),new Point3D(14, -14, -49),new Point3D(23, -3, -49)),
+
+                new Triangle(new Point3D(0, 0, -49),new Point3D(-30, -5, -49),new Point3D(-13, 13,-49)),
+                new Triangle(new Point3D(0, 0, -49),new Point3D(30, -5, -49),new Point3D(13, 13, -49)),
+
+                new Triangle(new Point3D(0, 0, -49),new Point3D(-7, 13, -49),new Point3D(7, 13, -49)),
+
+                new Triangle(new Point3D(-7, 13, -49),new Point3D(7, 13, -49),new Point3D(2, 61, -49)),
+
+                new Triangle(new Point3D(0, 0, -49),new Point3D(-14, -14, -49),new Point3D(14, -14, -49)),
+              // 7
+                new Triangle(new Point3D(-14, -14, -49),new Point3D(14, -14, -49),new Point3D(-10, -34, -49)),
+                new Triangle(new Point3D(-10, -34, -49),new Point3D(14, -14, -49),new Point3D(14, -34, -49)),
+               //9
+                new Triangle(new Point3D(14, -34, -49),new Point3D(-10, -34, -49),new Point3D(2, -59, -49)),
+               //
+                new Triangle(new Point3D(2, -59, -49),new Point3D(20, -83, -49),new Point3D(21, -88, -49)),
+                new Triangle(new Point3D(2, -59, -49),new Point3D(-20, -83, -49),new Point3D(-21, -88, -49)),
+                //12
+
+                new Triangle(new Point3D(-10, -34, -49),new Point3D(-14, -14, -49),new Point3D(-32, -83, -49)),
+                new Triangle(new Point3D(10, -34, -49),new Point3D(14, -14, -49),new Point3D(32, -83, -49)),
+
+                //unclear triangle
+                new Triangle(new Point3D(-14, -34, -49),new Point3D(-18, -22, -49),new Point3D(-36, -83,-49)),
+                new Triangle(new Point3D(14, -34, -49),new Point3D(18, -22, -49),new Point3D(36, -83,-49)),
+
+                new Triangle(new Point3D(-14, -14, -49),new Point3D(-32, -83, -49),new Point3D(-54, -38, -49)),
+                new Triangle(new Point3D(14, -14, -49),new Point3D(32, -83, -49),new Point3D(54, -38, -49)),
+
+                new Triangle(new Point3D(-54, -38, -49),new Point3D(-32, -83, -49),new Point3D(-74, -96, -49)),
+                new Triangle(new Point3D(54, -38, -49),new Point3D(32, -83, -49),new Point3D(74, -96, -49)),
+
+                new Triangle(new Point3D(-74, -96, -49),new Point3D(-32, -83, -49),new Point3D(-103, -121, -49)),
+                new Triangle(new Point3D(74, -96, -49),new Point3D(32, -83, -49),new Point3D(103, -121, -49)),
+
+                new Triangle(new Point3D(-74, -96, -49),new Point3D(-103, -121, -49),new Point3D(-150, -124, -49)),
+                new Triangle(new Point3D(74, -96, -49),new Point3D(103, -121, -49),new Point3D(150, -124, -49)),
+
+                new Triangle(new Point3D(-150, -124, -49),new Point3D(-74, -96, -49),new Point3D(-126, -95, -49)),
+                new Triangle(new Point3D(150, -124, -49),new Point3D(74, -96, -49),new Point3D(126, -95, -49)),
+
+                // 19*/
+
+                new Triangle(new Point3D(-74, -96, -49),new Point3D(-54, -38, -49),new Point3D(-103, -35, -49)),
+                new Triangle(new Point3D(74, -96, -49),new Point3D(54, -38, -49),new Point3D(103, -35, -49)),
+
+                new Triangle(new Point3D(-74, -96, -49), new Point3D(-103, -35, -49),new Point3D(-126, -95, -49)),
+                new Triangle(new Point3D(74, -96, -49), new Point3D(103, -35, -49),new Point3D(126, -95, -49)),
+
+                new Triangle(new Point3D(-126, -95, -49),new Point3D(-150, -124, -49),new Point3D(-162, -68, -49)),
+                new Triangle(new Point3D(126, -95, -49),new Point3D(150, -124, -49),new Point3D(162, -68, -49)),
+
+                //22
+
+                new Triangle(new Point3D(-162, -68, -49),new Point3D(-126, -95, -49),new Point3D(-130, -21, -49)),
+                new Triangle(new Point3D(162, -68, -49),new Point3D(126, -95, -49),new Point3D(130, -21, -49)),
+
+                new Triangle(new Point3D(-126, -95, -49),new Point3D(-130, -21, -49),new Point3D(-103, -35, -49)),
+                new Triangle(new Point3D(126, -95, -49),new Point3D(130, -21, -49),new Point3D(103, -35, -49)),
+
+
+                new Triangle(new Point3D(-130, -21, -49),new Point3D(-103, -35, -49),new Point3D(-96, -2, -49)),
+                new Triangle(new Point3D(130, -21, -49),new Point3D(103, -35, -49),new Point3D(96, -2, -49)),
+
+
+                new Triangle(new Point3D(-96, -2, -49),new Point3D(-103, -35, -49),new Point3D(-54, -38,-49)),
+                new Triangle(new Point3D(96, -2, -49),new Point3D(103, -35, -49),new Point3D(54, -38,-49)),
+
+                new Triangle(new Point3D(-54, -38, -49),new Point3D(-14, -14, -49),new Point3D(-23, -3, -49)),
+                new Triangle(new Point3D(54, -38, -49),new Point3D(14, -14, -49),new Point3D(23, -3, -49)),
+
+
+                new Triangle(new Point3D(-96, -2, -49),new Point3D(-54, -38, -49),new Point3D(-23, -3, -49)),
+                new Triangle(new Point3D(96, -2, -49),new Point3D(54, -38, -49),new Point3D(23, -3, -49)),
+
+                new Triangle(new Point3D(-96, -2, -49),new Point3D(-23, -3, -49),new Point3D(-105, 48, -49)),
+                new Triangle(new Point3D(96, -2, -49),new Point3D(23, -3, -49),new Point3D(105, 48, -49)),
+
+                new Triangle(new Point3D(-23, -3, -49),new Point3D(-105, 48, -49),new Point3D(-54, 38, -49)),
+                new Triangle(new Point3D(23, -3, -49),new Point3D(105, 48, -49),new Point3D(54, 38, -49)),
+
+                new Triangle(new Point3D(-54, 38, -49),new Point3D(-23, -3, -49),new Point3D(-7, 13, -49)),
+                new Triangle(new Point3D(54, 38, -49),new Point3D(23, -3, -49),new Point3D(7, 13, -49)),
+
+                // 31
+
+                new Triangle(new Point3D(-96, -2, -49),new Point3D(-105, 48, -49),new Point3D(-123, 34, -49)),
+                new Triangle(new Point3D(96, -2, -49),new Point3D(105, 48, -49),new Point3D(123, 34, -49)),
+
+                new Triangle(new Point3D(-7, 13, -49),new Point3D(-54, 38, -49),new Point3D(-42, 93, -49)),
+                new Triangle(new Point3D(7, 13, -49),new Point3D(54, 38, -49),new Point3D(42, 93, -49)),
+
+                new Triangle(new Point3D(-42, 93, -49),new Point3D(-54, 38, -49),new Point3D(-105, 48, -49)),
+                new Triangle(new Point3D(42, 93, -49),new Point3D(54, 38, -49),new Point3D(105, 48, -49)),
+
+                new Triangle(new Point3D(-105, 48, -49),new Point3D(-42, 93, -49),new Point3D(-93, 109, -49)),
+                new Triangle(new Point3D(105, 48, -49),new Point3D(42, 93, -49),new Point3D(93, 109, -49)),
+
+                new Triangle(new Point3D(-42, 93, -49),new Point3D(-93, 109, -49),new Point3D(-58, 124, -49)),
+                new Triangle(new Point3D(42, 93, -49),new Point3D(93, 109, -49),new Point3D(58, 124, -49)),
+
+                new Triangle(new Point3D(-58, 124, -49),new Point3D(-93, 109, -49),new Point3D(-92, 140, -49)),
+                new Triangle(new Point3D(58, 124, -49),new Point3D(93, 109, -49),new Point3D(92, 140, -49)),
+
+                new Triangle(new Point3D(-93, 109, -49),new Point3D(-105, 48, -49),new Point3D(-123, 34, -49)),
+                new Triangle(new Point3D(93, 109, -49),new Point3D(105, 48, -49),new Point3D(123, 34, -49))
+
+                //38
+                /*
+                new Triangle(new Point3D(282, 0, -49),new Point3D(346, 55, -49),new Point3D(359, 53, -49)),
+                new Triangle(new Point3D(282, 0, -49),new Point3D(346, -59, -49),new Point3D(359, -58, -49)),
+                new Triangle(new Point3D(340, -105, -49),new Point3D(224, 38, -49),new Point3D(190, -50, -49)),
+
+                new Triangle(new Point3D(10, 10, -49),new Point3D(-10, 10, -49),new Point3D(0, 0, -49))
+// triangle 16*/
+
+        };
+
+        Color [] colors = {
+                new Color(0,0,255),
+                new Color(0,100,250),
+                new Color(0,175,250),
+                new Color(0,150,250),
+                new Color(0,200,250),
+                new Color(0,255,255),
+                new Color(0,255,200),
+                new Color(0,255,100),
+                new Color(100,255,100),
+                new Color(0,100,150),
+                new Color(0,150,170),
+                new Color(0,255,0),
+                new Color(0,100,0),
+                new Color(29,78,0),
+                new Color(50,100,50),
+                new Color(100,255,0),
+                new Color(150,150,0),
+                new Color(255,250,0),
+                new Color(100,100,0),
+                new Color(255,150,0),
+                new Color(255,70,70),
+                new Color(255,0,234),
+                new Color(255,145,245),
+                new Color(255,0,0),
+                new Color(255,150,100),
+                new Color(255,100,0),
+                new Color(255,0,100),
+                new Color(255,100,0),
+                new Color(255,0,0),
+                new Color(255,45,123),
+                new Color(255,150,0),
+                new Color(255,150,0),
+                new Color(255,200,0),
+                new Color(255,0,255),
+                new Color(255,189,9),
+                new Color(255,180,100),
+                new Color(225,80,80)
+
+
+        };
+
+        // x = 650 - x (picture)
+        // y = y (picture) - 650
+        for (int i = 0; i < shapes.length; i++)
+        {
+            shapes[i].set_emmission(colors[i/2]);
+            scene.addGeometry(shapes[i]);
+        }
+
+        ImageWriter imageWriter = new ImageWriter("butterfly test", 500, 500, 500, 500);
         Render renderer = new Render(scene, imageWriter);
         renderer.renderImage();
         renderer.writeToImage();
 
     }
 
-
 }
+/*
+    Geometry [] shapes = {
+
+            new Triangle(new Point3D(0, 0, -49),new Point3D(-14, -14, -49),new Point3D(-23, -3, -49)),
+            new Triangle(new Point3D(0, 0, -49),new Point3D(18, -22, -49),new Point3D(30, -5, -49)),
+
+            new Triangle(new Point3D(0, 0, -49),new Point3D(-23, -3, -49),new Point3D(-7, 13,-49)),
+            new Triangle(new Point3D(0, 0, -49),new Point3D(30, -5, -49),new Point3D(13, 13, -49)),
+
+            new Triangle(new Point3D(0, 0, -49),new Point3D(-7, 13, -49),new Point3D(13, 13, -49)),
+
+            new Triangle(new Point3D(-7, 13, -49),new Point3D(13, 13, -49),new Point3D(2, 61, -49)),
+
+            new Triangle(new Point3D(0, 0, -49),new Point3D(-14, -14, -49),new Point3D(18, -22, -49)),
+            // 7
+            new Triangle(new Point3D(-14, -14, -49),new Point3D(18, -22, -49),new Point3D(-10, -34, -49)),
+            new Triangle(new Point3D(-10, -34, -49),new Point3D(18, -22, -49),new Point3D(14, -34, -49)),
+            //9
+            new Triangle(new Point3D(14, -34, -49),new Point3D(-10, -34, -49),new Point3D(2, -59, -49)),
+            //
+            new Triangle(new Point3D(2, -59, -49),new Point3D(20, -82, -49),new Point3D(21, -88, -49)),
+            new Triangle(new Point3D(2, -59, -49),new Point3D(-17, -83, -49),new Point3D(-17, -88, -49)),
+            //12
+
+            new Triangle(new Point3D(-10, -34, -49),new Point3D(-3, -23, -49),new Point3D(-32, -83, -49)),
+            new Triangle(new Point3D(14, -34, -49),new Point3D(18, -22, -49),new Point3D(36, -83,-49)),
+            new Triangle(new Point3D(-23, -3, -49),new Point3D(-32, -83, -49),new Point3D(-54, -38, -49)),
+            new Triangle(new Point3D(-54, -38, -49),new Point3D(-32, -83, -49),new Point3D(-74, -96, -49)),
+            new Triangle(new Point3D(-74, -96, -49),new Point3D(-32, -83, -49),new Point3D(-103, -121, -49)),
+            new Triangle(new Point3D(-74, -96, -49),new Point3D(-103, -121, -49),new Point3D(-150, -124, -49)),
+            new Triangle(new Point3D(-150, -124, -49),new Point3D(-74, -96, -49),new Point3D(-126, -95, -49)),
+            // 19*/
+/*
+            new Triangle(new Point3D(-74, -96, -49),new Point3D(-58, -38, -49),new Point3D(-103, -35, -49)),
+            new Triangle(new Point3D(-74, -96, -49),new Point3D(-103, -35, -49),new Point3D(-126, -95, -49)),
+            new Triangle(new Point3D(-126, -95, -49),new Point3D(-150, -124, -49),new Point3D(-162, -68, -49)),
+            //22
+
+            new Triangle(new Point3D(-162, -68, -49),new Point3D(-162, -95, -49),new Point3D(-130, -21, -49)),
+            new Triangle(new Point3D(-126, -95, -49),new Point3D(-130, -21, -49),new Point3D(-103, -95, -35)),
+
+            new Triangle(new Point3D(-130, -26, -49),new Point3D(-103, -35, -49),new Point3D(-96, -2, -49)),
+
+            new Triangle(new Point3D(-96, -2, -49),new Point3D(-103, -35, -49),new Point3D(-54, -38,-49)),
+            new Triangle(new Point3D(-54, -38, -49),new Point3D(-14, -14, -49),new Point3D(-7, 13, -49)),
+
+            new Triangle(new Point3D(-96, -2, -49),new Point3D(-54, -38, -49),new Point3D(-7, 13, -49)),
+            new Triangle(new Point3D(-96, -2, -49),new Point3D(-7, 13, -49),new Point3D(-105, 48, -49)),
+            new Triangle(new Point3D(-7, 13, -49),new Point3D(-105, 48, -49),new Point3D(-54, 38, -49)),
+            new Triangle(new Point3D(-54, 38, -49),new Point3D(-23, -3, -49),new Point3D(-7, 13, -49)),
+            // 31
+
+            new Triangle(new Point3D(-96, -2, -49),new Point3D(-105, 48, -49),new Point3D(-123, 34, -49)),
+            new Triangle(new Point3D(30, -5, -49),new Point3D(-54, 38, -49),new Point3D(-42, 93, -49)),
+            new Triangle(new Point3D(-42, 93, -49),new Point3D(-54, 38, -49),new Point3D(-105, 48, -49)),
+            new Triangle(new Point3D(-105, 48, -49),new Point3D(-42, 93, -49),new Point3D(-93, 109, -49)),
+            new Triangle(new Point3D(-42, 93, -49),new Point3D(-93, 109, -49),new Point3D(-58, 124, -49)),
+            new Triangle(new Point3D(-58, 124, -49),new Point3D(-93, 109, -49),new Point3D(-92, 140, -49)),
+            new Triangle(new Point3D(-93, 109, -49),new Point3D(-105, 48, -49),new Point3D(-96, -2, -49))
+//38
+                */
