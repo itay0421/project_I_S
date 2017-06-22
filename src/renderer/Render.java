@@ -523,7 +523,7 @@ public class Render implements Comparable<Render> {
             if (entry.getKey().get_material().get_Kt() == 0){ return 0;}
 
         }
-        return 1;
+        return 1 ;
     }
 
 
