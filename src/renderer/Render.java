@@ -499,7 +499,7 @@ public class Render implements Comparable<Render> {
         return new Color(r, g, b);
     }
     //
-    private boolean occluded(LightSource light, Point3D point, Geometry geometry) throws Exception {
+    private int occluded(LightSource light, Point3D point, Geometry geometry) throws Exception {
         Vector lightDirection = light.getL(point);
         lightDirection.scale(-1);
         Point3D geometryPoint = new Point3D(point);
@@ -515,16 +515,17 @@ public class Render implements Comparable<Render> {
             intersectionPoints.remove(geometry);
         }
 
-        for (Entry<Geometry, List<Point3D>> entry : intersectionPoints)
-            if (entry.geometry.material.Kt == 0)
-                return true;
-        return false;
-
+        for (Map.Entry<Geometry, List<Point3D>> entry : intersectionPoints.entrySet()) {
+            if (entry.getKey().get_material().get_Kt() == 0)
+                return 1;
+            return 0;
+        }
+        return 0;
     }
 
 
 
-    }
+
     /**
      *
      * @param  - N
