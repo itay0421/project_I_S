@@ -21,7 +21,7 @@ public class RenderTest_Rcorsive {
         Scene scene = new Scene();
         scene.set_screenDistance(300);
 
-        Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000));
+        Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000)) ;
         sphere.set_nShininess(20);
         sphere.set_emmission(new Color(0, 0, 100));
         sphere.setKt(0.5);
