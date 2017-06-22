@@ -235,10 +235,11 @@ public class Render implements Comparable<Render> {
 
         if(geometry.get_material().get_Kr() != 0) {//for reduce useless checks
             Ray reflectedRay = constructReflectedRay(geometry.getNormal(point), point, inRay);
-            Map<Geometry, Point3D> reflectedEntry = (getClosestPoint(getSceneRayIntersections(reflectedRay), reflectedRay));
+            Map<Geometry, Point3D> reflectedEntry =  getClosestPoint(getSceneRayIntersections(reflectedRay), reflectedRay);
             if (!reflectedEntry.isEmpty()) {
-            Color reflectedColor = calcColor((Geometry) (reflectedEntry.keySet().toArray()[0]),
-                            (Point3D) reflectedEntry.get(reflectedEntry.keySet().toArray()[0]), reflectedRay, level + 1);
+
+            Color reflectedColor = calcColor( reflectedEntry.entrySet().iterator().next().getKey(),
+                    reflectedEntry.entrySet().iterator().next().getValue(), reflectedRay, level + 1);
             double kr = geometry.get_material().get_Kr();
             reflectR += (int) (kr * reflectedColor.getRed());
             reflectG += (int) (kr * reflectedColor.getGreen());
