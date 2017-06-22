@@ -3,6 +3,7 @@ package renderer;
 import Elements.Camera;
 
 import Elements.LightSource;
+import com.sun.javafx.collections.MappingChange;
 import primitives.Coordinate;
 import primitives.Point3D;
 import primitives.Ray;
@@ -16,6 +17,7 @@ import geometries.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -249,9 +251,27 @@ public class Render implements Comparable<Render> {
 
 
 
-
-
         Color refractedLight = new Color(0, 0, 0);
+        int refractedR = 0;
+        int refractedG = 0;
+        int refractedB = 0;
+
+        if(geometry.get_material().get_Kr() != 0) {//for reduce useless checks
+            Ray refractedRay = constructReflectedRay(geometry.getNormal(point), point, inRay);
+            Map<Geometry, Point3D> refractedEntry =  getClosestPoint(getSceneRayIntersections(refractedRay), refractedRay);
+            if (!refractedEntry.isEmpty()) {
+
+                Color refractedColor = calcColor( refractedEntry.entrySet().iterator().next().getKey(),
+                        refractedEntry.entrySet().iterator().next().getValue(), refractedRay, level + 1);
+                double kt = geometry.get_material().get_Kr();
+                reflectR += (int) (kt * refractedColor.getRed());
+                reflectG += (int) (kt * refractedColor.getGreen());
+                reflectB += (int) (kt * refractedColor.getBlue());
+            }
+        }
+
+
+
 
 
 
@@ -479,7 +499,7 @@ public class Render implements Comparable<Render> {
         return new Color(r, g, b);
     }
     //
-    private int occluded(LightSource light, Point3D point, Geometry geometry) throws Exception {
+    private boolean occluded(LightSource light, Point3D point, Geometry geometry) throws Exception {
         Vector lightDirection = light.getL(point);
         lightDirection.scale(-1);
         Point3D geometryPoint = new Point3D(point);
@@ -494,8 +514,13 @@ public class Render implements Comparable<Render> {
         if (geometry instanceof FlatGeometry) {
             intersectionPoints.remove(geometry);
         }
-        if(intersectionPoints.isEmpty()) return 1;
-        else return 0;
+
+        for (Entry<Geometry, List<Point3D>> entry : intersectionPoints)
+            if (entry.geometry.material.Kt == 0)
+                return true;
+        return false;
+
+    }
 
 
 
