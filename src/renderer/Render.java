@@ -212,9 +212,9 @@ public class Render implements Comparable<Render> {
                                             geometry.getNormal(point),
                                             light.getL(point),
                                             light.getIntensity(point)).getRGB());
-                difuseR += diffuse_t.getRed()*s;
-                difuseB += diffuse_t.getBlue()*s;
-                difuseG += diffuse_t.getGreen()*s;
+                difuseR += diffuse_t.getRed()* s;
+                difuseB += diffuse_t.getBlue()* s;
+                difuseG += diffuse_t.getGreen()* s;
 
                 Color specular_t = new Color(calcSpecularComp(geometry.get_material().get_Ks(),
                                              new Vector(point, _scene.get_camera().get_P0()),
@@ -230,7 +230,7 @@ public class Render implements Comparable<Render> {
         }
 
         //reflected Light
-        Color reflectedLight = new Color(0, 0, 0);
+
         int reflectR = 0;
         int reflectG = 0;
         int reflectB = 0;
@@ -248,7 +248,7 @@ public class Render implements Comparable<Render> {
             reflectB += (int) (kr * reflectedColor.getBlue());
             }
         }
-
+        Color reflectedLight = new Color(reflectR, reflectG, reflectB);
 
 
         Color refractedLight = new Color(0, 0, 0);
