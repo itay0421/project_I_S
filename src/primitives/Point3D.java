@@ -153,4 +153,8 @@ public class Point3D extends Point2D  {
                              Math.pow(this.getY().getCoordinate() - point.getY().getCoordinate(), 2)
                                 + Math.pow(this.getZ().getCoordinate() - point.getZ().getCoordinate() , 2 ));
     }
+    public Point3D f(Point3D point3D){
+        Point3D p = new Point3D(650 - point3D.getX().getCoordinate(),point3D.getY().getCoordinate()- 650,point3D.getZ().getCoordinate());
+        return p;
+    }
 }

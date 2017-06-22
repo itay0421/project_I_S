@@ -3,9 +3,10 @@ package renderer;
 import Elements.*;
 import geometries.*;
 import geometries.Rectangle;
+import org.junit.Assert;
 import org.junit.Test;
 import primitives.Material;
-import primitives.Point3D;
+import primitives.*;
 import primitives.Vector;
 import scene.Scene;
 import java.awt.*;
@@ -15,6 +16,8 @@ import java.util.List;
  * Created by itay0 on 05/06/2017.
  */
 public class RenderTest {
+
+
 
 
     @Test

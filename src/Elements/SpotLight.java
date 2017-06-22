@@ -25,7 +25,7 @@ public class SpotLight extends PointLight {
         this._direction = new Vector(direction);
         _direction.normalize();
     }
-    ;
+
 
     // ***************** Getters/Setters ********************** //
     @Override

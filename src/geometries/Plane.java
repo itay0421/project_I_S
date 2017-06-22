@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by shalom on 29/03/2017.
  */
-public class Plane extends Geometry {
+public class Plane extends Geometry implements FlatGeometry {
     private Vector _normal;
     private Point3D _Q;
 
