@@ -228,7 +228,7 @@ public class Render implements Comparable<Render> {
         }
 
         //reflected Light
-        Color reflectedLight = new Color(0, 0, 0);
+
         int reflectR = 0;
         int reflectG = 0;
         int reflectB = 0;
@@ -246,7 +246,7 @@ public class Render implements Comparable<Render> {
             reflectB += (int) (kr * reflectedColor.getBlue());
             }
         }
-
+        Color reflectedLight = new Color(reflectR, reflectG, reflectB);
 
 
 
