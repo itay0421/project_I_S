@@ -251,24 +251,25 @@ public class Render implements Comparable<Render> {
         Color reflectedLight = new Color(reflectR, reflectG, reflectB);
 
 
-        Color refractedLight = new Color(0, 0, 0);
+
         int refractedR = 0;
         int refractedG = 0;
         int refractedB = 0;
 
-        if(geometry.get_material().get_Kr() != 0) {//for reduce useless checks
+        if(geometry.get_material().get_Kt() != 0) {//for reduce useless checks
             Ray refractedRay = constructReflectedRay(geometry.getNormal(point), point, inRay);
             Map<Geometry, Point3D> refractedEntry =  getClosestPoint(getSceneRayIntersections(refractedRay), refractedRay);
             if (!refractedEntry.isEmpty()) {
 
                 Color refractedColor = calcColor( refractedEntry.entrySet().iterator().next().getKey(),
                         refractedEntry.entrySet().iterator().next().getValue(), refractedRay, level + 1);
-                double kt = geometry.get_material().get_Kr();
-                reflectR += (int) (kt * refractedColor.getRed());
-                reflectG += (int) (kt * refractedColor.getGreen());
-                reflectB += (int) (kt * refractedColor.getBlue());
+                double kt = geometry.get_material().get_Kt();
+                refractedR += (int) (kt * refractedColor.getRed());
+                refractedG += (int) (kt * refractedColor.getGreen());
+                refractedB += (int) (kt * refractedColor.getBlue());
             }
         }
+        Color refractedLight = new Color(refractedR, refractedG, refractedB);
 
 
 
@@ -514,13 +515,15 @@ public class Render implements Comparable<Render> {
         if (geometry instanceof FlatGeometry) {
             intersectionPoints.remove(geometry);
         }
+        if(intersectionPoints.isEmpty()){
+            return 1;
+        }
 
         for (Map.Entry<Geometry, List<Point3D>> entry : intersectionPoints.entrySet()) {
-            if (entry.getKey().get_material().get_Kt() == 0)
-                return 1;
-            return 0;
+            if (entry.getKey().get_material().get_Kt() == 0){ return 0;}
+
         }
-        return 0;
+        return 1;
     }
 
 
