@@ -31,12 +31,12 @@ public class SpotLight extends PointLight {
     @Override
     public Color getIntensity(Point3D point) {
         Point3D po = new Point3D(point);
-        Vector temp=new Vector(_position);
+        Vector temp=new Vector(_position[0]);
         po.subtract(temp);
         Vector D = new Vector(po);
         D.normalize();
         _direction.normalize();
-        double distance = point.distance(_position);
+        double distance = point.distance(_position[0]);
         double dotP = D.dotProduct(_direction);
         dotP = Math.abs(dotP);
         double f = _Kc + _Kl * distance + _Kq * distance * distance;
