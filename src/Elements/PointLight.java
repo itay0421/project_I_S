@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class PointLight extends Light implements LightSource {
     double area;
-    Point3D[] _position = new Point3D[81];
+    Point3D[] _position = new Point3D[9];
     double _Kc, _Kl, _Kq;
 
     public double getArea() {
@@ -21,34 +21,35 @@ public class PointLight extends Light implements LightSource {
 
     public void setArea(double area) {
         this.area = area;
-        for ( int j = 1; j<11; j++) {
-            _position[0+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() + j/area),
+        int j = 1;
+        //for ( int j = 1; j<11; j++) {
+            _position[0+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() + area),
                     new Coordinate(_position[0].getY().getCoordinate()),
                     new Coordinate(_position[0].getZ().getCoordinate()));
-            _position[10+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() - j/area),
+            _position[1+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() - area),
                     new Coordinate(_position[0].getY().getCoordinate()),
                     new Coordinate(_position[0].getZ().getCoordinate()));
-            _position[20+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate()),
-                    new Coordinate(_position[0].getY().getCoordinate() + j/area),
+            _position[2+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate()),
+                    new Coordinate(_position[0].getY().getCoordinate() + area),
                     new Coordinate(_position[0].getZ().getCoordinate()));
-            _position[30+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate()),
-                    new Coordinate(_position[0].getY().getCoordinate() - j/area),
+            _position[3+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate()),
+                    new Coordinate(_position[0].getY().getCoordinate() - area),
                     new Coordinate(_position[0].getZ().getCoordinate()));
-            _position[40+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() + j/area),
-                    new Coordinate(_position[0].getY().getCoordinate() + j/area),
+            _position[4+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() + area),
+                    new Coordinate(_position[0].getY().getCoordinate() + area),
                     new Coordinate(_position[0].getZ().getCoordinate()));
-            _position[50+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() - j/area),
-                    new Coordinate(_position[0].getY().getCoordinate() + j/area),
+            _position[5+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() - area),
+                    new Coordinate(_position[0].getY().getCoordinate() + area),
                     new Coordinate(_position[0].getZ().getCoordinate()));
-            _position[60+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() - j/area),
-                    new Coordinate(_position[0].getY().getCoordinate() - j/area),
+            _position[6+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() - area),
+                    new Coordinate(_position[0].getY().getCoordinate() - area),
                     new Coordinate(_position[0].getZ().getCoordinate()));
-            _position[70+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() + j/area),
-                    new Coordinate(_position[0].getY().getCoordinate() - j/area),
+            _position[7+j] = new Point3D(new Coordinate(_position[0].getX().getCoordinate() + area),
+                    new Coordinate(_position[0].getY().getCoordinate() - area),
                     new Coordinate(_position[0].getZ().getCoordinate()));
         }
 
-    }
+    //}
 
     public Point3D getPosition() {
         return new Point3D(_position[0]);

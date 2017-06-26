@@ -202,11 +202,12 @@ public class RenderTest3 {
     public void LightTest11() throws Exception {
 
         Scene scene = new Scene(null, new Color(0,0,0), new AmbientLight(255,255,255), new Camera(), 250,null);
-        ImageWriter imageWriter = new ImageWriter("Shadow Test+1", 500, 500, 500, 500);
+        ImageWriter imageWriter = new ImageWriter("Shadow Test+++1", 500, 500, 500, 500);
         Plane plane = new Plane(new Vector(0,0,1), new Point3D(0,0,-520));
         plane.set_nShininess(200);
         Sphere sph1 = new Sphere(120, new Point3D(0,0,-400));
-        PointLight pointLight = new PointLight(new Color(255,50,50), new Point3D(200,-50,-20), 0.000005, 0.000005, 0.000006);
+        PointLight pointLight = new PointLight(new Color(255,50,50), new Point3D(100,50,-20), 0.000005, 0.000005, 0.000006);
+        pointLight.setArea(30);
         sph1.set_nShininess(35);
         sph1.set_emmission(new Color(17,15,116));
         scene.addGeometry(plane);
