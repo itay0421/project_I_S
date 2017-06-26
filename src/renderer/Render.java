@@ -255,7 +255,7 @@ public class Render implements Comparable<Render> {
         int refractedB = 0;
 
         if(geometry.get_material().get_Kt() != 0) {//for reduce useless checks
-            Ray refractedRay = constructReflectedRay(geometry.getNormal(point), point, inRay);
+            Ray refractedRay = constructRefractedRay(geometry.getNormal(point), point, inRay);
             Map<Geometry, Point3D> refractedEntry =  getClosestPoint(getSceneRayIntersections(refractedRay), refractedRay);
             if (!refractedEntry.isEmpty()) {
 
@@ -513,6 +513,7 @@ public class Render implements Comparable<Render> {
             return 1;
         }
 
+        //for refracted, check if all points is refcract
         for (Map.Entry<Geometry, List<Point3D>> entry : intersectionPoints.entrySet()) {
             if (entry.getKey().get_material().get_Kt() == 0){ return 0;}
 
@@ -566,6 +567,16 @@ public class Render implements Comparable<Render> {
         R.normalize();
         return new Ray(geometryPoint, R);
 */
+    }
+    private Ray constructRefractedRay(Vector normal, Point3D point, Ray inRay) {
+
+        Point3D geometryPoint = new Point3D(point);
+        Vector epsVector = new Vector(inRay.get_direction());
+        //epsVector.scale(0.00001);
+        geometryPoint.add(epsVector);
+        Vector newVector = new Vector(inRay.get_direction());
+        newVector.normalize();
+        return new Ray(geometryPoint, newVector);
     }
 
 }
