@@ -250,8 +250,6 @@ public class Render implements Comparable<Render> {
         }
         Color reflectedLight = new Color(reflectR, reflectG, reflectB);
 
-
-
         int refractedR = 0;
         int refractedG = 0;
         int refractedB = 0;
@@ -269,12 +267,8 @@ public class Render implements Comparable<Render> {
                 refractedB += (int) (kt * refractedColor.getBlue());
             }
         }
+
         Color refractedLight = new Color(refractedR, refractedG, refractedB);
-
-
-
-
-
 
         finalR =Math.min(255, _scene.get_ambientLight().getIntensity().getRed() + geometry.get_emmission().getRed() + difuseR + specularR + reflectedLight.getRed() + refractedLight.getRed());
         finalG =Math.min(255, _scene.get_ambientLight().getIntensity().getGreen() + geometry.get_emmission().getGreen() + difuseG + specularG + reflectedLight.getGreen() + refractedLight.getGreen());
