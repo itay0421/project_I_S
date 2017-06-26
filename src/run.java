@@ -58,15 +58,18 @@ int r , g ,b , Angle , t = 0,  _switch;
 
             int lighttemp;
             LightSource ligt = null;
-            lighttemp = s.nextInt();
             System.out.println("enter 1 to DirctionLight, enter 2 for pointLight, enter 3 for spot Light");
+            lighttemp = s.nextInt();
             switch (lighttemp) {
-                case 1: ligt = new DirectionalLight(new Color(r,g,b),new Vector(new Point3D(Math.sin(Angle),Math.cos(Angle),-500))) ;
+                case 1: ligt = new DirectionalLight(new Color(r,g,b),new Vector(new Point3D(Math.sin(Angle)*-200,Math.cos(Angle)*-200,-200))) ;
                     break;
-                case 2: ligt = new PointLight(new Color(r,g,b),new Point3D(Math.sin(Angle),Math.cos(Angle),-500), 0.1, 0.00001, 0.000005);
+               case 2: ligt = new PointLight(new Color(r,g,b),new Point3D(Math.sin(Angle)*-200,Math.cos(Angle)*-200,-200), 0.1, 0.00001, 0.000005);
+
                     break;
-                case 3: ligt = new SpotLight(new Color(r,g,b),new Point3D(Math.sin(Angle),Math.cos(Angle),-500),
-                    new Vector(-2, -2, -3), 0, 0.00001, 0.000005);
+             //   case 3: ligt = new SpotLight(new Color(r,g,b),new Point3D(Math.sin(Angle),Math.cos(Angle),-500),
+               //     new Vector(-2, -2, -3), 0, 0.00001, 0.000005);
+                case 3: ligt =  (new SpotLight(new Color(255, 100, 100), new Point3D(Math.sin(Angle)*-200 , Math.cos(Angle)*-200, -200),
+                        new Vector(2, 2, -3), 0.1, 0.00001, 0.000005));
 
                     break;
             }
@@ -75,6 +78,7 @@ int r , g ,b , Angle , t = 0,  _switch;
 
 switch (_switch) {
     case 1:
+        System.out.println("rendering");
 
         System.out.println(1);
         Scene scene = new Scene();
@@ -257,8 +261,10 @@ switch (_switch) {
         Render renderer = new Render(scene, imageWriter);
         renderer.renderImage();
         renderer.writeToImage();
+        System.out.println("finished render");
         break;
     case 2:
+        System.out.println("rendering");
         Scene scene2 = new Scene(null, new Color(0,0,0), new AmbientLight(255,255,255), new Camera(), 250,null);
         scene2.set_ambientLight(new AmbientLight(scene2.get_ambientLight().get_color(), itensity));
         ImageWriter imageWriter2 = new ImageWriter(file_name, 500, 500, 500, 500);
@@ -275,15 +281,13 @@ switch (_switch) {
         Render renderer2 = new Render(scene2, imageWriter2);
         renderer2.renderImage();
         renderer2.writeToImage();
-        System.out.println(2);
+        System.out.println("finished render");
         break;
 
 
 
-
-
     case 3:
-        System.out.println("test recursive test now runing");
+        System.out.println("recursive test now runing");
         Scene scene3 = new Scene();
         scene3.set_screenDistance(300);
 
@@ -309,6 +313,7 @@ switch (_switch) {
         Render renderer3 = new Render(scene3, imageWriter3);
         renderer3.renderImage();
         renderer3.writeToImage();
+        System.out.println("finished render");
         break;
     case 4:
         System.out.println("the progrem is ended");
