@@ -30,15 +30,16 @@ public class run extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        System.out.println("for hourse test press 1\n" +
-                "for shdow test press 2\n" +
-                "for recursive test print 3 \n" +
-        "for exit press 4");
-Scanner s;
+
 
 int r , g ,b , Angle , t = 0,  _switch;
  double itensity;
         while (t != 4) {
+            System.out.println("for hourse test press 1\n" +
+                    "for shdow test press 2\n" +
+                    "for recursive test print 3 \n" +
+                    "for exit press 4");
+            Scanner s;
     s = new Scanner(System.in);
     _switch = s.nextInt();
             System.out.println("enter file name:");
@@ -56,14 +57,17 @@ int r , g ,b , Angle , t = 0,  _switch;
 
 
             int lighttemp;
-            Light ligt;
+            LightSource ligt = null;
             lighttemp = s.nextInt();
+            System.out.println("enter 1 to DirctionLight, enter 2 for pointLight, enter 3 for spot Light");
             switch (lighttemp) {
                 case 1: ligt = new DirectionalLight(new Color(r,g,b),new Vector(new Point3D(Math.sin(Angle),Math.cos(Angle),-500))) ;
                     break;
-                case 2: ligt = new PointLight(new Color(r,g,b),new Vector(new Point3D(Math.sin(Angle),Math.cos(Angle),-500)));
+                case 2: ligt = new PointLight(new Color(r,g,b),new Point3D(Math.sin(Angle),Math.cos(Angle),-500), 0.1, 0.00001, 0.000005);
                     break;
-                case 3: ligt = new SpotLight(new Color(r,g,b),new Point3D(Math.sin(Angle),Math.cos(Angle),-500));
+                case 3: ligt = new SpotLight(new Color(r,g,b),new Point3D(Math.sin(Angle),Math.cos(Angle),-500),
+                    new Vector(-2, -2, -3), 0, 0.00001, 0.000005);
+
                     break;
             }
 
@@ -261,12 +265,13 @@ switch (_switch) {
         Plane plane = new Plane(new Vector(0,0,1), new Point3D(0,0,-520));
         plane.set_nShininess(200);
         Sphere sph1 = new Sphere(120, new Point3D(0,0,-400));
-        PointLight pointLight = new PointLight(new Color(255,50,50), new Point3D(200,-50,-20), 0.000005, 0.000005, 0.000006);
+       // PointLight pointLight = new PointLight(new Color(255,50,50), new Point3D(200,-50,-20), 0.000005, 0.000005, 0.000006);
+        scene2.addLight(ligt);
         sph1.set_nShininess(35);
         sph1.set_emmission(new Color(17,15,116));
         scene2.addGeometry(plane);
         scene2.addGeometry(sph1);
-        scene2.addLight(pointLight);
+       // scene2.addLight(pointLight);
         Render renderer2 = new Render(scene2, imageWriter2);
         renderer2.renderImage();
         renderer2.writeToImage();
@@ -281,10 +286,12 @@ switch (_switch) {
         System.out.println("test recursive test now runing");
         Scene scene3 = new Scene();
         scene3.set_screenDistance(300);
+
         Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000)) ;
         sphere.set_nShininess(20);
         sphere.set_emmission(new Color(0, 0, 100));
         sphere.setKt(0.5);
+        //sphere.setKd(0.8);
         scene3.addGeometry(sphere);
 
         Sphere sphere2 = new Sphere(250, new Point3D(0.0, 0.0, -1000));
@@ -293,9 +300,10 @@ switch (_switch) {
         sphere2.setKt(0);
         scene3.addGeometry(sphere2);
 
-        scene3.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(-200, -200, -150),
-                new primitives.Vector(2, 2, -3), 0.1, 0.00001, 0.000005));
-        scene3.set_ambientLight(new AmbientLight(scene3.get_ambientLight().get_color(), itensity));
+     //   scene3.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(-200, -200, -150),
+     //           new Vector(2, 2, -3), 0.1, 0.00001, 0.000005));
+        scene3.addLight(ligt);
+
         ImageWriter imageWriter3 = new ImageWriter(file_name, 500, 500, 500, 500);
 
         Render renderer3 = new Render(scene3, imageWriter3);
