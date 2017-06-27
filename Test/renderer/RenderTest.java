@@ -2,15 +2,13 @@ package renderer;
 
 import Elements.*;
 import geometries.*;
-import geometries.Rectangle;
+import geometries.Quadrangle;
 import org.junit.Test;
-import primitives.Material;
 import primitives.Point3D;
 import primitives.Vector;
 import scene.Scene;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+
 /**
  * Created by itay0 and yitzhak sud on 05/06/2017.
  */
@@ -108,13 +106,13 @@ public class RenderTest {
     public void test3() throws Exception
     {
 
-        Rectangle rectangle1 = new Rectangle(new Point3D(250, 250, -49), new Point3D(375, 375, -49));
-        //Rectangle rectangle2 = new Rectangle(new Point3D(375, 375, -49), new Point3D(250, 250, -49));
-        //Rectangle rectangle3 = new Rectangle(new Point3D(250, 250, -49), new Point3D(125, 125, -49));
-        //Rectangle rectangle4 = new Rectangle(new Point3D(0, 0, -49), new Point3D(0, 0, -49));
+        //Quadrangle rectangle1 = new Quadrangle(new Point3D(250, 250, -49), new Point3D(375, 375, -49));
+        //Quadrangle rectangle2 = new Quadrangle(new Point3D(375, 375, -49), new Point3D(250, 250, -49));
+        //Quadrangle rectangle3 = new Quadrangle(new Point3D(250, 250, -49), new Point3D(125, 125, -49));
+        //Quadrangle rectangle4 = new Quadrangle(new Point3D(0, 0, -49), new Point3D(0, 0, -49));
 
 
-        rectangle1.set_emmission(new Color(255,0,0));
+        //rectangle1.set_emmission(new Color(255,0,0));
        // rectangle2.set_emmission(new Color(0,0,255));
         //rectangle3.set_emmission(new Color(0,255,0));
         //rectangle4.set_emmission(new Color(250,250,0));
@@ -126,7 +124,7 @@ public class RenderTest {
 
         //add Geometries to the Scene
 
-        scene.addGeometry(rectangle1);
+        //scene.addGeometry(rectangle1);
         //scene.addGeometry(rectangle2);
         //scene.addGeometry(rectangle3);
         //scene.addGeometry(rectangle4);

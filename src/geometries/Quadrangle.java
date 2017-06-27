@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by itay0 on 08/06/2017.
  */
-public class Rectangle extends Geometry{
+public class Quadrangle extends Geometry{
 
     protected Triangle _tri1;
     protected Triangle _tri2;
@@ -20,7 +20,7 @@ public class Rectangle extends Geometry{
      * FUNCTION
      *      default constructor
      **************************************************/
-    public  Rectangle(){
+    public Quadrangle(){
      _tri1 = new Triangle();
      _tri2 = new Triangle();
     }
@@ -31,20 +31,18 @@ public class Rectangle extends Geometry{
      * PARAMETERS
      *      Point3D bottomLeft, Point3D topRight
      **************************************************/
-    public Rectangle(Point3D bottomLeft, Point3D topRight)
+    public Quadrangle(Point3D P1, Point3D P2, Point3D P3, Point3D P4)
     {
-        Point3D topLeft = new Point3D(bottomLeft.getX(), topRight.getY(), bottomLeft.getZ());
-        Point3D bottomRight = new Point3D(topRight.getX(), bottomLeft.getY(), topRight.getZ());
-        _tri1 = new Triangle(bottomLeft, topLeft, bottomRight);
-        _tri2 = new Triangle(topLeft, topRight, bottomRight);
+        _tri1 = new Triangle(P1, P2, P4);
+        _tri2 = new Triangle(P2, P3, P4);
     }
     /*************************************************
      * FUNCTION
      *      copy constructor
      * PARAMETERS
-     *      Rectangle copy
+     *      Quadrangle copy
      **************************************************/
-    public Rectangle(Rectangle copy)
+    public Quadrangle(Quadrangle copy)
     {
         _tri1 = new Triangle(copy._tri1);
         _tri2 = new Triangle(copy._tri2);
