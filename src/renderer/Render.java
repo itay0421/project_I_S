@@ -3,6 +3,7 @@ package renderer;
 import Elements.Camera;
 
 import Elements.LightSource;
+import Elements.PointLight;
 import com.sun.javafx.collections.MappingChange;
 import primitives.Coordinate;
 import primitives.Point3D;
@@ -207,7 +208,8 @@ public class Render implements Comparable<Render> {
         while (lights.hasNext()){
 
             LightSource light = lights.next();
-            int s = occluded(light, point, geometry);// 1 if no shadow
+            double s = occluded(light, point, geometry);// 0 if tottaly shadow
+
             Color diffuse_t = new Color(calcDiffusiveComp(geometry.get_material().get_Kd(),
                                             geometry.getNormal(point),
                                             light.getL(point),
@@ -494,33 +496,76 @@ public class Render implements Comparable<Render> {
         return new Color(r, g, b);
     }
     //
-    private int occluded(LightSource light, Point3D point, Geometry geometry) throws Exception {
-        Vector lightDirection = light.getL(point);
-        lightDirection.scale(-1);
+    private double occluded(LightSource light, Point3D point, Geometry geometry) throws Exception {
         Point3D geometryPoint = new Point3D(point);
-
         Vector epsVector = new Vector(geometry.getNormal(point));
         epsVector.scale(2);
         geometryPoint.add(epsVector);
 
-        Ray lightRay = new Ray(geometryPoint, lightDirection);
+        if (light instanceof PointLight && ((PointLight) light).getArea() != 0) {
+            Vector lightDirectionArr[] = new Vector[9];
+            double sumArr[] = new double[9];
+
+            for(int i=0; i<9; i++) {
+                sumArr[i] = tracehadow(lightDirectionArr,geometryPoint,light,point, geometry,i );
+            }
+            int sum = 0;
+            for (double d : sumArr) sum += d;
+            double average =  sum / 9.0;
+            if(average!=0 && average!=1){
+                average++;
+                average--;
+            }
+            return average;
+        }
+        else{
+
+            Vector lightDirection = light.getL(point);
+            lightDirection.scale(-1);
+            Ray lightRay = new Ray(geometryPoint, lightDirection);
+            Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(lightRay);
+            // Flat geometry cannot self intersect
+            if (geometry instanceof FlatGeometry) {
+                intersectionPoints.remove(geometry);
+            }
+
+            if(intersectionPoints.isEmpty()){
+                return 1;
+            }
+
+            //for refracted, check if all points is refcract
+            for (Map.Entry<Geometry, List<Point3D>> entry : intersectionPoints.entrySet()) {
+                if (entry.getKey().get_material().get_Kt() == 0) {
+                    return 0;
+                }
+
+            }
+            return 1;
+        }
+    }
+
+    private double tracehadow(Vector[]lightDirectionArr,Point3D geometryPoint,LightSource light,Point3D point,Geometry geometry,int i ) throws Exception {
+        lightDirectionArr[i] = ((PointLight) light).getL(point, i);
+        lightDirectionArr[i].scale(-1);
+        Ray lightRay = new Ray(geometryPoint, lightDirectionArr[i]);
         Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(lightRay);
-        // Flat geometry cannot self intersect
         if (geometry instanceof FlatGeometry) {
             intersectionPoints.remove(geometry);
         }
+
         if(intersectionPoints.isEmpty()){
             return 1;
         }
 
         //for refracted, check if all points is refcract
         for (Map.Entry<Geometry, List<Point3D>> entry : intersectionPoints.entrySet()) {
-            if (entry.getKey().get_material().get_Kt() == 0){ return 0;}
+            if (entry.getKey().get_material().get_Kt() == 0) {
+                return 0;
+            }
 
         }
-        return 1 ;
+        return 1;
     }
-
 
 
 
