@@ -186,10 +186,38 @@ public class Render implements Comparable<Render> {
      *	    This function calculate the color in the given point
      *SEE ALSO
      *		addColors
+     *	    calcolor
+     *	this function call other calcolor function to calculate the color
+     *  becuase in this function we not calculate the reflction light.
      **************************************************/
     private Color calcColor(Geometry geometry, Point3D point, Ray ray) throws Exception {
         return calcColor(geometry, point, ray, 0);
     }
+    /*************************************************
+     * FUNCTION
+     * 		calcColor
+     * PARAMETERS
+     *		Geometry geometry - the geometry in the front of the screen
+     *		Point3D point - the exact point we want to calculate its color
+     *		Ray inRay
+     *	    int level - the recursion number. we went to recurs this function 4 time.
+     *	    to get a fine color.
+     * RETURN VALUE
+     * 		Color
+     * MEANING
+     *	    This function calculate the color in the given point
+     *SEE ALSO
+     *		addColors
+     *	    occluded
+     *  the occluded are calculating in other function thet call occluded.
+     *  in this function we call to function to calculate the  speculer, diffuse, reflect, refract, Ambiant, emission. lights
+     *  by fhong modle we are add all the light and then we get the real color
+     *  the function calling to:
+     *  calcDiffusiveComp
+     *  calcSpecularComp
+     *  constructReflectedRay
+     *  calcColor (recursion)
+     **************************************************/
     private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level) throws Exception {
 
         if (RECURSION_LEVEL == level) { //condition for stop recursive
@@ -280,14 +308,6 @@ public class Render implements Comparable<Render> {
 
     }
 
-    /**private Color calcColor(Geometry geometry, Point3D point, Ray inRay)
-    {
-        Color color = new Color(0);
-        color = addColors(geometry.get_emmission(),_scene.get_ambientLight().getIntensity(point),new Color(0),new Color(0));
-        return color;
-
-    }
-*/
     /*************************************************
      * FUNCTION
      * 		getClosestPoint
@@ -323,6 +343,24 @@ public class Render implements Comparable<Render> {
         return minDistancePoint;
 
     }
+    /*************************************************
+     * FUNCTION
+     * 		getClosestPoint
+     * PARAMETERS
+     *		Map<Geometry, List<Point3D>> intersectionPoints -
+     *				a map with all geometries in the scene and
+     *				their list of intersection points
+     *			Ray ray - to find out the shadow points
+     *		in shadow check we need to look on the point on the geometry
+     *	    and see the forward point that will not get light and put there shadow
+     * RETURN VALUE
+     * 		Entry<Geometry, Point3D>
+     * MEANING
+     *      Finds out from a list of the closest  points is
+     *      that the distance from the PO projection point is minimal
+     *	    This function return the closest geometry to screen
+     *		and its list of intersection points in an Entry of the map
+     **************************************************/
     private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints, Ray ray)
     {
         double distance = Double.MAX_VALUE;

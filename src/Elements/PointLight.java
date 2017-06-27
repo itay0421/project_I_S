@@ -79,6 +79,14 @@ public class PointLight extends Light implements LightSource {
     }
 
     // ***************** Getters/Setters ********************** //
+    /*************************************************
+     * FUNCTION
+     * 		getintensity
+     * PARAMETERS Point3D point
+     * RETURN VALUE
+     *		new color every class have to add her change in light.
+     *	the function get all the "k" that substract from the light
+     **************************************************/
     @Override
     public Color getIntensity(Point3D point) {
         double d = point.distance(_position[0]);
@@ -91,7 +99,13 @@ public class PointLight extends Light implements LightSource {
         if(b>255)b=255;
         return new Color(r,g,b);
     }
-
+    /*************************************************
+     * FUNCTION
+     * 		getL
+     * PARAMETERS Point3D point
+     * RETURN VALUE
+     *		new Vector from the Light to the geometry.
+     **************************************************/
     @Override
     public Vector getL(Point3D point) {
         Point3D point2=new Point3D(point);
@@ -101,7 +115,16 @@ public class PointLight extends Light implements LightSource {
         v.normalize();
         return v;
     }
-
+    /*************************************************
+     * FUNCTION
+     * 		getL
+     * 	int i
+     * PARAMETERS Point3D point
+     * RETURN VALUE
+     *		new Vector from the Light to the geometry.
+     *	this function return the vector to the light number i
+     *  the its recived as premeter
+     **************************************************/
     public Vector getL(Point3D point, int i) {
         Point3D point2=new Point3D(point);
         Vector temp=new Vector(_position[i]);

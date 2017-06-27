@@ -32,9 +32,12 @@ public class run extends Application {
 
 
 
-int r , g ,b , Angle , t = 0,  _switch;
+int r , g ,b , Angle , t = 0,  _switch, lighttemp;
  double itensity;
-        while (t != 4) {
+        String file_name;
+        LightSource ligt = null;
+
+        while (t != 4 ) {
             System.out.println("for hourse test press 1\n" +
                     "for shdow test press 2\n" +
                     "for recursive test print 3 \n" +
@@ -42,42 +45,13 @@ int r , g ,b , Angle , t = 0,  _switch;
             Scanner s;
     s = new Scanner(System.in);
     _switch = s.nextInt();
-            System.out.println("enter file name:");
-            String file_name;
-            file_name = s.next();
-            System.out.println("enter RGB Colors:");
-            r = s.nextInt();
-            g = s.nextInt();
-            b = s.nextInt();
-            System.out.println("enter Angle Color:");
-            Angle = s.nextInt();
-            System.out.println("enter itensity Color number between 0-100:");
-            itensity = s.nextDouble();
-            itensity /= 100;
-
-
-            int lighttemp;
-            LightSource ligt = null;
-            System.out.println("enter 1 to DirctionLight, enter 2 for pointLight, enter 3 for spot Light");
-            lighttemp = s.nextInt();
-            switch (lighttemp) {
-                case 1: ligt = new DirectionalLight(new Color(r,g,b),new Vector(new Point3D(Math.sin(Angle)*-200,Math.cos(Angle)*-200,-200))) ;
-                    break;
-               case 2: ligt = new PointLight(new Color(r,g,b),new Point3D(Math.sin(Angle)*-200,Math.cos(Angle)*-200,-200), 0.1, 0.00001, 0.000005);
-
-                    break;
-             //   case 3: ligt = new SpotLight(new Color(r,g,b),new Point3D(Math.sin(Angle),Math.cos(Angle),-500),
-               //     new Vector(-2, -2, -3), 0, 0.00001, 0.000005);
-                case 3: ligt =  (new SpotLight(new Color(255, 100, 100), new Point3D(Math.sin(Angle)*-200 , Math.cos(Angle)*-200, -200),
-                        new Vector(2, 2, -3), 0.1, 0.00001, 0.000005));
-
-                    break;
-            }
-
-
 
 switch (_switch) {
     case 1:
+        System.out.println("enter file name:");
+        file_name = s.next();
+        System.out.println("enter itensity Color number between 0-100:");
+        itensity = s.nextDouble();
         System.out.println("rendering");
 
         System.out.println(1);
@@ -264,6 +238,33 @@ switch (_switch) {
         System.out.println("finished render");
         break;
     case 2:
+        System.out.println("enter file name:");
+        file_name = s.next();
+        System.out.println("enter RGB Colors:");
+        r = s.nextInt();
+        g = s.nextInt();
+        b = s.nextInt();
+        System.out.println("enter Angle:");
+        Angle = s.nextInt();
+        System.out.println("enter itensity Color number between 0-100:");
+        itensity = s.nextDouble();
+        itensity /= 100;
+        System.out.println("enter 1 to DirctionLight, enter 2 for pointLight, enter 3 for spot Light");
+        lighttemp = s.nextInt();
+        switch (lighttemp) {
+            case 1: ligt = new DirectionalLight(new Color(r,g,b),new Vector(new Point3D(Math.sin(Angle)*-200,Math.cos(Angle)*-200,-200))) ;
+                break;
+            case 2: ligt = new PointLight(new Color(r,g,b),new Point3D(Math.sin(Angle)*-200,Math.cos(Angle)*-200,-200), 0.1, 0.00001, 0.000005);
+                break;
+            case 3: ligt =  (new SpotLight(new Color(255, 100, 100), new Point3D(Math.sin(Angle)*-200 , Math.cos(Angle)*-200, -200),
+                    new Vector(2, 2, -3), 0.1, 0.00001, 0.000005));
+                break;
+        }
+
+
+
+
+
         System.out.println("rendering");
         Scene scene2 = new Scene(null, new Color(0,0,0), new AmbientLight(255,255,255), new Camera(), 250,null);
         scene2.set_ambientLight(new AmbientLight(scene2.get_ambientLight().get_color(), itensity));
@@ -287,6 +288,35 @@ switch (_switch) {
 
 
     case 3:
+        System.out.println("enter file name:");
+        file_name = s.next();
+        System.out.println("enter RGB Colors:");
+        r = s.nextInt();
+        g = s.nextInt();
+        b = s.nextInt();
+        System.out.println("enter Angle:");
+        Angle = s.nextInt();
+        System.out.println("enter itensity Color number between 0-100:");
+        itensity = s.nextDouble();
+        itensity /= 100;
+        System.out.println("enter 1 to DirctionLight, enter 2 for pointLight, enter 3 for spot Light");
+        lighttemp = s.nextInt();
+        switch (lighttemp) {
+            case 1: ligt = new DirectionalLight(new Color(r,g,b),new Vector(new Point3D(Math.sin(Angle)*-200,Math.cos(Angle)*-200,-200))) ;
+                break;
+            case 2: ligt = new PointLight(new Color(r,g,b),new Point3D(Math.sin(Angle)*-200,Math.cos(Angle)*-200,-200), 0.1, 0.00001, 0.000005);
+                ((PointLight)ligt).setArea(10.0);
+            break;
+            case 3: ligt =  (new SpotLight(new Color(255, 100, 100), new Point3D(Math.sin(Angle)*-200 , Math.cos(Angle)*-200, -200),
+                    new Vector(2, 2, -3), 0.1, 0.00001, 0.000005));
+                break;
+        }
+
+
+
+
+
+
         System.out.println("recursive test now runing");
         Scene scene3 = new Scene();
         scene3.set_screenDistance(300);
@@ -295,7 +325,7 @@ switch (_switch) {
         sphere.set_nShininess(20);
         sphere.set_emmission(new Color(0, 0, 100));
         sphere.setKt(0.5);
-        //sphere.setKd(0.8);
+        sphere.setKd(0.8);
         scene3.addGeometry(sphere);
 
         Sphere sphere2 = new Sphere(250, new Point3D(0.0, 0.0, -1000));
@@ -303,9 +333,6 @@ switch (_switch) {
         sphere2.set_emmission(new Color(100, 20, 20));
         sphere2.setKt(0);
         scene3.addGeometry(sphere2);
-
-     //   scene3.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(-200, -200, -150),
-     //           new Vector(2, 2, -3), 0.1, 0.00001, 0.000005));
         scene3.addLight(ligt);
 
         ImageWriter imageWriter3 = new ImageWriter(file_name, 500, 500, 500, 500);
@@ -315,10 +342,12 @@ switch (_switch) {
         renderer3.writeToImage();
         System.out.println("finished render");
         break;
+
     case 4:
-        System.out.println("the progrem is ended");
-        return;
-    // act 1   break;  default:   // act2   break;
+        t=4;
+        System.out.println("progrem ended");
+        break;
+
 }
 
 }
