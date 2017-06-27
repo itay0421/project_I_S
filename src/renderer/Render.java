@@ -425,35 +425,61 @@ public class Render implements Comparable<Render> {
         return color;
     }
 
-    /**
+
+    /*************************************************
+     * FUNCTION
+     * 		calcDiffusiveComp
+     * PARAMETERS
+     *      kd diffuse factor
+     *      normal of the geometry at that point - N
+     *      lightToPoint the vector from the light to the point - L
+     *      lightIntensity the intensity of the light
      *
-     * @param kd diffuse factor
-     * @param normal of the geometry at that point - N
-     * @param lightToPoint the vector from the light to the point - L
-     * @param lightIntensity the intensity of the light
-     * @return  the diffuse color at the point
-     */
+     * RETURN VALUE
+     * 		color - final Diffusive for point
+     * MEANING
+     *     The function calculates the diffuse
+     *     light for a specific point.
+     *     The function normalizes the vectors and then calculates R.
+     *     The function calculates the factor factor and then
+     *     multiplies all the colors.
+     * SEE ALSO
+     *		calcColor
+     **************************************************/
     private Color calcDiffusiveComp(double kd, Vector normal, Vector lightToPoint, Color lightIntensity) {
         normal.normalize();
         lightToPoint.normalize();
         double difuseFactor = kd * normal.dotProduct(lightToPoint);
         difuseFactor = Math.abs(difuseFactor);
+
         int r = Math.min(255,(int) (lightIntensity.getRed() * difuseFactor));
         int g = Math.min(255,(int) (lightIntensity.getGreen() * difuseFactor));
         int b = Math.min(255,(int) (lightIntensity.getBlue() * difuseFactor));
         return new Color(r, g, b);
     }
 
-    /**
+    /*************************************************
+     * FUNCTION
+     * 		calcSpecularComp
+     * PARAMETERS
+     *      ks -  specular factor
+     *      cameraToPoint -  vector from camera to point - V
+     *      normalOfPoint -  normal of geometry at point - N
+     *      lightToPoint - vector from light to point - D
+     *      nShininess -  the amount of shininess
+     *      intensity -  the intensity of the light
      *
-     *@param ks specular factor
-      * @param cameraToPoint vector from camera to point - V
-     * @param normalOfPoint normal of geometry at point - N
-     * @param lightToPoint vector from light to point - D
-     * @param nShininess the amount of shininess
-     * @param intensity the intensity of the light
-     * @return the specular color at point
-     */
+     * RETURN VALUE
+     * 		color - final Specular for point
+     * MEANING
+     *     The function calculates the Specular
+     *     light for a specific point.
+     *     The function normalizes the vectors and then calculates R.
+     *     The function calculates the factor factor and then
+     *     multiplies all the colors.
+     * SEE ALSO
+     *		calcColor
+     **************************************************/
     private Color calcSpecularComp(double ks, Vector cameraToPoint,
                                    Vector normalOfPoint, Vector lightToPoint, double nShininess, Color intensity) {
         lightToPoint.normalize();
@@ -477,13 +503,17 @@ public class Render implements Comparable<Render> {
         return new Color(r, g, b);
     }
 
-    /**
-     * check color's Values after calculate
-     * @param r
-     * @param g
-     * @param b
-     * @return
-     */
+
+    /*************************************************
+     * FUNCTION
+     * 		checkLimitColor
+     * PARAMETERS
+     *		r, g, b
+     * RETURN VALUE
+     * 		new color
+     * MEANING
+     *      heck color's Values after calculate
+     **************************************************/
     private Color checkLimitColor(int r, int g, int b){
         if (r >= 255) {r = 255; }
         if (r < 0) {r = 0; }
@@ -495,7 +525,29 @@ public class Render implements Comparable<Render> {
         if (b < 0) {b = 0; }
         return new Color(r, g, b);
     }
-    //
+    /*************************************************
+     * FUNCTION
+     * 		occluded
+     * PARAMETERS
+     *		LightSource light - light that make shadow
+     *	    Point3D point - point to test shadow
+     *	    Geometry geometry - geometry that shadow on it
+     * RETURN VALUE
+     * 		double between 1 to zero
+     * MEANING
+     *      The function calculates the shadow for each point in the scene.
+     *      The calculation is to send rays from the point to each
+     *      light source, and to calculate their sum.
+     *      For a completely shaded point the function returns 0.
+     *      For a point that has no shadow the function will return 1.
+     *      And the shadow enhancement by adding sending 10
+     *      rays to each illumination source.
+     *      We will also check whether the cut points found are
+     *      of transparent geometries, and in fact they
+     *      do not make a shadow.
+     *SEE ALSO
+     *		tracehadow, calcColor
+     **************************************************/
     private double occluded(LightSource light, Point3D point, Geometry geometry) throws Exception {
         Point3D geometryPoint = new Point3D(point);
         Vector epsVector = new Vector(geometry.getNormal(point));
@@ -543,7 +595,22 @@ public class Render implements Comparable<Render> {
             return 1;
         }
     }
-
+    /*************************************************
+     * FUNCTION
+     * 		tracehadow
+     * PARAMETERS
+     *		Vector[]lightDirectionArr
+     *	    Point3D geometryPoint
+     *	    LightSource light
+     *	    Point3D point
+     * RETURN VALUE
+     * 		average double between 1 to zero
+     * MEANING
+     *      The function calculates an average of N rays,
+     *      in order to extract a softened edge of shadow
+     *SEE ALSO
+     *		oclooded, calcColor
+     **************************************************/
     private double tracehadow(Vector[]lightDirectionArr,Point3D geometryPoint,LightSource light,Point3D point,Geometry geometry,int i ) throws Exception {
         lightDirectionArr[i] = ((PointLight) light).getL(point, i);
         lightDirectionArr[i].scale(-1);
@@ -567,15 +634,22 @@ public class Render implements Comparable<Render> {
         return 1;
     }
 
-
-
-    /**
+    /*************************************************
+     * FUNCTION
+     * 		constructReflectedRay
+     * PARAMETERS
+     *		point position of ray
+     *	    inRay original ray - D
+     *	    normal - N
      *
-     * @param  - N
-     * @param point position of ray
-     * @param inRay original ray - D
-     * @return a new reflection ray from point - R
-     */
+     * RETURN VALUE
+     * 		ray -R, for reflected
+     * MEANING
+     *      The function returns the light-continuation vector
+     *      after damage to any object
+     *SEE ALSO
+     *		oclooded, calcColor
+     **************************************************/
     private Ray constructReflectedRay(Vector normal, Point3D point, Ray inRay) {
         Vector R = inRay.get_direction();
 
@@ -597,22 +671,25 @@ public class Render implements Comparable<Render> {
         pointIn.add(epsVec);
 
         return new Ray(pointIn, R);
-
-
-/**
-        N.normalize();
-        Point3D geometryPoint = new Point3D(point);
-        Vector D = new Vector(inRay.get_direction());
-        D.normalize();
-        double scale =  2 * D.dotProduct(N);
-        Vector temp = new Vector(N);
-        temp.scale(scale);
-        Vector R = new Vector(D);
-        R.subtract(temp);
-        R.normalize();
-        return new Ray(geometryPoint, R);
-*/
     }
+
+    /*************************************************
+     * FUNCTION
+     * 		constructRefractedRay
+     * PARAMETERS
+     *		point position of ray
+     *	    inRay original ray - D
+     *	    normal - N
+     *
+     * RETURN VALUE
+     * 		ray -R, for reflected
+     * MEANING
+     *      The function returns the
+     *      light-continuation vector after harming any
+     *      object for the function that calculates transparency in recursion
+     *SEE ALSO
+     *		oclooded, calcColor
+     **************************************************/
     private Ray constructRefractedRay(Vector normal, Point3D point, Ray inRay) {
 
         Point3D geometryPoint = new Point3D(point);
