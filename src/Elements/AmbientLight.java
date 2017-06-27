@@ -49,22 +49,27 @@ public class AmbientLight extends Light implements Comparable<AmbientLight> {
     }
     //*********************************************************
 
-    /**
-     * Compare two ambieant light
-     * @param o color
-     * @return if equal return 0. else return 1.
-     */
+    /*************************************************
+     * FUNCTION
+     * 		comperto
+     * PARAMETERS AmbiantLight
+     * RETURN VALUE
+     *		0 if they equal 1 if they are not equal
+     * MEANING
+     *checking if the ambiantLight are the same
+     **************************************************/
     @Override
     public int compareTo(AmbientLight o) {
         if ((o._Ka == _Ka)&&(o._color == _color))return 0;
         return 1;
     }
 
-    /**
-     * the function print out the data of the object
-     * @return print format
-     * use to print out the AmbientLight class
-     */
+    /*************************************************
+     * FUNCTION
+     * 		Tostring
+     * MEANING
+     * print to the computer the date
+     *  **************************************************/
     @Override
     public String toString() {
         return "AmbientLight{" +
@@ -73,11 +78,12 @@ public class AmbientLight extends Light implements Comparable<AmbientLight> {
                 '}';
     }
 
-    /**
-     * the function add importent parameter of intensity to calculate the right color
-     * the function multiply the color with _Ka parameter that hold the distance of the light
-     * @return new color according to calculate intensity
-     */
+    /*************************************************
+     * FUNCTION
+     * 		get intensity
+     * RETURN VALUE
+     *		new Color that including the ambient light.
+     **************************************************/
     public Color getIntensity(){
         int r=_color.getRed();
         int g=_color.getGreen();
@@ -88,16 +94,16 @@ public class AmbientLight extends Light implements Comparable<AmbientLight> {
         return new Color(r ,b ,g ) ;
     }
 
-    /**
-     * the function add importent parameter of intensity to calculate the right color
-     * the function multiply the color with _Ka parameter that hold the distance of the light
-     * @param point to calculate it color
-     * @return new color according to calculate intensity, of the parameter point
-     */
+    /*************************************************
+     * FUNCTION
+     * 		getIntensity
+     * PARAMETERS Point3D point
+     * RETURN VALUE
+     *		new Color that including the ambient light.
+     **************************************************/
     //@Override
     public Color getIntensity(Point3D point)
     {
         return (new Color((int)(_Ka*_color.getRed()),(int)( _Ka*_color.getGreen()),(int)( _Ka*_color.getBlue())));
     }
-    //public AmbientLight(Map<String, String> attributes){};
 }

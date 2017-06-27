@@ -11,10 +11,26 @@ import primitives.Vector;
 import java.awt.Color;
 
 /**
- *
+ * abstract class to make sure all of the sons Elements class will implement important function
+ * this class make sure that every class that extend her will have a color parameter to the object
  */
+
 public interface LightSource {
-  public abstract Color getIntensity(Point3D point); 
+  /*************************************************
+   * FUNCTION
+   * 		getintensity
+   * PARAMETERS Point3D point
+   * RETURN VALUE
+   *		new color every class have to add her change in light.
+   **************************************************/
+  public abstract Color getIntensity(Point3D point);
+  /*************************************************
+   * FUNCTION
+   * 		getL
+   * PARAMETERS Point3D point
+   * RETURN VALUE
+   *		new Vector from the Light to the geometry.
+   **************************************************/
   public abstract Vector getL(Point3D point); // light to point vector   
     
 }
