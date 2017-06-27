@@ -491,12 +491,12 @@ public class Render implements Comparable<Render> {
         Vector R = new Vector(lightToPoint);//R=D-...
         R.subtract(temp);
         double factor = cameraToPoint.dotProduct(R);
-        if (factor >= 0)
-            return new Color(0,0,0);
+        //if (factor >= 0)
+         //   return new Color(0,0,0);
 
-        factor = Math.abs(factor);
+
         factor = Math.pow(factor, nShininess);
-
+        factor = Math.abs(factor);
         int r =Math.min(255, (int) (factor * intensity.getRed() * ks));
         int g =Math.min(255, (int) (factor * intensity.getGreen() * ks));
         int b =Math.min(255, (int) (factor * intensity.getBlue() * ks));
@@ -551,7 +551,7 @@ public class Render implements Comparable<Render> {
     private double occluded(LightSource light, Point3D point, Geometry geometry) throws Exception {
         Point3D geometryPoint = new Point3D(point);
         Vector epsVector = new Vector(geometry.getNormal(point));
-        epsVector.scale(2);
+        epsVector.scale(0.2);
         geometryPoint.add(epsVector);
 
         if (light instanceof PointLight && ((PointLight) light).getArea() != 0) {
@@ -661,7 +661,7 @@ public class Render implements Comparable<Render> {
 
         Vector epsVec = new Vector(normal);
         if(normal.dotProduct(R) < 0){
-            epsVec.scale(-2);
+            epsVec.scale(-0.2);
         }
         else {
             epsVec.scale(2);
@@ -694,7 +694,7 @@ public class Render implements Comparable<Render> {
 
         Point3D geometryPoint = new Point3D(point);
         Vector epsVector = new Vector(inRay.get_direction());
-        //epsVector.scale(0.00001);
+        epsVector.scale(0.00001);
         geometryPoint.add(epsVector);
         Vector newVector = new Vector(inRay.get_direction());
         newVector.normalize();

@@ -9,7 +9,7 @@ import geometries.Sphere;
 import geometries.Triangle;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.junit.Test;
+
 import primitives.*;
 import primitives.Vector;
 import renderer.ImageWriter;

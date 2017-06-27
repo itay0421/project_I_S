@@ -187,8 +187,8 @@ public class RenderTest3 {
         scene.addGeometry(triangle);
         scene.addGeometry(triangle2);
 
-        scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(200, 200, -100),
-                new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
+        scene.addLight(new PointLight(new Color(255, 100, 100), new Point3D(200, 200, -100),
+                 0, 0.000001, 0.0000005));
 
 
         ImageWriter imageWriter = new ImageWriter("shadow test", 500, 500, 500, 500);
