@@ -34,7 +34,7 @@ public class SpotLight extends PointLight {
      * PARAMETERS Point3D point
      * RETURN VALUE
      *		new color every class have to add her change in light.
-     **************************************************/
+     *************************************************/
     @Override
     public Color getIntensity(Point3D point) {
         Point3D po = new Point3D(point);
