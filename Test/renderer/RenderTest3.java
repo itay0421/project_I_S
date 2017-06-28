@@ -215,7 +215,7 @@ public class RenderTest3 {
         scene.addLight(pointLight);
         Render renderer = new Render(scene, imageWriter);
         renderer.renderImage();
-        renderer.writeToImage();
+        renderer.writeToImage() ;
     }
 
     @Test
