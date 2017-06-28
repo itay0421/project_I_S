@@ -39,7 +39,7 @@ int r , g ,b , Angle , t = 0,  _switch, lighttemp;
 
         while (t != 4 ) {
             System.out.println("for hourse test press 1\n" +
-                    "for shdow test press 2\n" +
+                    "for shadow test press 2\n" +
                     "for recursive test print 3 \n" +
                     "for exit press 4");
             Scanner s;
@@ -50,7 +50,7 @@ switch (_switch) {
     case 1:
         System.out.println("enter file name:");
         file_name = s.next();
-        System.out.println("enter itensity Color number between 0-100:");
+        System.out.println("enter intensity Color number between 0-10:");
         itensity = s.nextDouble();
         System.out.println("rendering");
 
@@ -296,7 +296,7 @@ switch (_switch) {
         b = s.nextInt();
         System.out.println("enter Angle:");
         Angle = s.nextInt();
-        System.out.println("enter itensity Color number between 0-100:");
+        System.out.println("enter itensity Color number between 0-10:");
         itensity = s.nextDouble();
         itensity /= 100;
         System.out.println("enter 1 to DirctionLight, enter 2 for pointLight, enter 3 for spot Light");
@@ -305,7 +305,7 @@ switch (_switch) {
             case 1: ligt = new DirectionalLight(new Color(r,g,b),new Vector(new Point3D(Math.sin(Angle)*-200,Math.cos(Angle)*-200,-200))) ;
                 break;
             case 2: ligt = new PointLight(new Color(r,g,b),new Point3D(Math.sin(Angle)*-200,Math.cos(Angle)*-200,-200), 0.1, 0.00001, 0.000005);
-                ((PointLight)ligt).setArea(10.0);
+                //((PointLight)ligt).setArea(10.0);
             break;
             case 3: ligt =  (new SpotLight(new Color(255, 100, 100), new Point3D(Math.sin(Angle)*-200 , Math.cos(Angle)*-200, -200),
                     new Vector(2, 2, -3), 0.1, 0.00001, 0.000005));
@@ -324,8 +324,8 @@ switch (_switch) {
         Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000)) ;
         sphere.set_nShininess(20);
         sphere.set_emmission(new Color(0, 0, 100));
-        sphere.setKt(0.5);
-        sphere.setKd(0.8);
+        sphere.setKt(0.85);
+        //sphere.setKd(0.8);
         scene3.addGeometry(sphere);
 
         Sphere sphere2 = new Sphere(250, new Point3D(0.0, 0.0, -1000));

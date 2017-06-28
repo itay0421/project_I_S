@@ -303,8 +303,8 @@ public class Render implements Comparable<Render> {
         finalR =Math.min(255, _scene.get_ambientLight().getIntensity().getRed() + geometry.get_emmission().getRed() + difuseR + specularR + reflectedLight.getRed() + refractedLight.getRed());
         finalG =Math.min(255, _scene.get_ambientLight().getIntensity().getGreen() + geometry.get_emmission().getGreen() + difuseG + specularG + reflectedLight.getGreen() + refractedLight.getGreen());
         finalB =Math.min(255, _scene.get_ambientLight().getIntensity().getBlue() + geometry.get_emmission().getBlue() + difuseB + specularB + reflectedLight.getBlue() + refractedLight.getBlue());
-        Color IO = new Color(finalR, finalG, finalB);
-        return IO;
+        Color Phong_final = new Color(finalR, finalG, finalB);
+        return Phong_final;
 
     }
 
@@ -529,8 +529,8 @@ public class Render implements Comparable<Render> {
         Vector R = new Vector(lightToPoint);//R=D-...
         R.subtract(temp);
         double factor = cameraToPoint.dotProduct(R);
-        //if (factor >= 0)
-         //   return new Color(0,0,0);
+       // if (factor >= 0)
+          //  return new Color(0,0,0);
 
 
         factor = Math.pow(factor, nShininess);
@@ -589,7 +589,7 @@ public class Render implements Comparable<Render> {
     private double occluded(LightSource light, Point3D point, Geometry geometry) throws Exception {
         Point3D geometryPoint = new Point3D(point);
         Vector epsVector = new Vector(geometry.getNormal(point));
-        epsVector.scale(0.2);
+        epsVector.scale(0.0002);
         geometryPoint.add(epsVector);
 
         if (light instanceof PointLight && ((PointLight) light).getArea() != 0) {
@@ -699,10 +699,10 @@ public class Render implements Comparable<Render> {
 
         Vector epsVec = new Vector(normal);
         if(normal.dotProduct(R) < 0){
-            epsVec.scale(-0.2);
+            epsVec.scale(-0.00002);
         }
         else {
-            epsVec.scale(2);
+            epsVec.scale(0.000002);
         }
 
         Point3D pointIn = new Point3D(point);

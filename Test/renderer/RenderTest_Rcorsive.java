@@ -24,7 +24,7 @@ public class RenderTest_Rcorsive {
         Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000)) ;
         sphere.set_nShininess(20);
         sphere.set_emmission(new Color(0, 0, 100));
-        sphere.setKt(0.5);
+        sphere.setKt(0.9);
         //sphere.setKd(0.8);
         scene.addGeometry(sphere);
 
